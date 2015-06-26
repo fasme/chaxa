@@ -46,7 +46,16 @@ class MantencionController extends BaseController {
         if ($mantencion->isValid($datos))
         {
             // Si la data es valida se la asignamos al usuario
+
+            if($datos["fecha_mantencion"])
+            {
+                list($dia,$mes,$ano) = explode("/",$datos['fecha_mantencion']);
+            $datos['fecha_mantencion'] = "$ano-$mes-$dia";
+
+            }
+
             $mantencion->fill($datos);
+
             // Guardamos el usuario
             /* $usuario->password = Hash::make($usuario->password);*/
 
@@ -102,10 +111,16 @@ return Redirect::to('mantencion/insert')->withInput()->withErrors($mantencion->e
         
         if ($mantencion->isValid($datos))
         {
-            // Si la data es valida se la asignamos al usuario
+            
+            if($datos["fecha_mantencion"])
+            {
+                list($dia,$mes,$ano) = explode("/",$datos['fecha_mantencion']);
+            $datos['fecha_mantencion'] = "$ano-$mes-$dia";
+
+            }
+            
             $mantencion->fill($datos);
-            // Guardamos el usuario
-             //$usuario->password = Hash::make($usuario->password);
+           
 
       
             

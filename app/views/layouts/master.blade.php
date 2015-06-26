@@ -445,6 +445,16 @@
 						</a>
 					</li>
 
+
+					<li class="" id="medicaactive">
+						<a href="{{URL::to('medica')}}">
+							<i class="menu-icon fa fa-ambulance"></i>
+							<span class="menu-text"> Atencion Medica </span>
+						</a>
+					</li>
+
+					
+
 					<li class="" id="noticiaactive">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-truck"></i>
@@ -476,6 +486,9 @@
 								<b class="arrow"></b>
 							</li>
 						</ul>
+
+
+
 
 					</li>
 					

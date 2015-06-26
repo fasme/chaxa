@@ -72,7 +72,7 @@
 
 
             <div class="form-group">
-                              {{Form::label('', 'Actividad',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+                              {{Form::label('', 'Requisito Legal',array("class"=>"col-sm-3 control-label no-padding-right"))}}
                               {{Form::select('actividad_id[]', $leys, $arrayName, array("class"=>"chosen-select", "multiple"=>"multiple"))}}
                               </div>
            

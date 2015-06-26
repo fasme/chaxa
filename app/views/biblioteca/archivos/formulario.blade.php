@@ -57,6 +57,23 @@
             </div>
 
             <div class="form-group">
+            {{Form::label('Codigo', 'Codigo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::text('codigo', $archivo->codigo)}}
+            </div>
+
+            <div class="form-group">
+            {{Form::label('Version', 'Version',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::text('version', $archivo->version)}}
+            </div>
+
+            <div class="form-group">
+            {{Form::label('Tiempo Vigencia', 'Tiempo Vigencia',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::text('tiempo', $archivo->tiempo)}}
+            </div>
+
+         
+
+            <div class="form-group">
             {{Form::label('Archivo', 'Archivo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
             {{Form::file('archivo')}}
             </div>

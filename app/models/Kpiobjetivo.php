@@ -1,14 +1,11 @@
 <?php
-class Pac extends Eloquent { //Todos los modelos deben extender la clase Eloquent
-    protected $table = 'pac';
-    protected $fillable = array('faena','personal_id','ohsas','iso9','iso1','audinterna','audexterna','revgerencial','reccliente','inspecciones','legal', 'nc','obs','om','identificacion','porque1','porque2','porque3','porque4','porque5');
+class Kpiobjetivo extends Eloquent { //Todos los modelos deben extender la clase Eloquent
+    protected $table = 'kpiobjetivo';
+    protected $fillable = array('nombre');
 
 
 
-public function actividadPac()
-{
-    return $this->hasMany("ActividadPac");
-}
+
 
 
 

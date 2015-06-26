@@ -7,7 +7,8 @@ class ActividadNoProgramada extends Eloquent { //Todos los modelos deben extende
     public function muchaspersonal()
 {
     return $this->belongsToMany("Personal",'actividad_responsable','actividad_id','personal_id')
-    ->withpivot("id", "personal_admin_id","estado","tipoactividad","adjunto1","adjunto2","adjunto3","adjunto4","adjunto5");
+    ->withpivot("id", "personal_admin_id","estado","tipoactividad","adjunto1","adjunto2","adjunto3","adjunto4","adjunto5",'fechaenvio')
+    ->withTimestamps();
 }
 
 

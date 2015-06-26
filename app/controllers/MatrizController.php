@@ -8,11 +8,13 @@ class MatrizController extends BaseController {
     public function show()
     {
         $matrizs = Matriz::all();
+        $cambios = Cambio::all();
         
         // Con el método all() le estamos pidiendo al modelo de Usuario
         // que busque todos los registros contenidos en esa tabla y los devuelva en un Array
         
-        return View::make('matriz.show')->with("matrizs",$matrizs);
+        return View::make('matriz.show')->with("matrizs",$matrizs)
+        ->with("cambios",$cambios);
         
         // El método make de la clase View indica cual vista vamos a mostrar al usuario
         //y también pasa como parámetro los datos que queramos pasar a la vista.
@@ -227,7 +229,7 @@ return Redirect::to('matriz/update/'.$id)->withInput()->withErrors($matriz->erro
 
         $matrizs = Matriz::all();
         $view = View::make('matriz.pdf')->with("matrizs",$matrizs);
-        return PDF::load($view, 'A4', 'landscape')->show();
+        return PDF::load($view, 'tabloid', 'landscape')->show();
 
     }
 
@@ -236,7 +238,7 @@ return Redirect::to('matriz/update/'.$id)->withInput()->withErrors($matriz->erro
 
         $matriz = Matriz::find($id);
          $view = View::make('matriz.pdfid')->with("matriz",$matriz);
-        return PDF::load($view, 'A4', 'landscape')->show();
+        return PDF::load($view, 'tabloid', 'landscape')->show();
 
     }
 
@@ -247,7 +249,7 @@ return Redirect::to('matriz/update/'.$id)->withInput()->withErrors($matriz->erro
           $matrizs = Matriz::Wherein("id", $datos["selectmatrices"])->get();
 
           $view = View::make('matriz.pdf')->with("matrizs",$matrizs);
-       return PDF::load($view, 'A4', 'landscape')->show();
+       return PDF::load($view, 'tabloid', 'landscape')->show();
         
         //$matriz = Matriz::find($id);
         // $view = View::make('matriz.pdfid')->with("matriz",$matriz);
@@ -255,6 +257,8 @@ return Redirect::to('matriz/update/'.$id)->withInput()->withErrors($matriz->erro
 
     }
 
+
+   
 
 
  

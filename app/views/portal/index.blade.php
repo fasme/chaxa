@@ -17,11 +17,26 @@
                 <div class="item {{$active}}" style="background-image: url(portal1/images/slider/pizarra.png); background-size: 1300px 730px;">
                     <div class="container">
                         <div class="row slide-margin">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <div class="carousel-content">
 
                                     <h1 class="animation animated-item-1">{{$noticia->titulo}}</h1>
                                     <h2 class="animation animated-item-2">{{$noticia->descripcion}}</h2>
+                                    @if($noticia->archivo1)
+                                    <img src="archivos/noticia/{{$noticia->archivo1}}" width="200">
+                                    @endif
+
+                                    @if($noticia->archivo2)
+                                    <img src="archivos/noticia/{{$noticia->archivo2}}" width="200">
+                                    @endif
+
+                                    @if($noticia->archivo3)
+                                    <img src="archivos/noticia/{{$noticia->archivo3}}" width="200">
+                                    @endif
+
+                                    @if($noticia->archivo4)
+                                    <img src="archivos/noticia/{{$noticia->archivo4}}" width="200">
+                                    @endif
                                     <a class="btn-slide animation animated-item-3" href="#">Read More</a>
                                 </div>
                             </div>

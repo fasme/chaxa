@@ -6,7 +6,7 @@
      
 <div class="page-header position-relative">
             <h1>
-              Categoria
+              Noticia
               <small>
                 <i class="icon-double-angle-right"></i>
                 
@@ -34,10 +34,10 @@
            <?php
   // si existe el usuario carga los datos
     if ($noticia->exists):
-        $form_data = array('url' => 'noticia/update/'.$noticia->id, "id"=>"myform");
+        $form_data = array('url' => 'noticia/update/'.$noticia->id, "id"=>"myform","files"=>true);
         $action    = 'Editar';
     else:
-        $form_data = array('url' => 'noticia/insert', 'class'=>'class="form-horizontal', "id"=>"myform");
+        $form_data = array('url' => 'noticia/insert', 'class'=>'class="form-horizontal', "id"=>"myform", "files"=>true);
         $action    = 'Crear';        
     endif;
 
@@ -57,6 +57,29 @@
         
      
 
+<div class="form-group">
+            {{Form::label('', 'Archivo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::file('archivo1', array("id"=>"id-input-file-1"))}}
+            </div>
+
+
+            <div class="form-group">
+            {{Form::label('', 'Archivo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::file('archivo2', array("id"=>"id-input-file-2"))}}
+            </div>
+
+            <div class="form-group">
+            {{Form::label('', 'Archivo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::file('archivo3', array("id"=>"id-input-file-3"))}}
+            </div>
+
+            <div class="form-group">
+            {{Form::label('', 'Archivo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::file('archivo4', array("id"=>"id-input-file-4"))}}
+            </div>
+
+
+
              {{Form::submit('Guardar', array('class'=>'btn btn-small btn-success'))}}
         {{ Form::close() }}
 
@@ -74,6 +97,24 @@
 <script>
   $(document).ready(function(){
    
+//$('#id-input-file-2').ace_file_input('show_file_list', ['myfile.txt']);
+
+$('#id-input-file-2, #id-input-file-1, #id-input-file-3, #id-input-file-4').ace_file_input({
+          no_file:'No File ...',
+          btn_choose:'Choose',
+          btn_change:'Change',
+          droppable:false,
+          onchange:null,
+          thumbnail:false
+           //| true | large
+          //whitelist:'gif|png|jpg|jpeg'
+          //blacklist:'exe|php'
+          //onchange:''
+          //
+        });
+
+
+
 
 $('#editor1').ace_wysiwyg({
     toolbar:

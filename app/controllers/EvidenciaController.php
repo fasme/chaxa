@@ -32,6 +32,16 @@ class EvidenciaController extends BaseController {
         return Redirect::to(url(URL::previous()));
     }
 
+    public function eliminarusuario()
+    {
+        $alertas = Alertas::Where("personal_id","=",Auth::user()->id)->get();
+        foreach ($alertas as $alerta) {
+            $alerta->delete();
+        }
+        
+        return Redirect::to(url(URL::previous()));
+    }
+
     public function cerraractividad(){
 
        

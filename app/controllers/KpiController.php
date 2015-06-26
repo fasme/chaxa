@@ -8,11 +8,13 @@ class KpiController extends BaseController {
     public function show()
     {
         $kpis = Kpi::all();
+        $kpiobjetivos = Kpiobjetivo::all();
         
         // Con el método all() le estamos pidiendo al modelo de Usuario
         // que busque todos los registros contenidos en esa tabla y los devuelva en un Array
         
-        return View::make('kpi.show')->with("kpis",$kpis);
+        return View::make('kpi.show')->with("kpis",$kpis)
+        ->with("kpiobjetivos",$kpiobjetivos);
         
         // El método make de la clase View indica cual vista vamos a mostrar al usuario
         //y también pasa como parámetro los datos que queramos pasar a la vista.
@@ -24,9 +26,12 @@ class KpiController extends BaseController {
     {
         $kpi = new Kpi; 
         $personals = Personal::lists("nombre","id");
+        $kpiobjetivos = Kpiobjetivo::lists("nombre","id");
+
         return View::make('kpi.formulario')
         ->with("kpi",$kpi)
-        ->with("personals",$personals);
+        ->with("personals",$personals)
+        ->with("kpiobjetivos",$kpiobjetivos);
      
     }
  
@@ -61,8 +66,8 @@ class KpiController extends BaseController {
            
 
             
-            list($dia,$mes,$ano) = explode("/",$datos['plazo'][$i]);
-            $kpiactividad->plazo = "$ano-$mes-$dia";
+            list($dia,$mes,$ano) = explode("/",$datos['frecuencia'][$i]);
+            $kpiactividad->frecuencia = "$ano-$mes-$dia";
 
 
 
@@ -102,10 +107,12 @@ return Redirect::to('kpi/insert')->withInput()->withErrors($kpi->errors);
  
            $kpi = Kpi::find($id);
            $personals = Personal::lists("nombre","id");
+            $kpiobjetivos = Kpiobjetivo::lists("nombre","id");
          
         return View::make('kpi.formulario')
         ->with("kpi",$kpi)
-        ->with("personals",$personals);
+        ->with("personals",$personals)
+        ->with("kpiobjetivos",$kpiobjetivos);
  
                 
  
@@ -121,6 +128,9 @@ return Redirect::to('kpi/insert')->withInput()->withErrors($kpi->errors);
 
 
         $datos = Input::all(); 
+
+
+
         
         if ($kpi->isValid($datos))
         {
@@ -129,6 +139,28 @@ return Redirect::to('kpi/insert')->withInput()->withErrors($kpi->errors);
             // Guardamos el usuario
              //$usuario->password = Hash::make($usuario->password);
 
+            $kpi->actividadKpi()->delete();
+            for($i=0; $i<count($datos["selectpac"]); $i++)
+        {
+            $kpiactividad = new ActividadKpi;
+            $kpiactividad->actividad = $datos["actividad"][$i];
+            $kpiactividad->personal_id = $datos["selectpac"][$i];
+           
+
+            
+            list($dia,$mes,$ano) = explode("/",$datos['frecuencia'][$i]);
+            $kpiactividad->frecuencia = "$ano-$mes-$dia";
+
+
+
+            $kpi->actividadKpi()->save($kpiactividad);
+
+            $kpiactividad = ActividadKpi::find($kpiactividad->id);
+            $kpiactividad->muchaspersonal()->attach($datos["selectpac"][$i],array("personal_admin_id"=>Auth::user()->id, "estado"=>"Abierta","tipoactividad"=>"kpi"));
+
+            
+            //echo $datos["selectpac"][$i]." ".$datos["actividad"][$i]."<br>";
+        }
         
 
 

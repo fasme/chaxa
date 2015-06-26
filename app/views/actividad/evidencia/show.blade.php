@@ -3,10 +3,27 @@
 @section('contenido')
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+$actividadresponsable = DB::table('actividad_responsable')->Where("personal_admin_id","=",Auth::user()->id)->get();
+?>
+
 <div class="row">
 
 
- <h3 class="header smaller lighter">Evidencia (Actividad Programada): 
+ <h3 class="header smaller lighter">Todas las actividades: 
                 
     </h3>
 
@@ -47,8 +64,30 @@
                         <tbody>
 
                         
-                         @foreach($personals as $personal)
-                             @foreach($personal->actividadesProgramadas()->Where("personal_admin_id","=",Auth::user()->id)->get() as $actividad)
+                        
+                             @foreach($actividadresponsable as $actividad)
+
+                              <?php
+                           $busqueda = "";
+                            ?>
+
+                            @if($actividad->tipoactividad == "programada")
+                            <?php 
+                            $busqueda = ActividadProgramada::find($actividad->actividad_id);
+                            ?>
+                            @elseif($actividad->tipoactividad == "noprogramada")
+                            <?php
+                             $busqueda = ActividadNoProgramada::find($actividad->actividad_id);
+                            ?>
+                            @elseif($actividad->tipoactividad == "kpi")
+                            <?php
+                            $busqueda = ActividadKpi::find($actividad->actividad_id);
+                              ?>
+                            @elseif($actividad->tipoactividad == "pac")
+                            <?php
+                            $busqueda = ActividadPac::find($actividad->actividad_id);
+                              ?>
+                            @endif
 
                          
                             
@@ -56,7 +95,7 @@
                             
                         
                            <?php
-                            $datetime1 = new DateTime($actividad->frecuencia);
+                            $datetime1 = new DateTime($busqueda->frecuencia);
                             $datetime2 = new DateTime(date("Y/m/d"));
                             $interval = $datetime1->diff($datetime2);
                             if($interval->format("%R") == "+")
@@ -70,33 +109,33 @@
                              
                             ?>
 
-                            <td>{{ $actividad->actividad}}</td>
-                            <td>{{$personal->nombre}}</td>
+                            <td>{{ $busqueda->actividad}}</td>
+                            <td>{{Personal::find($actividad->personal_id)->nombre}}</td>
                           
-                            <td>{{$actividad->pivot->estado}}</td>
-                            <td>{{date_format(date_create($actividad->frecuencia),"d/m/Y")}} {{$dif}}</td>
+                            <td>{{$actividad->estado}}</td>
+                            <td>{{date_format(date_create($busqueda->frecuencia),"d/m/Y")}} {{$dif}}</td>
                             <td>
-                            @if($actividad->pivot->estado == "Abierta")
+                            @if($actividad->estado == "Abierta")
                             <div class="hidden-sm hidden-xs action-buttons">
-                                <a data-toggle="modal" class="botoncito" data-id="{{$actividad->pivot->id}}" data-actividadid="{{$actividad->pivot->actividad_id}}" data-tipoactividad="{{$actividad->pivot->tipoactividad}}" href="#" >
+                                <a data-toggle="modal" class="botoncito" data-id="{{$actividad->id}}" data-actividadid="{{$actividad->actividad_id}}" data-tipoactividad="{{$actividad->tipoactividad}}" href="#" >
                                   <i class="ace-icon fa fa-times bigger-130 red"></i>
                                 </a>
                               </div>
                               @else
-                              <a href="archivos/evidencia/{{ $actividad->pivot->adjunto1}}">{{$actividad->pivot->adjunto1}}</a><br>
-                           <a href="archivos/evidencia/{{ $actividad->pivot->adjunto2}}">{{$actividad->pivot->adjunto2}}</a><br>
-                           <a href="archivos/evidencia/{{ $actividad->pivot->adjunto3}}">{{$actividad->pivot->adjunto3}}</a><br>
-                           <a href="archivos/evidencia/{{ $actividad->pivot->adjunto4}}">{{$actividad->pivot->adjunto4}}</a><br>
-                           <a href="archivos/evidencia/{{ $actividad->pivot->adjunto5}}">{{$actividad->pivot->adjunto5}}</a><br>
+                              <a href="archivos/evidencia/{{ $actividad->adjunto1}}">{{$actividad->adjunto1}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad->adjunto2}}">{{$actividad->adjunto2}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad->adjunto3}}">{{$actividad->adjunto3}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad->adjunto4}}">{{$actividad->adjunto4}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad->adjunto5}}">{{$actividad->adjunto5}}</a><br>
                            
-                                     @if($actividad->pivot->estado != "Cerrada")
-                                      <a href='#' data-id="{{$actividad->pivot->id}}" class="bootbox-confirm"><button class="btn btn-success">Cerrar actividad</button></a>
+                                     @if($actividad->estado != "Cerrada")
+                                      <a href='#' data-id="{{$actividad->id}}" class="bootbox-confirm"><button class="btn btn-success">Cerrar actividad</button></a>
                                     @endif
                               @endif
                               </td>
                             </tr>
                                 @endforeach
-                            @endforeach
+                           
                             
                             </tbody>
 
@@ -116,8 +155,6 @@
                 
                                                    
             </div><!--/.row-->
-
-
     
 
 
@@ -145,7 +182,6 @@
  $(document).ready(function() {
 
 
- $( "#actividadactive" ).addClass( "active" );
 $( "#evidenciaactive" ).addClass( "active" );
 
 /*
@@ -181,15 +217,6 @@ var oTable2 =
             }
         });
 
-
-        var oTable3 = 
-        $('#example2')
-        //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-        .dataTable( {
-            "language": {
-                "url": "js/spanish.datatables.json"
-            }
-        });
 
 
 

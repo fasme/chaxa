@@ -38,15 +38,55 @@ class NoticiaController extends BaseController {
 
         $noticia = new Noticia;
 
+
         $datos = Input::all(); 
+
+        $random = rand(0,99999);
         
         if ($noticia->isValid($datos))
         {
-            // Si la data es valida se la asignamos al usuario
+             if (Input::hasFile("archivo1"))
+                {
+                    $adjunto1 = Input::file('archivo1');
+                    $datos["archivo1"] = $random."_".$adjunto1->getClientOriginalName();
+                    $adjunto1->move("archivos/noticia",$random."_".$adjunto1->getClientOriginalName());
+                    
+                   
+                }
+
+                 if (Input::hasFile("archivo2"))
+                {
+                    $adjunto1 = Input::file('archivo2');
+                    $datos["archivo2"] = $random."_".$adjunto1->getClientOriginalName();
+                    $adjunto1->move("archivos/noticia",$random."_".$adjunto1->getClientOriginalName());
+                    
+                   
+                }
+
+                 if (Input::hasFile("archivo3"))
+                {
+                    $adjunto1 = Input::file('archivo3');
+                    $datos["archivo3"] = $random."_".$adjunto1->getClientOriginalName();
+                    $adjunto1->move("archivos/noticia",$random."_".$adjunto1->getClientOriginalName());
+                    
+                   
+                }
+
+                 if (Input::hasFile("archivo4"))
+                {
+                    $adjunto1 = Input::file('archivo4');
+                    $datos["archivo4"] = $random."_".$adjunto1->getClientOriginalName();
+                    $adjunto1->move("archivos/noticia",$random."_".$adjunto1->getClientOriginalName());
+                    
+                   
+                }
+
+                
             $noticia->fill($datos);
             // Guardamos el usuario
             /* $usuario->password = Hash::make($usuario->password);*/
 
+          
       
             
            $noticia->save();
@@ -87,17 +127,56 @@ return Redirect::to('noticia/insert')->withInput()->withErrors($noticia->errors)
     {
         
          $noticia = Noticia::find($id);
+ $datos = Input::all(); 
 
-
-
-        $datos = Input::all(); 
+$random = rand(0,99999);
+       
         
         if ($noticia->isValid($datos))
         {
             // Si la data es valida se la asignamos al usuario
-            $noticia->fill($datos);
+            
             // Guardamos el usuario
              //$usuario->password = Hash::make($usuario->password);
+ if (Input::hasFile("archivo1"))
+                {
+                    $adjunto1 = Input::file('archivo1');
+                    $datos["archivo1"] = $random."_".$adjunto1->getClientOriginalName();
+                    $adjunto1->move("archivos/noticia",$random."_".$adjunto1->getClientOriginalName());
+                    
+                   
+                }
+
+                 if (Input::hasFile("archivo2"))
+                {
+                    $adjunto1 = Input::file('archivo2');
+                    $datos["archivo2"] = $random."_".$adjunto1->getClientOriginalName();
+                    $adjunto1->move("archivos/noticia",$random."_".$adjunto1->getClientOriginalName());
+                    
+                   
+                }
+
+                 if (Input::hasFile("archivo3"))
+                {
+                    $adjunto1 = Input::file('archivo3');
+                    $datos["archivo3"] = $random."_".$adjunto1->getClientOriginalName();
+                    $adjunto1->move("archivos/noticia",$random."_".$adjunto1->getClientOriginalName());
+                    
+                   
+                }
+
+                 if (Input::hasFile("archivo4"))
+                {
+                    $adjunto1 = Input::file('archivo4');
+                    $datos["archivo4"] = $random."_".$adjunto1->getClientOriginalName();
+                    $adjunto1->move("archivos/noticia",$random."_".$adjunto1->getClientOriginalName());
+                    
+                   
+                }
+
+
+                $noticia->fill($datos);
+
 
       
             

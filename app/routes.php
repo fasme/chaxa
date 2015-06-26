@@ -174,6 +174,14 @@ Route::get('matriz/pdf/{id}', 'MatrizController@pdfid');
 Route::post('matriz/pdf/filtro', 'MatrizController@pdffiltro');
 Route::get("matriz/cargarMatrizColor", "MatrizController@cargarColorMatriz");
 
+// cambio
+Route::get('cambio', array('uses' => 'CambioController@show')); 
+Route::get('cambio/insert', array('uses' => 'CambioController@insert'));
+Route::post('cambio/insert', array('uses' => 'CambioController@insert2'));
+Route::get('cambio/update/{id}', 'CambioController@update');
+Route::post('cambio/update/{id}', 'CambioController@update2');
+Route::get('cambio/eliminar', 'CambioController@eliminar');
+
 
 // matriz acTIVIDAD
 Route::get('matrizActividad', array('uses' => 'MatrizActividadController@show')); 
@@ -234,7 +242,8 @@ Route::get('actividadpac', array('uses' => 'ActividadPacController@show'));
 
 //Evidencia
 Route::get('evidenciaadmin', array('uses' => 'EvidenciaController@show')); 
-Route::get('evidenciaadmin/eliminar', array('uses' => 'EvidenciaController@eliminar')); 
+Route::get('evidenciaadmin/eliminar', array('uses' => 'EvidenciaController@eliminar'));
+Route::get('evidenciaadmin/eliminarusuario', array('uses' => 'EvidenciaController@eliminarusuario')); 
 Route::get('evidenciaadmin/cerraractividad', array('uses' => 'EvidenciaController@cerraractividad')); 
 
 
@@ -281,6 +290,15 @@ Route::post('kpi/update/{id}', 'KpiController@update2');
 Route::get('kpi/eliminar', 'KpiController@eliminar');
 
 
+//KPI Objetivo
+Route::get('kpiobjetivo', array('uses' => 'KpiobjetivoController@show')); 
+Route::get('kpiobjetivo/insert', array('uses' => 'KpiobjetivoController@insert'));
+Route::post('kpiobjetivo/insert', array('uses' => 'KpiobjetivoController@insert2'));
+Route::get('kpiobjetivo/update/{id}', 'KpiobjetivoController@update');
+Route::post('kpiobjetivo/update/{id}', 'KpiobjetivoController@update2');
+Route::get('kpiobjetivo/eliminar', 'KpiobjetivoController@eliminar');
+
+
 //VEHICULO
 Route::get('vehiculo', array('uses' => 'VehiculoController@show')); 
 Route::get('vehiculo/insert', array('uses' => 'VehiculoController@insert'));
@@ -298,6 +316,14 @@ Route::get('mantencion/update/{id}', 'MantencionController@update');
 Route::post('mantencion/update/{id}', 'MantencionController@update2');
 Route::get('mantencion/eliminar', 'MantencionController@eliminar');
 
+
+//Medica
+Route::get('medica', array('uses' => 'MedicaController@show')); 
+Route::get('medica/insert', array('uses' => 'MedicaController@insert'));
+Route::post('medica/insert', array('uses' => 'MedicaController@insert2'));
+Route::get('medica/update/{id}', 'MedicaController@update');
+Route::post('medica/update/{id}', 'MedicaController@update2');
+Route::get('medica/eliminar', 'MedicaController@eliminar');
 
 
 // Manual

@@ -36,7 +36,9 @@
                             <th class="hidden-480">Proceso</th>
                             
                             <th>Peligro</th>
+                            <th>Actividad</th>
                             <th>Acciones</th>
+                            
 
 
                            
@@ -50,6 +52,11 @@
                             
                             <td>{{$matriz->proceso}}</td>
                             <td>{{$matriz->peligro->nombre}}</td>
+                            <td>
+                            @foreach($matriz->muchasactividad as $actividad)
+                            {{$actividad->nombre}}
+                            @endforeach
+                            </td>
                             <td>
                             <a href= {{ 'matriz/pdf/'.$matriz->id }}>
                             <span class="label label-success arrowed">Imprimir</span>
@@ -116,16 +123,8 @@ var table =
 
     },
       "aButtons": [
-                    {
-                        "sExtends": "copy",
-                        //"sTitle": "Report Name",
-                        //"sPdfMessage": "Summary Info",
-                       // "sFileName": "<?php print('Actividad No Programada'); ?>.pdf",
-                        //"sPdfOrientation": "landscape",
-                        "oSelectorOpts": {page: 'current'},
-
-                    },
-                   
+                    
+                   /*
                     {
                         "sExtends": "pdf",
                         //"sTitle": "Report Name",
@@ -134,8 +133,8 @@ var table =
                         "sPdfOrientation": "landscape",
                         "oSelectorOpts": {page: 'current'},
 
-                    },
-                    "print"
+                    }
+                    */
                 ]
     
       

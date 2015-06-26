@@ -31,6 +31,10 @@
           <tr>
             <th>Vehiculo</th>
             <th>Mantencion Realizada</th>
+            <th>Proxima Mantencion</th>
+            <th>Fecha Mantencion</th>
+            <th>Horometro Mantencion</th>
+            <th>Horometro Proxima Mantencion</th>
            
           
   <th>Acciones</th>
@@ -45,7 +49,10 @@
 
              <td> {{ $mantencion->vehiculo->familia." / ". $mantencion->vehiculo->patente}}</td>
             <td>{{ $mantencion->mantencionrealizada}}</td>
-         
+            <td>{{$mantencion->proximamantencion}}</td>
+            <td>{{date_format(date_create($mantencion->fecha_mantencion),'d/m/Y')}}
+          <td>{{$mantencion->horometromantencion}}</td>
+          <td>{{$mantencion->proximahorometro}}</td>
 
   <td class="td-actions">
                        

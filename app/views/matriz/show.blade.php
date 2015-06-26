@@ -12,7 +12,7 @@
 <div class="col-xs-12">
 {{Form::open(array("url"=>"matriz/pdf/filtro"))}}
                  
-
+ <h3 class="header smaller lighter">
                     <a href="{{URL::to('matriz/insert')}}"  class="btn btn-white btn-info btn-bold"> 
     <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>Agregar</a>
 
@@ -25,7 +25,7 @@
   
   
    </select>
-   
+   </h3>
 {{Form::close()}}
 
 
@@ -42,6 +42,7 @@
   <thead>
           <tr>
             <th>Proceso</th>
+            <th>Actividad</th>
           
   <th>Acciones</th>
             
@@ -54,6 +55,11 @@
            <tr  id="{{$matriz->id}}">
 
              <td> {{ $matriz->proceso}}</td>
+             <td>
+             @foreach($matriz->muchasactividad as $actividad)
+                            {{$actividad->nombre." / "}}
+                            @endforeach
+                            </td>
          
 
   <td class="td-actions">
@@ -86,11 +92,82 @@
 
 
 
+
+
+
+
+<div class="row">
+  <div class="col-xs-6">
+
+   <h3 class="header smaller lighter">Cambios: 
+                    <a href="{{URL::to('cambio/insert')}}"  class="btn btn-white btn-info btn-bold"> 
+    <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>Agregar</a>
+    </h3>
+
+
+      <table id="example1" class="table table-striped table-bordered table-hover">
+
+  <thead>
+          <tr>
+            <th>Version</th>
+            <th>Descripcion</th>
+          
+  <th>Acciones</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+
+
+  @foreach($cambios as $cambio)
+           <tr  id="{{$matriz->id}}">
+
+             <td> {{ $cambio->version}}</td>
+             <td>
+             
+                            {{$cambio->descripcion}}
+                           
+                            </td>
+         
+
+  <td class="td-actions">
+                       
+                      
+                     
+
+
+                          <a class="green" href= {{ 'cambio/update/'.$cambio->id }}>
+                            <i class="fa fa-pencil bigger-130"></i>
+                          </a>
+
+                         <a class="red bootbox-confirm" data-id={{ $cambio->id }}>
+                            <i class="fa fa-trash bigger-130"></i>
+                          </a>
+
+
+                         
+                      </td>
+</tr>
+          @endforeach
+        </tbody>
+  </table>
+  </div>
+</div>
+
+
 <!-- CARGO -->
 
 
   <script type="text/javascript">
  $(document).ready(function() {
+
+
+var table1 = $('#example1').DataTable( {
+      
+       "language": {
+                "url": "datatables.spanish.json"
+            }
+    } );
 
 
 var table = $('#example').DataTable( {

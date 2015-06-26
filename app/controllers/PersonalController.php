@@ -225,7 +225,7 @@ return Redirect::to('personal/update/'.$id)->withInput()->withErrors($personal->
                 //$actividadrespoonsable->save();
 
                 $actividadrespoonsable = DB::table('actividad_responsable')
-            ->Where("id","=",$datos["id"])->update(array('adjunto1' => $adjunto11,'adjunto2' => $adjunto22,'adjunto3' => $adjunto33,'adjunto4' => $adjunto44,'adjunto5' => $adjunto55, "estado"=>"Pendiente"));
+            ->Where("id","=",$datos["id"])->update(array('adjunto1' => $adjunto11,'adjunto2' => $adjunto22,'adjunto3' => $adjunto33,'adjunto4' => $adjunto44,'adjunto5' => $adjunto55, "estado"=>"Pendiente", "fechaenvio"=>date("Y-m-d")));
 
         
 

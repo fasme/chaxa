@@ -18,11 +18,11 @@ class Personal extends Eloquent implements UserInterface,RemindableInterface { /
 
 
    public function actividadesProgramadas(){
-        return $this->belongsToMany('ActividadProgramada', 'actividad_responsable', 'personal_id', 'actividad_id')->withPivot("personal_admin_id", "tipoactividad","id", "estado","adjunto1", "adjunto2","adjunto3","adjunto4","adjunto5");
+        return $this->belongsToMany('ActividadProgramada', 'actividad_responsable', 'personal_id', 'actividad_id')->withPivot("personal_admin_id", "tipoactividad","id", "estado","adjunto1", "adjunto2","adjunto3","adjunto4","adjunto5",'fechaenvio')->withTimestamps();
     }
 
     public function actividadesNoProgramadas(){
-        return $this->belongsToMany('ActividadNoProgramada', 'actividad_responsable', 'personal_id', 'actividad_id')->withPivot("personal_admin_id", "tipoactividad","id","estado","adjunto1", "adjunto2","adjunto3","adjunto4","adjunto5");
+        return $this->belongsToMany('ActividadNoProgramada', 'actividad_responsable', 'personal_id', 'actividad_id')->withPivot("personal_admin_id", "tipoactividad","id","estado","adjunto1", "adjunto2","adjunto3","adjunto4","adjunto5",'fechaenvio')->withTimestamps();
     }
 
 

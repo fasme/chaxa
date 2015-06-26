@@ -153,32 +153,32 @@
 <div class="row">
 <div class="col-xs-12">
     <div class="form-group">
-    {{Form::label('', 'NO CONFORMIDAD N°1: IDENTIFICACIÓN DE PELIGROS Y ASPECTOS',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+    {{Form::label('', 'Causa',array("class"=>"col-sm-3 control-label no-padding-right"))}}
     {{Form::textarea('identificacion', $pac->identificacion,['size' => '60x2'])}}
     </div>
 
     <div class="form-group">
-    {{Form::label('', 'Por que ?',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+    {{Form::label('', '1.- Por que ?',array("class"=>"col-sm-3 control-label no-padding-right"))}}
     {{Form::textarea('porque1', $pac->porque1,['size' => '60x2'])}}
     </div>
 
     <div class="form-group">
-    {{Form::label('', 'Por que ?',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+    {{Form::label('', '2.- Por que ?',array("class"=>"col-sm-3 control-label no-padding-right"))}}
     {{Form::textarea('porque2', $pac->porque2,['size' => '60x2'])}}
     </div>
 
     <div class="form-group">
-    {{Form::label('', 'Por que ?',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+    {{Form::label('', '3.- Por que ?',array("class"=>"col-sm-3 control-label no-padding-right"))}}
     {{Form::textarea('porque3', $pac->porque3,['size' => '60x2'])}}
     </div>
 
     <div class="form-group">
-    {{Form::label('', 'Por que ?',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+    {{Form::label('', '4.- Por que ?',array("class"=>"col-sm-3 control-label no-padding-right"))}}
     {{Form::textarea('porque4', $pac->porque4,['size' => '60x2'])}}
     </div>
 
     <div class="form-group">
-    {{Form::label('', 'Por que ?',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+    {{Form::label('', '5.- Por que ? (Causa Raiz)',array("class"=>"col-sm-3 control-label no-padding-right"))}}
     {{Form::textarea('porque5', $pac->porque5,['size' => '60x2'])}}
     </div>
 </div>
@@ -191,7 +191,7 @@
   <div>{{Form::select("selectpac[]",$personals,$actividadpac->personal_id)}}{{Form::text("actividad[]", $actividadpac->actividad)}}{{Form::text("plazo[]", date_format(date_create($actividadpac->plazo), 'd/m/Y'), array("id"=>"plazo", "class"=>"date-picker",  "data-date-format"=>"dd/mm/yyyy"))}}{{Form::select("tipoplan[]",array("1"=>"Plan de accion inmediato","2"=>"Plan de accion Correctivo","3"=>"Plan de accion preventivo"), $actividadpac->tipoplan)}}<a href="#" class="eliminar">&times;</a></div>
 
   @endforeach
-            <a id="agregarCampo" class="btn btn-info" href="#">Agregar PAC inmediato</a>
+            <a id="agregarCampo" class="btn btn-info" href="#">Agregar Solucion</a>
         <div id="contenedor">
            
 
@@ -258,7 +258,7 @@ var MaxInputs       = 8; //Número Maximo de Campos
             FieldCount++;
             //agregar campo
 
-            $(contenedor).after('<div>{{Form::select("selectpac[]",$personals)}}{{Form::text("actividad[]")}}{{Form::text("plazo[]", "", array("id"=>"plazo", "class"=>"date-picker",  "data-date-format"=>"dd/mm/yyyy"))}}{{Form::select("tipoplan[]",array("1"=>"Plan de accion inmediato","2"=>"Plan de accion Correctivo","3"=>"Plan de accion preventivo"))}}<a href="#" class="eliminar">&times;</a></div>');
+            $(contenedor).after('<div>{{Form::select("selectpac[]",$personals)}}{{Form::text("actividad[]","",array("placeholder"=>"Actividad"))}}{{Form::text("frecuencia[]", "", array("id"=>"plazo", "class"=>"date-picker",  "data-date-format"=>"dd/mm/yyyy"))}}{{Form::select("tipoplan[]",array("1"=>"Plan de accion inmediato","2"=>"Plan de accion Correctivo","3"=>"Plan de accion preventivo"))}}<a href="#" class="eliminar">&times;</a></div>');
             x++; //text box increment
            
 

@@ -1,7 +1,7 @@
 <?php
 class Matriz extends Eloquent { //Todos los modelos deben extender la clase Eloquent
     protected $table = 'matriz';
-    protected $fillable = array('proceso','matriz_actividad_id','matriz_peligro_id','rutinaria','factorseveridad','factorexposicion','factorprobabilidad','resultado','actprevio','totalprevio', 'resultadoprevio', 'acteliminacion', 'totaleliminacion','resultadoeliminacion','actsustitucion','totalsustitucion','resultadosustitucion','actingenieria','totalingenieria','resultadoingenieria','actadministrativo','resultadoadministrativo','actepp', 'totalepp','resultadoepp','magnitud');
+    protected $fillable = array('proceso','matriz_actividad_id','matriz_peligro_id','rutinaria','factorseveridad','factorexposicion','factorprobabilidad','resultado','actprevio','totalprevio', 'resultadoprevio', 'acteliminacion', 'totaleliminacion','resultadoeliminacion','actsustitucion','totalsustitucion','resultadosustitucion','actingenieria','totalingenieria','resultadoingenieria','actadministrativo','resultadoadministrativo','actepp', 'totalepp','resultadoepp','magnitud','cambio');
 
 
 

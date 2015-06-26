@@ -6,7 +6,7 @@
      
 <div class="page-header position-relative">
             <h1>
-              Personal
+              Atencion Medica
               <small>
                 <i class="icon-double-angle-right"></i>
                 
@@ -33,11 +33,11 @@
 
            <?php
   // si existe el usuario carga los datos
-    if ($personal->exists):
-        $form_data = array('url' => 'personal/update/'.$personal->id);
+    if ($medica->exists):
+        $form_data = array('url' => 'medica/update/'.$medica->id);
         $action    = 'Editar';
     else:
-        $form_data = array('url' => 'personal/insert', 'class'=>'class="form-horizontal');
+        $form_data = array('url' => 'medica/insert', 'class'=>'class="form-horizontal');
         $action    = 'Crear';        
     endif;
 
@@ -46,38 +46,43 @@
 
 {{ Form::open($form_data) }}
        
+  
 
+            <div class="form-group">
+            {{Form::label('', 'Personal',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::select('personal_id', $personal, $medica->personal_id)}}
+            </div>
+
+
+             
              <div class="form-group">
-            {{Form::label('', 'Cargo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::select('cargo_id', $cargo, $personal->cargo_id)}}
+            {{Form::label('', 'Dia Turno',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::text('diaturno', $medica->diaturno)}}
+            <small>Ejemplo: 1/14</small>
             </div>
 
              <div class="form-group">
-            {{Form::label('', 'Nombre',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::text('nombre', $personal->nombre)}}
+            {{Form::label('', 'Diagnostico',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::textarea('diagnostico', $medica->diagnostico)}}
+            
             </div>
 
              <div class="form-group">
-            {{Form::label('', 'Rut',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::text('rut', $personal->rut)}}
-            <small class="green">(sin puntos y con guión)</small>
+            {{Form::label('', 'Tratamiento',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::textarea('tratamiento', $medica->tratamiento)}}
             </div>
 
              <div class="form-group">
-            {{Form::label('', 'Fono',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::text('fono', $personal->fono)}}
-            </div>
-
-             <div class="form-group">
-            {{Form::label('', 'Correo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::text('correo', $personal->correo)}}
+            {{Form::label('', 'Edad',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::text('edad', $medica->edad)}}
             </div>
 
             <div class="form-group">
-            {{Form::label('', 'Perfil',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::select('perfil', array("usuario"=>"usuario", "admin"=>"admin"), $personal->perfil)}}
+            {{Form::label('', 'Domicilio',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::text('domicilio', $medica->domicilio)}}
             </div>
 
+            
 
 
            
@@ -104,7 +109,7 @@
   $(document).ready(function(){
    
 
-$( "#personalactive" ).addClass( "active" );
+$( "#medicaactive" ).addClass( "active" );
     
   });   
 </script>

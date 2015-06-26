@@ -30,7 +30,10 @@
   <thead>
           <tr>
             <th>Nombre</th>
-          
+            <th>RUT</th>
+            <th>Cargo</th>
+            <th>Fono</th>
+            <th>Correo</th>
   <th>Acciones</th>
             
           </tr>
@@ -42,6 +45,10 @@
            <tr>
 
              <td> {{ $personal->nombre}}</td>
+             <td>{{$personal->rut}}</td>
+             <td>{{$personal->cargo->nombre}}</td>
+             <td>{{$personal->fono}}</td>
+             <td>{{$personal->correo}}</td>
          
 
   <td class="td-actions">

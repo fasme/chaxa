@@ -51,6 +51,12 @@
 
 
              <div class="form-group">
+            {{Form::label('', 'Objetivo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::select('kpiobjetivo_id',$kpiobjetivos, $kpi->kpiobjetivo_id)}}
+            </div>
+
+
+            <div class="form-group">
             {{Form::label('', 'Meta',array("class"=>"col-sm-3 control-label no-padding-right"))}}
             {{Form::text('meta', $kpi->meta)}}
             </div>
@@ -62,9 +68,13 @@
   <div class="col-xs-12">
  
 
- 
+ @foreach($kpi->actividadKpi as $actividadkpi)
 
-            <a id="agregarCampo" class="btn btn-info" href="#">Agregar Objetivo</a>
+  <div>{{Form::select("selectpac[]",$personals,$actividadkpi->personal_id)}}{{Form::text("actividad[]", $actividadkpi->actividad)}}{{Form::text("frecuencia[]", date_format(date_create($actividadkpi->frecuencia), 'd/m/Y'), array("id"=>"plazo", "class"=>"date-picker",  "data-date-format"=>"dd/mm/yyyy"))}}<a href="#" class="eliminar">&times;</a></div>
+
+  @endforeach
+
+            <a id="agregarCampo" class="btn btn-info" href="#">Agregar Actividad</a>
         <div id="contenedor">
            
 
@@ -127,7 +137,7 @@ var MaxInputs       = 8; //Número Maximo de Campos
             FieldCount++;
             //agregar campo
 
-            $(contenedor).after('<div>{{Form::select("selectpac[]",$personals)}}{{Form::text("actividad[]","",array("placeholder"=>"Actividad"))}}{{Form::text("plazo[]", "", array("id"=>"plazo", "class"=>"date-picker",  "data-date-format"=>"dd/mm/yyyy"))}}<a href="#" class="eliminar">&times;</a></div>');
+            $(contenedor).after('<div>{{Form::select("selectpac[]",$personals)}}{{Form::text("actividad[]","",array("placeholder"=>"Actividad"))}}{{Form::text("frecuencia[]", "", array("id"=>"plazo", "class"=>"date-picker",  "data-date-format"=>"dd/mm/yyyy"))}}<a href="#" class="eliminar">&times;</a></div>');
             x++; //text box increment
            
 

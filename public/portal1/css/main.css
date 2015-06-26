@@ -115,7 +115,7 @@ a:focus {
 }
 
 body > section {
-  padding: 70px 0;
+  padding: 10px 0;
 }
 
 .center {
@@ -265,7 +265,7 @@ input.search-form:hover {
 .navbar {
   border-radius: 0;
   margin-bottom: 0;
-  background: #151515;
+  background: #EEF3EF;
   padding: 15px 0;
   padding-bottom: 0;
 }
@@ -283,13 +283,13 @@ input.search-form:hover {
   padding: 5px 12px;
   margin: 0;
   border-radius: 3px;
-  color: #fff;
+  color: #000;
   line-height: 24px;
   display: inline-block;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover{
-	background-color: #c52d2f;
+	background-color: #EC6218;
   color: #fff;
 }
 
@@ -309,7 +309,7 @@ input.search-form:hover {
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
-  background-color: #c52d2f;
+  background-color: #EC6218;
   color: #fff;
 }
 
@@ -373,11 +373,13 @@ input.search-form:hover {
 }
 
 #main-slider .carousel .carousel-content {
-  margin-top: 150px;
+  margin-top: 1px;
+  /* modificado */
 }
 
 #main-slider .carousel .slide-margin{
-  margin-top: 140px;
+  margin-top: 16px;
+  /* modifciado */
 }
 
 #main-slider .carousel h2 {

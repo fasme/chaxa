@@ -75,8 +75,8 @@ class PacController extends BaseController {
             $pacactividad->tipoplan = $datos["tipoplan"][$i];
 
             
-            list($dia,$mes,$ano) = explode("/",$datos['plazo'][$i]);
-            $pacactividad->plazo = "$ano-$mes-$dia";
+            list($dia,$mes,$ano) = explode("/",$datos['frecuencia'][$i]);
+            $pacactividad->frecuencia = "$ano-$mes-$dia";
 
 
 
@@ -153,8 +153,8 @@ return Redirect::to('pac/insert')->withInput()->withErrors($pac->errors);
             $pacactividad->tipoplan = $datos["tipoplan"][$i];
 
             
-            list($dia,$mes,$ano) = explode("/",$datos['plazo'][$i]);
-            $pacactividad->plazo = "$ano-$mes-$dia";
+            list($dia,$mes,$ano) = explode("/",$datos['frecuencia'][$i]);
+            $pacactividad->frecuencia = "$ano-$mes-$dia";
 
 
 

@@ -1,7 +1,7 @@
 <?php
 class Noticia extends Eloquent { //Todos los modelos deben extender la clase Eloquent
     protected $table = 'noticia';
-    protected $fillable = array('titulo','descripcion');
+    protected $fillable = array('titulo','descripcion','archivo1','archivo2','archivo3','archivo4');
 
 
 

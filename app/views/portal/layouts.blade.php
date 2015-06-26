@@ -57,7 +57,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                   <!-- <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo"></a>-->
+                    <a class="navbar-brand" href="index.html"><img src="images/logo1.png" alt="logo" width="200"></a>
                 </div>
 				
                 <div class="collapse navbar-collapse navbar-right">
@@ -83,7 +83,7 @@
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-                                <span class="">{{Alertas::where("personal_id_admin","=",Auth::user()->id)->get()->count()}}</span>
+                                <span class="">{{Alertas::where("personal_id","=",Auth::user()->id)->get()->count()}}</span>
                             </a>
 
                             <ul class="dropdown-menu">
@@ -92,7 +92,7 @@
                                 <li class="">
                                     <ul>
                                         
-                                        @foreach(Alertas::where("personal_id_admin","=",Auth::user()->id)->get() as $alerta)
+                                        @foreach(Alertas::where("personal_id","=",Auth::user()->id)->get() as $alerta)
                                         <li>
                                             <a href="#">
                                                 <i class="btn btn-xs btn-primary fa fa-user"></i>
@@ -109,7 +109,7 @@
                                 </li>
 
                                 <li class="dropdown-footer">
-                                    <a href="{{URL::to('evidenciaadmin/eliminar')}}">
+                                    <a href="{{URL::to('evidenciaadmin/eliminarusuario')}}">
                                         Borrar Notificaciones
                                         <i class="ace-icon fa fa-arrow-right"></i>
                                     </a>

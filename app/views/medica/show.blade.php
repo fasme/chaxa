@@ -11,8 +11,8 @@
 
 <div class="col-xs-12">
 
-                    <h3 class="header smaller lighter">Noticia: 
-                    <a href="{{URL::to('noticia/insert')}}"  class="btn btn-white btn-info btn-bold"> 
+                    <h3 class="header smaller lighter">Atencion Medica: 
+                    <a href="{{URL::to('medica/insert')}}"  class="btn btn-white btn-info btn-bold"> 
     <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>Agregar</a>
     </h3>
 
@@ -29,8 +29,11 @@
 <table id="example" class="table table-striped table-bordered table-hover">
   <thead>
           <tr>
-            <th>Titulo</th>
-          
+            <th>Nombre</th>
+            <th>Tratamiento</th>
+            <th>Diagnostico</th>
+            <th>Edad</th>
+            <th>Domicilio</th>
   <th>Acciones</th>
             
           </tr>
@@ -38,25 +41,29 @@
         <tbody>
 
 
-  @foreach($noticias as $noticia)
+  @foreach($medicas as $medica)
            <tr>
 
-             <td> {{ $noticia->titulo}}</td>
+             <td> {{ $medica->personal->nombre}}</td>
+             <td>{{$medica->tratamiento}}</td>
+             <td>{{$medica->diagnostico}}</td>
+             <td>{{$medica->edad}}</td>
+             <td>{{$medica->domicilio}}</td>
          
 
   <td class="td-actions">
                        
                       
-                          <a class="blue bootbox-mostrar" data-id={{$noticia->id}}>
+                          <a class="blue bootbox-mostrar" data-id={{$medica->id}}>
                             <i class="fa fa-search-plus bigger-130"></i>
                           </a>
 
 
-                          <a class="green" href= {{ 'noticia/update/'.$noticia->id }}>
+                          <a class="green" href= {{ 'medica/update/'.$medica->id }}>
                             <i class="fa fa-pencil bigger-130"></i>
                           </a>
 
-                         <a class="red bootbox-confirm" data-id={{ $noticia->id }}>
+                         <a class="red bootbox-confirm" data-id={{ $medica->id }}>
                             <i class="fa fa-trash bigger-130"></i>
                           </a>
                       </td>
@@ -80,7 +87,10 @@ $('#example').DataTable( {
     } );
 
 
-$( "#noticiaactive" ).addClass( "active" );
+
+
+
+$( "#medicaactive" ).addClass( "active" );
 
 
 
@@ -94,7 +104,7 @@ var tr = $(this).parents('tr');
               
            
              
-             $.get("{{ url('noticia/eliminar')}}",
+             $.get("{{ url('medica/eliminar')}}",
               { id: id },
 
               function(data,status){ tr.fadeOut(1000); }
@@ -107,10 +117,13 @@ var tr = $(this).parents('tr');
         });
 
 
+
+
+
 $(".bootbox-mostrar").on(ace.click_event, function() {
   var id = $(this).data('id');
 
- $.get("{{ url('noticia/mostrar')}}",
+ $.get("{{ url('medica/mostrar')}}",
               { id: id },
               function(data)
               { 

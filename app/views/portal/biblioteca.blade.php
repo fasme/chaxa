@@ -26,6 +26,9 @@ $archivos = Archivo::all();
                             
                             <th>Nombre Documento</th>
                             <th>Categoria</th>
+                            <th>Codigo</th>
+                            <th>Version</th>
+                            <th>Tiempo Vigencia</th>
                           
                              <th>Estado</th>
                             
@@ -45,9 +48,12 @@ $archivos = Archivo::all();
 
                             <td>{{ $archivo->nombre}}</td>
                             <td>{{$archivo->categoria->nombre}}</td>
+                            <td>{{$archivo->codigo}}</td>
+                            <td>{{$archivo->version}}</td>
+                            <td>{{$archivo->tiempo}}</td>
                             
                             <td>
-                            <a data-toggle="modal" class="botoncito" data-urlarchivo="https://docs.google.com/viewer?url=http://190.47.105.44/qssam2/public/archivos/biblioteca/{{$archivo->archivo}}&embedded=true"  href="#" >
+                            <a data-toggle="modal" class="botoncito" data-urlarchivo="https://docs.google.com/viewer?url=http://190.47.105.44/avach/public/archivos/biblioteca/{{$archivo->archivo}}&embedded=true"  href="#" >
                                   <span class="label label-success arrowed">Vista Previa</span>
                                 </a>
 
@@ -159,25 +165,15 @@ var table =
     },
       "aButtons": [
                     {
-                        "sExtends": "copy",
-                        //"sTitle": "Report Name",
-                        //"sPdfMessage": "Summary Info",
-                       // "sFileName": "<?php print('Actividad No Programada'); ?>.pdf",
-                        //"sPdfOrientation": "landscape",
-                        "oSelectorOpts": {page: 'current'},
-
-                    },
-                   
-                    {
                         "sExtends": "pdf",
-                        //"sTitle": "Report Name",
-                        //"sPdfMessage": "Summary Info",
+                        "sButtonText":"Listado Maestro",
+                        "sTitle": "Report Name",
+                        "sPdfMessage": "Summary Info",
                         "sFileName": "<?php print('Informe'); ?>.pdf",
                         "sPdfOrientation": "landscape",
                         "oSelectorOpts": {page: 'current'},
 
-                    },
-                    "print"
+                    }
                 ]
     
       

@@ -6,7 +6,7 @@
 <section id="services" class="service-item">
        <div class="container">
             <div class="center wow fadeInDown">
-                <h2>Mis Actividades Programadas</h2>
+                <h2>Mis Actividades</h2>
              </div>
 
             <div class="row">
@@ -14,7 +14,10 @@
 
 <?php
 //$actividadProgramadas = ActividadProgramada::all();
-$personal = Personal::find(Auth::user()->id)
+$personal = Personal::find(Auth::user()->id);
+
+$actividadresponsable = DB::table('actividad_responsable')->Where("personal_id","=",Auth::user()->id)->get();
+//print_r($actividadresponsable);
 ?>
 
 
@@ -24,9 +27,9 @@ $personal = Personal::find(Auth::user()->id)
                         <thead>
                           <tr>
                             
-                            <th>Elemento Estrategico</th>
-                            <th>Cumplimiento Normativo</th>
+                           
                             <th class="hidden-480">Actividad</th>
+                            <th>Tipo</th>
                              <th>Estado</th>
                             <th>Plazo</th>
 
@@ -43,45 +46,82 @@ $personal = Personal::find(Auth::user()->id)
                         <tbody>
 
                         
-                         @foreach($personal->actividadesProgramadas()->where("tipoactividad","=","programada")->get() as $actividad)
+                         @foreach($actividadresponsable as $actividad)
                           <tr>
                         
                            <?php
-                            $datetime1 = new DateTime($actividad->frecuencia);
+                           
+                            
+                             
+                            $busqueda = "";
+                            ?>
+
+                            @if($actividad->tipoactividad == "programada")
+                            <?php 
+                            $busqueda = ActividadProgramada::find($actividad->actividad_id);
+                            ?>
+                            @elseif($actividad->tipoactividad == "noprogramada")
+                            <?php
+                             $busqueda = ActividadNoProgramada::find($actividad->actividad_id);
+                            ?>
+                            @elseif($actividad->tipoactividad == "kpi")
+                            <?php
+                            $busqueda = ActividadKpi::find($actividad->actividad_id);
+                              ?>
+                            @elseif($actividad->tipoactividad == "pac")
+                            <?php
+                            $busqueda = ActividadPac::find($actividad->actividad_id);
+                              ?>
+                            @endif
+
+
+
+                            <?php
+
+                            $datetime1 = new DateTime($busqueda->frecuencia);
                             $datetime2 = new DateTime(date("Y/m/d"));
                             $interval = $datetime1->diff($datetime2);
                             if($interval->format("%R") == "+")
                             {
-                              $dif = "<font color='red'>(". $interval->format('%R%a')." Dias)</font>";
+                              $dif = "<font color='red'>(". $interval->format('Atrasado %a')." Dias)</font>";
                             }
                             else
                             {
-                              $dif = "<font color='green'>(". $interval->format('%R%a')." Dias)</font>";
+                              $dif = "<font color='green'>(". $interval->format('Faltan %a')." Dias)</font>";
                             }
-                             
-                            ?>
 
-                            <td>{{ $actividad->elementoestrategico}}</td>
-                            <td>{{$actividad->cumplimientonormativo}}</td>
-                            <td>{{$actividad->actividad}}</td>
-                            <td>{{$actividad->pivot->estado}}</td>
-                            <td>{{date_format(date_create($actividad->frecuencia),"d/m/Y")}} {{$dif}}</td>
+                            if($actividad->estado == "Cerrada")
+                            {
+                              $dif = "";
+                            }
+
+                            ?>
+                            <td>{{$busqueda->actividad}}</td>
+                            
+                            
+                            
+                            <td>{{$actividad->tipoactividad}}</td>
+                            <td>{{$actividad->estado}}</td>
+                            <td>{{date_format(date_create($busqueda->frecuencia),"d/m/Y")}} {{$dif}}</td>
+                            
                             <td>
-                             @if($actividad->pivot->estado == "Abierta")
+                            @if($actividad->estado == "Abierta")
                             <div class="hidden-sm hidden-xs action-buttons">
-                                <a data-toggle="modal" class="botoncito" data-id="{{$actividad->pivot->id}}" data-actividadid="{{$actividad->pivot->actividad_id}}" data-tipoactividad="{{$actividad->pivot->tipoactividad}}" href="#" >
+                                <a data-toggle="modal" class="botoncito" data-id="{{$actividad->id}}" data-actividadid="{{$actividad->actividad_id}}" data-tipoactividad="{{$actividad->tipoactividad}}" href="#" >
                                   <i class="ace-icon fa fa-upload bigger-130"></i>
                                 </a>
                               </div>
                               @else
-                              <a href="evidencia/{{ $actividad->pivot->adjunto1}}">{{$actividad->pivot->adjunto1}}</a><br>
-                           <a href="evidencia/{{ $actividad->pivot->adjunto2}}">{{$actividad->pivot->adjunto2}}</a><br>
-                           <a href="evidencia/{{ $actividad->pivot->adjunto3}}">{{$actividad->pivot->adjunto3}}</a><br>
-                           <a href="evidencia/{{ $actividad->pivot->adjunto4}}">{{$actividad->pivot->adjunto4}}</a><br>
-                           <a href="evidencia/{{ $actividad->pivot->adjunto5}}">{{$actividad->pivot->adjunto5}}</a><br>
+
+                              <a href="archivos/evidencia/{{ $actividad->adjunto1}}">{{$actividad->adjunto1}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad->adjunto2}}">{{$actividad->adjunto2}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad->adjunto3}}">{{$actividad->adjunto3}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad->adjunto4}}">{{$actividad->adjunto4}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad->adjunto5}}">{{$actividad->adjunto5}}</a><br>
 
                               @endif
                               </td>
+                           
                             </tr>
 
                             @endforeach
@@ -104,167 +144,9 @@ $personal = Personal::find(Auth::user()->id)
     
 
 
-<section id="services" class="service-item">
-       <div class="container">
-            <div class="center wow fadeInDown">
-                <h2>Mis Actividades No Programadas</h2>
-             </div>
-
-            <div class="row">
-            @if (Auth::check())
-
-<?php
-//$actividadProgramadas = ActividadProgramada::all();
-$personal = Personal::find(Auth::user()->id)
-?>
 
 
 
- <table id="example1" class="table table-striped table-bordered table-hover">
-                        <thead>
-                          <tr>
-                            
-                            <th class="hidden-480">Actividad</th>
-                             <th>Estado</th>
-                            <th>Plazo</th>
-
-                            <th>
-                              <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-                              Subir Evidencia
-                            </th>
-                            
-
-                           
-                          </tr>
-                        </thead>
-
-                        <tbody>
-                        
-                         @foreach($personal->actividadesNoProgramadas()->where("tipoactividad","=","noprogramada")->get() as $actividad)
-                          <tr>
-                             <?php
-                            $datetime1 = new DateTime($actividad->frecuencia);
-                            $datetime2 = new DateTime(date("Y/m/d"));
-                            $interval = $datetime1->diff($datetime2);
-                            if($interval->format("%R") == "+")
-                            {
-                              $dif = "<font color='red'>(". $interval->format('%R%a')." Dias)</font>";
-                            }
-                            else
-                            {
-                              $dif = "<font color='green'>(". $interval->format('%R%a')." Dias)</font>";
-                            }
-                              
-                            ?>
-                            <td>{{$actividad->actividad}}</td>
-                            <td>{{$actividad->pivot->estado}}</td>
-                            <td>{{date_format(date_create($actividad->frecuencia),"d/mY")}} {{$dif}}</td>
-                            <td>
-                            @if($actividad->pivot->estado == "Abierta")
-                            <div class="hidden-sm hidden-xs action-buttons">
-                                <a data-toggle="modal" class="botoncito" data-id="{{$actividad->pivot->id}}" data-actividadid="{{$actividad->pivot->actividad_id}}" data-tipoactividad="{{$actividad->pivot->tipoactividad}}" href="#" >
-                                  <i class="ace-icon fa fa-upload bigger-130"></i>
-                                </a>
-                              </div>
-                              @else
-
-                              <a href="evidencia/{{ $actividad->pivot->adjunto1}}">{{$actividad->pivot->adjunto1}}</a><br>
-                           <a href="evidencia/{{ $actividad->pivot->adjunto2}}">{{$actividad->pivot->adjunto2}}</a><br>
-                           <a href="evidencia/{{ $actividad->pivot->adjunto3}}">{{$actividad->pivot->adjunto3}}</a><br>
-                           <a href="evidencia/{{ $actividad->pivot->adjunto4}}">{{$actividad->pivot->adjunto4}}</a><br>
-                           <a href="evidencia/{{ $actividad->pivot->adjunto5}}">{{$actividad->pivot->adjunto5}}</a><br>
-
-                              @endif
-                              </td>
-                            </tr>
-                            @endforeach
-                            
-                            </tbody>
-                            </table>
-
-
-
-
-
-
-@endif
-                
-                                                   
-            </div><!--/.row-->
-        </div><!--/.container-->
-    </section><!--/#services-->
-
-
-
-<section id="services" class="service-item">
-       <div class="container">
-            <div class="center wow fadeInDown">
-                <h2>Mis Actividades Provenientes del PAC</h2>
-             </div>
-
-            <div class="row">
-            @if (Auth::check())
-
-<?php
-//$actividadProgramadas = ActividadProgramada::all();
-$personal = Personal::find(Auth::user()->id)
-?>
-
-<!--
-
- <table id="example2" class="table table-striped table-bordered table-hover">
-                        <thead>
-                          <tr>
-                            
-                           
-                            <th class="hidden-480">Actividad</th>
-                            <th>Estado</th>
-                            <th>Plazo</th>
-
-                            <th>
-                              <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-                              Accion
-                            </th>
-                            
-
-                           
-                          </tr>
-                        </thead>
-
-                        <tbody>
-                        
-                         @foreach($personal->actividadesNoProgramadas()->where("tipoactividad","=","pac")->get() as $actividad)
-                          <tr>
-                            
-                            <td>{{$actividad->actividad}}</td>
-                            <td>{{$actividad->estado}}</td>
-                            <td>{{date_format(date_create($actividad->frecuencia),"d/mY")}}</td>
-                            <td>
-                            <div class="hidden-sm hidden-xs action-buttons">
-                                <a class="botoncito" data-id="{{$actividad->id}}">
-                                  <i class="ace-icon fa fa-archive bigger-130"></i>
-                                </a>
-
-                               
-                              </div>
-                              </td>
-                            </tr>
-                            @endforeach
-                            
-                            </tbody>
-                            </table>
-
--->
-
-
-
-
-@endif
-                
-                                                   
-            </div><!--/.row-->
-        </div><!--/.container-->
-    </section><!--/#services-->
 
 
 
