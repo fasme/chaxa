@@ -370,6 +370,16 @@ Route::get("matrizportal", function(){
 });
 
 
+Route::get("mantencionportal", function(){
+	return View::make("portal.mantencion");
+});
+
+
+Route::get("mantencionportal/mostrar", array("uses"=>"MantencionController@insertPortal"));
+Route::post('mantencionportal/insert', array('uses' => 'MantencionController@insert2Portal'));
+Route::get('vehiculoportal/update', array('uses' => 'VehiculoController@updatePortal'));
+Route::post('vehiculoportal/update/{id}', array('uses' => 'VehiculoController@update2Portal'));
+
 
 
 });  // FIN FILTER

@@ -5,7 +5,10 @@ class Vehiculo extends Eloquent { //Todos los modelos deben extender la clase El
 
 
 
-
+public function mantencion()
+{
+    return $this->hasMany("Mantencion");
+}
 
 
 

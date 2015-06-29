@@ -7,12 +7,14 @@ class MantencionController extends BaseController {
      */
     public function show()
     {
-        $mantencions = Mantencion::all();
-        
+
+$vehiculos = Vehiculo::has("mantencion")->get();
+        //$mantencions = Mantencion::select(array('*','vehiculo_id'))->distinct()->get();
+       // return $mantencions;
         // Con el método all() le estamos pidiendo al modelo de Usuario
         // que busque todos los registros contenidos en esa tabla y los devuelva en un Array
         
-        return View::make('mantencion.mantencion.show')->with("mantencions",$mantencions);
+        return View::make('mantencion.mantencion.show')->with("vehiculos",$vehiculos);
         
         // El método make de la clase View indica cual vista vamos a mostrar al usuario
         //y también pasa como parámetro los datos que queramos pasar a la vista.
@@ -56,9 +58,7 @@ class MantencionController extends BaseController {
 
             $mantencion->fill($datos);
 
-            // Guardamos el usuario
-            /* $usuario->password = Hash::make($usuario->password);*/
-
+          
       
             
            $mantencion->save();
@@ -153,6 +153,60 @@ return Redirect::to('mantencion/update/'.$id)->withInput()->withErrors($mantenci
         $mantencion->delete();
 
     //return Redirect::to('usuarios/insert');
+    }
+
+
+
+
+    // P O R T A L
+
+
+
+public function insertPortal(){
+    $id = Input::get('id');
+    $mantencion = new Mantencion; 
+    return View::make("portal.modalmantencion")->with("id",$id)->with("mantencion",$mantencion);
+
+
+}
+
+
+     public function insert2Portal()
+    {
+
+        $mantencion = new Mantencion;
+
+        $datos = Input::all(); 
+        
+        if ($mantencion->isValid($datos))
+        {
+            // Si la data es valida se la asignamos al usuario
+
+            if($datos["fecha_mantencion"])
+            {
+                list($dia,$mes,$ano) = explode("/",$datos['fecha_mantencion']);
+            $datos['fecha_mantencion'] = "$ano-$mes-$dia";
+
+            }
+
+            $mantencion->fill($datos);
+
+          
+      
+            
+           $mantencion->save();
+
+            return Redirect::to('mantencionportal')->with("mensaje","Datos Ingresados correctamente");
+        }
+        else
+        {
+            // En caso de error regresa a la acción create con los datos y los errores encontrados
+return Redirect::to('mantencion/insert')->withInput()->withErrors($mantencion->errors);
+            //return "mal2";
+        }
+     //   return Redirect::to('usuarios');
+    // el método redirect nos devuelve a la ruta de mostrar la lista de los usuarios
+ 
     }
 
 

@@ -15,6 +15,7 @@
     <link href="portal1/css/main.css" rel="stylesheet">
     <link href="portal1/css/responsive.css" rel="stylesheet">
     {{HTML::style('css/tabletools.css')}}
+    {{HTML::style('css/datepicker.min.css')}}   
 
 
 
@@ -31,6 +32,7 @@
 {{HTML::script('js/jquery.dataTables.bootstrap.min.js')}}
 {{HTML::script('js/dataTables.tableTools.min.js')}}
 <script src="portal1/js/main.js"></script>
+{{HTML::script('js/bootstrap-datepicker.min.js')}}
 
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -57,7 +59,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="images/logo1.png" alt="logo" width="200"></a>
+                    <a class="navbar-brand" href="index.html"><img src="images/logo1.png" alt="logo" width="70" ></a>
                 </div>
 				
                 <div class="collapse navbar-collapse navbar-right">
@@ -66,6 +68,9 @@
                         <li id="actividadactive"><a href="{{URL::to('misactividades')}}">Mis Actividades</a></li>
                         <li id="matrizactive"><a href="{{URL::to('matrizportal')}}">Matriz</a></li>
                         <li id="biblioactive"><a href="{{URL::to('bibliotecaportal')}}">Biblioteca</a></li>
+                       <li id="mantencionactive"><a href="{{URL::to('mantencionportal')}}">Mantencion</a></li>
+                       
+
                         <!--<li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down"></i></a>
                             <ul class="dropdown-menu">

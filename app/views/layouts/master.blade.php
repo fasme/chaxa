@@ -458,7 +458,7 @@
 					<li class="" id="noticiaactive">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-truck"></i>
-							<span class="menu-text"> Mantención </span>
+							<span class="menu-text">Mantención </span>
 							<b class="arrow fa fa-angle-down"></b>
 						</a>
 
@@ -480,7 +480,7 @@
 							<li class="" id="mantencionactive">
 								<a href="{{URL::to('mantencion')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Mantencion
+									Ultima Mantencion
 								</a>
 
 								<b class="arrow"></b>

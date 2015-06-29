@@ -133,7 +133,57 @@ return Redirect::to('vehiculo/update/'.$id)->withInput()->withErrors($vehiculo->
 
 
 
+
+
+
  
+
+ // P O R T A L
+
+    public function updatePortal(){
+    $id = Input::get('id');
+    
+    return View::make("portal.modalhorometro")->with("id",$id);
+}
+
+
+
+public function update2Portal($id) //post
+    {
+        
+         $vehiculo = Vehiculo::find($id);
+
+
+
+        $datos = Input::all(); 
+        
+        if ($vehiculo->isValid($datos))
+        {
+            // Si la data es valida se la asignamos al usuario
+            $vehiculo->fill($datos);
+            // Guardamos el usuario
+             //$usuario->password = Hash::make($usuario->password);
+
+      
+            
+           $vehiculo->save();
+
+            // Y Devolvemos una redirección a la acción show para mostrar el usuario
+            //return Redirect::action('ClienteController@show');
+           return Redirect::to('mantencionportal')->with("mensaje","Datos actualizados correctamente");
+
+            
+        }
+        else
+        {
+            // En caso de error regresa a la acción create con los datos y los errores encontrados
+return Redirect::to('vehiculo/update/'.$id)->withInput()->withErrors($vehiculo->errors);
+            //return "mal2";
+        }
+
+        return Redirect::to('mantencionportal')->with("mensaje","NO");
+      
+    }
 
 
 
