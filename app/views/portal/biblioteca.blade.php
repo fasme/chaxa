@@ -53,14 +53,15 @@ $archivos = Archivo::all();
                             <td>{{$archivo->tiempo}}</td>
                             
                             <td>
-                            <a data-toggle="modal" class="botoncito" data-urlarchivo="https://docs.google.com/viewer?url=http://190.47.105.44/avach/public/archivos/biblioteca/{{$archivo->archivo}}&embedded=true"  href="#" >
+                            <a data-toggle="modal" class="botoncito" data-urlarchivo="https://docs.google.com/viewer?url=https://chaxapreventivo.cl/public/archivos/biblioteca/{{$archivo->archivo}}&embedded=true"  href="#" >
                                   <span class="label label-success arrowed">Vista Previa</span>
                                 </a>
 
-                                <a href="archivos/biblioteca/{{$archivo->archivo}}" >
-                                  <span class="label label-warning arrowed">Descargar</span>
-                                </a>
+                               
 
+{{
+link_to_asset('archivos/biblioteca/'.$archivo->archivo, "Descargar", array("class"=>"label label-warning arrowed"))
+}}
                                 </td>
                           
                             </tr>

@@ -28,6 +28,14 @@
             {{$vehiculo->familia." / ".$vehiculo->patente}}
             </div>
 
+
+
+  <div class="form-group">
+            {{Form::label('', 'Horometro mantencion ideal:',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{number_format($vehiculo->mantencion()->orderby("id","desc")->first()->proximahorometro,0,",",".")}}
+            </div>
+
+
             <div class="form-group">
             {{Form::label('', 'Horometro Actual',array("class"=>"col-sm-3 control-label no-padding-right"))}}
             {{number_format($vehiculo->horometro,0,",",".")}}
@@ -86,6 +94,14 @@
 
  
   var mantencionrealizada = $("#mantencionrealizada").val();
+
+   if(mantencionrealizada >= 2000)
+  {
+    mantencionrealizada = 250;
+    $("#mantencionrealizada").val(mantencionrealizada);
+  }
+
+  
   var suma1 = parseFloat(mantencionrealizada) + 250;
   $("#proximamantencion").val(suma1);
 

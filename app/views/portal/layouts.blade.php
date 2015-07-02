@@ -8,31 +8,39 @@
     <title>Qssam Portal</title>
 	
 	<!-- core CSS -->
-    <link href="portal1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="portal1/css/font-awesome.min.css" rel="stylesheet">
-    <link href="portal1/css/animate.min.css" rel="stylesheet">
-    <link href="portal1/css/prettyPhoto.css" rel="stylesheet">
-    <link href="portal1/css/main.css" rel="stylesheet">
-    <link href="portal1/css/responsive.css" rel="stylesheet">
-    {{HTML::style('css/tabletools.css')}}
-    {{HTML::style('css/datepicker.min.css')}}   
-
-
-
-
-
-        <script src="portal1/js/jquery.js"></script>
-    <script src="portal1/js/bootstrap.min.js"></script>
-    <script src="portal1/js/jquery.prettyPhoto.js"></script>
-    <script src="portal1/js/jquery.isotope.min.js"></script>
     
-    <script src="portal1/js/wow.min.js"></script>
+   
+   {{HTML::style('portal1/css/bootstrap.min.css')}}
+   {{HTML::style('portal1/css/font-awesome.min.css')}}
+    {{HTML::style('portal1/css/animate.min.css')}}
+    {{HTML::style('portal1/css/prettyPhoto.css')}}
+    {{HTML::style('portal1/css/main.css')}}
+    {{HTML::style('portal1/css/responsive.css')}}
+    
+    
 
-  {{HTML::script('js/jquery.dataTables.min.js')}}
-{{HTML::script('js/jquery.dataTables.bootstrap.min.js')}}
+
+    {{HTML::style('css/tabletools.css')}}
+    {{HTML::style('portal1/css/datepicker.min.css')}}   
+
+
+
+
+
+{{HTML::script('portal1/js/jquery.js')}}
+{{HTML::script('portal1/js/bootstrap.min.js')}}
+{{HTML::script('portal1/js/jquery.prettyPhoto.js')}}
+{{HTML::script('portal1/js/jquery.isotope.min.js')}}
+
+{{HTML::script('portal1/js/wow.min.js')}}
+
+
+  {{HTML::script('portal1/js/jquery.dataTables.min.js')}}
+{{HTML::script('portal1/js/jquery.dataTables.bootstrap.min.js')}}
 {{HTML::script('js/dataTables.tableTools.min.js')}}
-<script src="portal1/js/main.js"></script>
-{{HTML::script('js/bootstrap-datepicker.min.js')}}
+
+{{HTML::script('portal1/js/main.js')}}
+{{HTML::script('portal1/js/bootstrap-datepicker.min.js')}}
 
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -59,13 +67,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="images/logo1.png" alt="logo" width="70" ></a>
+                    <a class="navbar-brand" href="{{URL::to('portal')}}">{{ HTML::image('portal1/images/logo1.png', 'picture',array("width"=>"150") ) }} </a>
                 </div>
 				
                 <div class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">
-                        <li id="homeactive"><a href="{{URL::to('portal')}}">Home</a></li>
-                        <li id="actividadactive"><a href="{{URL::to('misactividades')}}">Mis Actividades</a></li>
+                       <!-- <li id="homeactive"><a href="{{URL::to('portal')}}">Home</a></li>-->
+                        <li id="actividadactive"><a href="{{URL::to('misactividades')}}">Actividades</a></li>
                         <li id="matrizactive"><a href="{{URL::to('matrizportal')}}">Matriz</a></li>
                         <li id="biblioactive"><a href="{{URL::to('bibliotecaportal')}}">Biblioteca</a></li>
                        <li id="mantencionactive"><a href="{{URL::to('mantencionportal')}}">Mantencion</a></li>

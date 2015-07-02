@@ -56,12 +56,7 @@
 						<div class="login-container">
 							<div class="row-fluid">
 								<div class="center">
-									<h1>
-										<i class="icon-cogs green"></i>
-										<span class="red">Sistema de Gestión Preventivo</span>
-										
-									</h1>
-									<h4 class="blue">&copy; QSSAM</h4>
+									{{ HTML::image('portal1/images/logo1.png', 'picture',array("width"=>"350") ) }}
 								</div>
 							</div>
 

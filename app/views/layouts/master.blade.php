@@ -202,9 +202,9 @@
 
 				<ul class="nav nav-list">
 					<li class="">
-						<a href="index.html">
+						<a href="{{URL::to('portal')}}"> 
 							<i class="menu-icon fa fa-tachometer"></i>
-							<span class="menu-text"> Dashboard </span>
+							<span class="menu-text"> Portal </span>
 						</a>
 
 						<b class="arrow"></b>
