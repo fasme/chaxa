@@ -92,7 +92,7 @@ Route::filter('csrf', function()
 
 Route::filter("permisoAdmin",function()
 {
-	if(Auth::user()->perfil != "admin")
+	if((Auth::user()->perfil == "usuario") || (Auth::user()->perfil == "usuariomantencion"))
 	{
 		return "no";
 	}
