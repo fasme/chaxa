@@ -140,7 +140,7 @@ return Redirect::to('personal/update/'.$id)->withInput()->withErrors($personal->
     public function evidencia()
     {
 
-         $datos = Input::all();
+          $datos = Input::all();
         $random = rand(0,99999);
 
        
@@ -157,10 +157,13 @@ return Redirect::to('personal/update/'.$id)->withInput()->withErrors($personal->
 
 
 
-        
+         if($datos["tipoactividad"] == "noprogramada")   
+         {
 
 
-            $actividadrespoonsable = DB::table('actividad_responsable')
+
+
+            $actividadrespoonsable = DB::table('actividad_responsable_noprogramada')
             ->Where("id","=",$datos["id"]);
 
             $adjunto11 ="";
@@ -224,10 +227,244 @@ return Redirect::to('personal/update/'.$id)->withInput()->withErrors($personal->
               //  $actividadrespoonsable->pivot->estado = "Pendiente";
                 //$actividadrespoonsable->save();
 
-                $actividadrespoonsable = DB::table('actividad_responsable')
+                $actividadrespoonsable = DB::table('actividad_responsable_noprogramada')
             ->Where("id","=",$datos["id"])->update(array('adjunto1' => $adjunto11,'adjunto2' => $adjunto22,'adjunto3' => $adjunto33,'adjunto4' => $adjunto44,'adjunto5' => $adjunto55, "estado"=>"Pendiente", "fechaenvio"=>date("Y-m-d")));
 
-        
+        }
+
+
+
+
+
+
+
+        if($datos["tipoactividad"] == "kpi")   
+         {
+
+
+
+
+            $actividadrespoonsable = DB::table('actividad_responsable_kpi')
+            ->Where("id","=",$datos["id"]);
+
+            $adjunto11 ="";
+            $adjunto22="";
+            $adjunto33 ="";
+            $adjunto44 ="";
+            $adjunto55 ="";
+
+            //return $actividadrespoonsable;
+
+          
+
+            // return $actividad->muchaspersonal()->wherePivot('id', '=', 40)->first();
+
+
+
+                
+                if (Input::hasFile("adjunto1"))
+                {
+                    $adjunto1 = Input::file('adjunto1');
+                    $adjunto11 = $random."_".$adjunto1->getClientOriginalName();
+                    $adjunto1->move("archivos/evidencia",$random."_".$adjunto1->getClientOriginalName());
+                    
+                   
+                }
+
+                if (Input::hasFile("adjunto2"))
+                {
+                    $adjunto2 = Input::file('adjunto2');
+                    $adjunto22 = $random."_".$adjunto2->getClientOriginalName();
+                    $adjunto2->move("archivos/evidencia",$random."_".$adjunto2->getClientOriginalName());
+                    
+
+                 
+                }
+
+                if (Input::hasFile("adjunto3"))
+                {
+                    $adjunto3 = Input::file('adjunto3');
+                    $adjunto33 = $random."_".$adjunto3->getClientOriginalName();
+                    $adjunto3->move("archivos/evidencia",$random."_".$adjunto3->getClientOriginalName());
+                    //$actividadPersonal->pivot->save();
+                }
+
+                if (Input::hasFile("adjunto4"))
+                {
+                    $adjunto4 = Input::file('adjunto4');
+                    $adjunto44 = $random."_".$adjunto4->getClientOriginalName();
+                    $adjunto4->move("archivos/evidencia",$random."_".$adjunto4->getClientOriginalName());
+                    //$actividadPersonal->pivot->save();
+                }
+
+                if (Input::hasFile("adjunto5"))
+                {
+                    $adjunto5 = Input::file('adjunto5');
+                    $adjunto55 = $random."_".$adjunto5->getClientOriginalName();
+                    $adjunto5->move("archivos/evidencia",$random."_".$adjunto5->getClientOriginalName());
+                    //$actividadPersonal->pivot->save();
+                }
+
+              //  $actividadrespoonsable->pivot->estado = "Pendiente";
+                //$actividadrespoonsable->save();
+
+                $actividadrespoonsable = DB::table('actividad_responsable_kpi')
+            ->Where("id","=",$datos["id"])->update(array('adjunto1' => $adjunto11,'adjunto2' => $adjunto22,'adjunto3' => $adjunto33,'adjunto4' => $adjunto44,'adjunto5' => $adjunto55, "estado"=>"Pendiente", "fechaenvio"=>date("Y-m-d")));
+
+        }
+
+
+        if($datos["tipoactividad"] == "programada")   
+         {
+
+
+
+
+            $actividadrespoonsable = DB::table('actividad_responsable_programda')
+            ->Where("id","=",$datos["id"]);
+
+            $adjunto11 ="";
+            $adjunto22="";
+            $adjunto33 ="";
+            $adjunto44 ="";
+            $adjunto55 ="";
+
+            //return $actividadrespoonsable;
+
+          
+
+            // return $actividad->muchaspersonal()->wherePivot('id', '=', 40)->first();
+
+
+
+                
+                if (Input::hasFile("adjunto1"))
+                {
+                    $adjunto1 = Input::file('adjunto1');
+                    $adjunto11 = $random."_".$adjunto1->getClientOriginalName();
+                    $adjunto1->move("archivos/evidencia",$random."_".$adjunto1->getClientOriginalName());
+                    
+                   
+                }
+
+                if (Input::hasFile("adjunto2"))
+                {
+                    $adjunto2 = Input::file('adjunto2');
+                    $adjunto22 = $random."_".$adjunto2->getClientOriginalName();
+                    $adjunto2->move("archivos/evidencia",$random."_".$adjunto2->getClientOriginalName());
+                    
+
+                 
+                }
+
+                if (Input::hasFile("adjunto3"))
+                {
+                    $adjunto3 = Input::file('adjunto3');
+                    $adjunto33 = $random."_".$adjunto3->getClientOriginalName();
+                    $adjunto3->move("archivos/evidencia",$random."_".$adjunto3->getClientOriginalName());
+                    //$actividadPersonal->pivot->save();
+                }
+
+                if (Input::hasFile("adjunto4"))
+                {
+                    $adjunto4 = Input::file('adjunto4');
+                    $adjunto44 = $random."_".$adjunto4->getClientOriginalName();
+                    $adjunto4->move("archivos/evidencia",$random."_".$adjunto4->getClientOriginalName());
+                    //$actividadPersonal->pivot->save();
+                }
+
+                if (Input::hasFile("adjunto5"))
+                {
+                    $adjunto5 = Input::file('adjunto5');
+                    $adjunto55 = $random."_".$adjunto5->getClientOriginalName();
+                    $adjunto5->move("archivos/evidencia",$random."_".$adjunto5->getClientOriginalName());
+                    //$actividadPersonal->pivot->save();
+                }
+
+              //  $actividadrespoonsable->pivot->estado = "Pendiente";
+                //$actividadrespoonsable->save();
+
+                $actividadrespoonsable = DB::table('actividad_responsable_programada')
+            ->Where("id","=",$datos["id"])->update(array('adjunto1' => $adjunto11,'adjunto2' => $adjunto22,'adjunto3' => $adjunto33,'adjunto4' => $adjunto44,'adjunto5' => $adjunto55, "estado"=>"Pendiente", "fechaenvio"=>date("Y-m-d")));
+
+        }
+
+
+
+        if($datos["tipoactividad"] == "pac")   
+         {
+
+
+
+
+            $actividadrespoonsable = DB::table('actividad_responsable_pac')
+            ->Where("id","=",$datos["id"]);
+
+            $adjunto11 ="";
+            $adjunto22="";
+            $adjunto33 ="";
+            $adjunto44 ="";
+            $adjunto55 ="";
+
+            //return $actividadrespoonsable;
+
+          
+
+            // return $actividad->muchaspersonal()->wherePivot('id', '=', 40)->first();
+
+
+
+                
+                if (Input::hasFile("adjunto1"))
+                {
+                    $adjunto1 = Input::file('adjunto1');
+                    $adjunto11 = $random."_".$adjunto1->getClientOriginalName();
+                    $adjunto1->move("archivos/evidencia",$random."_".$adjunto1->getClientOriginalName());
+                    
+                   
+                }
+
+                if (Input::hasFile("adjunto2"))
+                {
+                    $adjunto2 = Input::file('adjunto2');
+                    $adjunto22 = $random."_".$adjunto2->getClientOriginalName();
+                    $adjunto2->move("archivos/evidencia",$random."_".$adjunto2->getClientOriginalName());
+                    
+
+                 
+                }
+
+                if (Input::hasFile("adjunto3"))
+                {
+                    $adjunto3 = Input::file('adjunto3');
+                    $adjunto33 = $random."_".$adjunto3->getClientOriginalName();
+                    $adjunto3->move("archivos/evidencia",$random."_".$adjunto3->getClientOriginalName());
+                    //$actividadPersonal->pivot->save();
+                }
+
+                if (Input::hasFile("adjunto4"))
+                {
+                    $adjunto4 = Input::file('adjunto4');
+                    $adjunto44 = $random."_".$adjunto4->getClientOriginalName();
+                    $adjunto4->move("archivos/evidencia",$random."_".$adjunto4->getClientOriginalName());
+                    //$actividadPersonal->pivot->save();
+                }
+
+                if (Input::hasFile("adjunto5"))
+                {
+                    $adjunto5 = Input::file('adjunto5');
+                    $adjunto55 = $random."_".$adjunto5->getClientOriginalName();
+                    $adjunto5->move("archivos/evidencia",$random."_".$adjunto5->getClientOriginalName());
+                    //$actividadPersonal->pivot->save();
+                }
+
+              //  $actividadrespoonsable->pivot->estado = "Pendiente";
+                //$actividadrespoonsable->save();
+
+                $actividadrespoonsable = DB::table('actividad_responsable_pac')
+            ->Where("id","=",$datos["id"])->update(array('adjunto1' => $adjunto11,'adjunto2' => $adjunto22,'adjunto3' => $adjunto33,'adjunto4' => $adjunto44,'adjunto5' => $adjunto55, "estado"=>"Pendiente", "fechaenvio"=>date("Y-m-d")));
+
+        }
 
   
         
