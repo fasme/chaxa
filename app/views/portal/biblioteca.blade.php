@@ -168,8 +168,8 @@ var table =
                     {
                         "sExtends": "pdf",
                         "sButtonText":"Listado Maestro",
-                        "sTitle": "Report Name",
-                        "sPdfMessage": "Summary Info",
+                        "sTitle": "Listado Maestro",
+                        "sPdfMessage": "de documentos y registros",
                         "sFileName": "<?php print('Informe'); ?>.pdf",
                         "sPdfOrientation": "landscape",
                         "oSelectorOpts": {page: 'current'},

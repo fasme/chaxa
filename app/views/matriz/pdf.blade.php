@@ -65,7 +65,7 @@ $html .= "<td>".number_format($matriz->resultadoepp,3)."</td>";
 
 
 $html .= "<td>".number_format($matriz->magnitud,3)."</td>";
-$clasificacion = Clasificacion::Where("desde","<=",$matriz->resultado)->Where("hasta",">",$matriz->resultado)->first();
+$clasificacion = Clasificacion::Where("desde","<=",$matriz->magnitud)->Where("hasta",">",$matriz->magnitud)->first();
 
 $html .= "<td bgcolor=".$clasificacion->color."></td>";
 
