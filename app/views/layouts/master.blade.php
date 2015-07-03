@@ -299,27 +299,25 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="" id="pacactive1">
-								<a href="elements.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									PAC
-								</a>
+						
 
-								<b class="arrow"></b>
-							</li>
-
-							<li class="" id="evidenciaactive">
-								<a href="{{URL::to('evidenciaadmin')}}">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Evidencia
-								</a>
-
-								<b class="arrow"></b>
-							</li>
+							
 
 							
 							
 						</ul>
+					</li>
+
+					<li class="" id="pacactive">
+						<a href="{{URL::to('evidenciaadmin')}}">
+							<i class="menu-icon fa fa-list"></i>
+							<span class="menu-text"> Evidencia </span>
+
+							
+						</a>
+
+						
+
 					</li>
 
 					<li class="" id="pacactive">

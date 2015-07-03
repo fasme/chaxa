@@ -129,8 +129,8 @@ $(".calculos").keyup(function(){
 
   if(mantencionrealizada >= 2000)
   {
-    mantencionrealizada = 250;
-    $("#mantencionrealizada").val(mantencionrealizada);
+    mantencionrealizada = 0;
+   // $("#mantencionrealizada").val(mantencionrealizada);
   }
 
   var suma1 = parseFloat(mantencionrealizada) + 250;
