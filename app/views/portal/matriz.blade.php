@@ -97,7 +97,7 @@ var table =
         //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
         .dataTable( {
             "language": {
-                "url": "js/spanish.datatables.json"
+                "url": "datatables.spanish.json"
             }
         });
 

@@ -217,24 +217,22 @@ $vehiculos = Vehiculo::all();
 
   $( "#mantencionactive" ).addClass( "active" );
 
-var table = 
-        $('#example')
-        //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-        .dataTable( {
-            "language": {
-                "url": "js/spanish.datatables.json"
+
+var table = $('#example').DataTable( {
+      
+       "language": {
+                "url": "datatables.spanish.json"
             }
-        });
+    } );
 
 
-var table = 
-        $('#example2')
-        //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-        .dataTable( {
-            "language": {
-                "url": "js/spanish.datatables.json"
+
+var table = $('#example2').DataTable( {
+      
+       "language": {
+                "url": "datatables.spanish.json"
             }
-        });
+    } );
 
 
         var tableTools = new $.fn.dataTable.TableTools( table, {
