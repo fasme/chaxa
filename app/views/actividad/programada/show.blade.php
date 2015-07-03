@@ -90,26 +90,16 @@ var tableTools = new $.fn.dataTable.TableTools( table, {
 
     
       "aButtons": [
-                    {
-                        "sExtends": "copy",
-                        //"sTitle": "Report Name",
-                        //"sPdfMessage": "Summary Info",
-                       // "sFileName": "<?php print('Actividad No Programada'); ?>.pdf",
-                        //"sPdfOrientation": "landscape",
-                        "oSelectorOpts": {page: 'current'},
-
-                    },
-                   
-                    {
+                   {
                         "sExtends": "pdf",
+                        "sButtonText":"Listado pdf",
                         //"sTitle": "Report Name",
                         //"sPdfMessage": "Summary Info",
-                        "sFileName": "<?php print('Actividad Programada'); ?>.pdf",
+                        "sFileName": "<?php print('Informe'); ?>.pdf",
                         "sPdfOrientation": "landscape",
                         "oSelectorOpts": {page: 'current'},
 
-                    },
-                    "print",
+                    }
 
                 ]
       
