@@ -89,9 +89,9 @@ $mantencion = "";
                           </a> 
 
 
-                          <a class="green" href= {{ 'mantencion/update/'.$mantencion->id }}> 
+                        <!--  <a class="green" href= {{ 'mantencion/update/'.$mantencion->id }}> 
                             <i class="fa fa-pencil bigger-130"></i> 
-                          </a> 
+                          </a> -->
 
                          <a class="red bootbox-confirm" data-id={{ $mantencion->id }}> 
                             <i class="fa fa-trash bigger-130"></i> 

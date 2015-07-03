@@ -69,7 +69,7 @@
                           </a>
 
                           <a class="blue" href={{'mantencion/insert/'.$vehiculo->id}}>
-                            <i class="fa fa-file-o bigger-130"></i>
+                            <span class="label label-white middle">Generar Mantención</span>
                           </a>
 
                       </td>

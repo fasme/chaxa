@@ -115,7 +115,7 @@ $vehiculos = Vehiculo::all();
             <th>Horometro Actual</th>
             <th>Horas Restantes Proximo Mantenimiento</th>
           
-  <th>Acciones</th>
+ 
             
           </tr>
         </thead>
@@ -139,17 +139,13 @@ $vehiculos = Vehiculo::all();
           <td>{{$vehiculo->horometro}}</td> 
           <td> 
           @if($diferencia>0) 
-          <div class="green">{{$diferencia}}</div> 
+          <div class="btn btn-success">{{$diferencia}}</div> 
           @else 
-          <div class="red">{{$diferencia}}</div> 
+          <div class="btn btn-danger">{{$diferencia}}</div> 
           @endif 
           </td>
                             
-                            <td>
-                          
-
-                               
-                                </td>
+                            
                           
                             </tr>
 

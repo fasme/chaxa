@@ -82,12 +82,12 @@
 
             <div class="form-group">
             {{Form::label('', 'Hormetro de Mantención',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::number('horometromantencion', $mantencion->horometromantencion, array("id"=>"horometromantencion", "class"=>"calculos"))}}
+            {{Form::number('horometromantencion', $vehiculo->horometro, array("id"=>"horometromantencion", "class"=>"calculos"))}}
             </div>
 
             <div class="form-group">
             {{Form::label('', 'Horometro proxima mantención',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::text('proximahorometro', $mantencion->proximahorometro, array("id"=>"proximahorometro", "class"=>"calculos"))}}
+            {{Form::text('proximahorometro', $mantencion->proximahorometro, array("id"=>"proximahorometro", "class"=>"calculos", "readonly"=>"readonly"))}}
             </div>
             
        
