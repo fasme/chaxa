@@ -108,7 +108,7 @@ $html .= "<table width='100%' border='1'>
 <?php
 $html .= "<tr>";
 $html .= "<td height='100'>".$matriz->magnitud."</td>";
-$clasificacion = Clasificacion::Where("desde","<=",$matriz->resultado)->Where("hasta",">",$matriz->resultado)->first();
+$clasificacion = Clasificacion::Where("desde","<=",$matriz->magnitud)->Where("hasta",">",$matriz->magnitud)->first();
 
 $html .= "<td bgcolor=".$clasificacion->color."></td>";
 $html .= "<td>";
