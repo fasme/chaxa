@@ -57,25 +57,31 @@
         
      
 
-<div class="form-group">
+            <div class="form-group">
             {{Form::label('', 'Archivo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
             {{Form::file('archivo1', array("id"=>"id-input-file-1"))}}
+            {{$noticia->archivo1}}
             </div>
+
+
 
 
             <div class="form-group">
             {{Form::label('', 'Archivo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
             {{Form::file('archivo2', array("id"=>"id-input-file-2"))}}
+            {{$noticia->archivo2}}
             </div>
 
             <div class="form-group">
             {{Form::label('', 'Archivo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
             {{Form::file('archivo3', array("id"=>"id-input-file-3"))}}
+            {{$noticia->archivo3}}
             </div>
 
             <div class="form-group">
             {{Form::label('', 'Archivo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
             {{Form::file('archivo4', array("id"=>"id-input-file-4"))}}
+            {{$noticia->archivo4}}
             </div>
 
 
@@ -112,6 +118,8 @@ $('#id-input-file-2, #id-input-file-1, #id-input-file-3, #id-input-file-4').ace_
           //onchange:''
           //
         });
+
+//$('#id-input-file-1').ace_file_input('show_file_list', ['{{$noticia->archivo1}}']);
 
 
 
@@ -171,5 +179,3 @@ $( "#noticiaactive" ).addClass( "active" );
 </script>
 
 @stop
-
-

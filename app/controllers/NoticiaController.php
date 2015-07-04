@@ -127,7 +127,7 @@ return Redirect::to('noticia/insert')->withInput()->withErrors($noticia->errors)
     {
         
          $noticia = Noticia::find($id);
- $datos = Input::all(); 
+  $datos = Input::all(); 
 
 $random = rand(0,99999);
        
@@ -138,11 +138,16 @@ $random = rand(0,99999);
             
             // Guardamos el usuario
              //$usuario->password = Hash::make($usuario->password);
- if (Input::hasFile("archivo1"))
+           
+            
+
+            if (Input::hasFile("archivo1"))
                 {
                     $adjunto1 = Input::file('archivo1');
                     $datos["archivo1"] = $random."_".$adjunto1->getClientOriginalName();
                     $adjunto1->move("archivos/noticia",$random."_".$adjunto1->getClientOriginalName());
+                    
+                    $noticia->archivo1 = $datos["archivo1"];
                     
                    
                 }
@@ -152,8 +157,9 @@ $random = rand(0,99999);
                     $adjunto1 = Input::file('archivo2');
                     $datos["archivo2"] = $random."_".$adjunto1->getClientOriginalName();
                     $adjunto1->move("archivos/noticia",$random."_".$adjunto1->getClientOriginalName());
-                    
-                   
+                    $noticia->archivo2 = $datos["archivo2"];
+                 
+                
                 }
 
                  if (Input::hasFile("archivo3"))
@@ -162,7 +168,8 @@ $random = rand(0,99999);
                     $datos["archivo3"] = $random."_".$adjunto1->getClientOriginalName();
                     $adjunto1->move("archivos/noticia",$random."_".$adjunto1->getClientOriginalName());
                     
-                   
+                    $noticia->archivo3 = $datos["archivo3"];
+               
                 }
 
                  if (Input::hasFile("archivo4"))
@@ -171,28 +178,23 @@ $random = rand(0,99999);
                     $datos["archivo4"] = $random."_".$adjunto1->getClientOriginalName();
                     $adjunto1->move("archivos/noticia",$random."_".$adjunto1->getClientOriginalName());
                     
-                   
+                    $noticia->archivo4 = $datos["archivo4"];
+                
                 }
 
-
-                $noticia->fill($datos);
-
-
-      
             
-           $noticia->save();
-
-            // Y Devolvemos una redirección a la acción show para mostrar el usuario
-            //return Redirect::action('ClienteController@show');
-           return Redirect::to('noticia')->with("mensaje","Datos actualizados correctamente");
+                //return $noticia->fill($datos);
+                $noticia->save();
+      
+          return Redirect::to('noticia')->with("mensaje","Datos actualizados correctamente");
 
             
         }
         else
         {
-            // En caso de error regresa a la acción create con los datos y los errores encontrados
-return Redirect::to('noticia/update/'.$id)->withInput()->withErrors($noticia->errors);
-            //return "mal2";
+            
+            return Redirect::to('noticia/update/'.$id)->withInput()->withErrors($noticia->errors);
+           
         }
 
         return Redirect::to('noticia')->with("mensaje","NO");
