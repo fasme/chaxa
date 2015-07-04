@@ -22,22 +22,28 @@
 
                                     <h1 class="animation animated-item-1">{{$noticia->titulo}}</h1>
                                     <h2 class="animation animated-item-2">{{$noticia->descripcion}}</h2>
+                                    <h2 class="animation animated-item-3">Archivos Adjuntos</h2>
                                     @if($noticia->archivo1)
-                                    <img src="archivos/noticia/{{$noticia->archivo1}}" width="200">
+                                    <!--<img src="archivos/noticia/{{$noticia->archivo1}}" width="200">-->
+                                    {{link_to_asset('archivos/noticia/'.$noticia->archivo1, "Descargar $noticia->archivo1", array("class"=>"label label-warning arrowed"))}}
+                                    <br>
                                     @endif
 
                                     @if($noticia->archivo2)
-                                    <img src="archivos/noticia/{{$noticia->archivo2}}" width="200">
+                                   {{link_to_asset('archivos/noticia/'.$noticia->archivo2, "Descargar $noticia->archivo2", array("class"=>"label label-warning arrowed"))}}
+                                    <br>
                                     @endif
 
                                     @if($noticia->archivo3)
-                                    <img src="archivos/noticia/{{$noticia->archivo3}}" width="200">
+                                    {{link_to_asset('archivos/noticia/'.$noticia->archivo3, "Descargar $noticia->archivo3", array("class"=>"label label-warning arrowed"))}}
+                                    <br>
                                     @endif
 
                                     @if($noticia->archivo4)
-                                    <img src="archivos/noticia/{{$noticia->archivo4}}" width="200">
+                                  {{link_to_asset('archivos/noticia/'.$noticia->archivo4, "Descargar $noticia->archivo4", array("class"=>"label label-warning arrowed"))}}
+                                  <br>
                                     @endif
-                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
+                                   <!-- <a class="btn-slide animation animated-item-3" href="#">Read More</a> -->
                                 </div>
                             </div>
 
