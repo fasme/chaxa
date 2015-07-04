@@ -526,12 +526,50 @@
 								<b class="arrow"></b>
 							</li>
 						</ul>
-
-
-
-
 					</li>
-@endif				
+@endif			
+
+
+
+@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "admingerente"))
+
+					<li class="" id="informeactive">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-line-chart"></i>
+							<span class="menu-text">Informes </span>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+
+						<ul class="submenu">
+							<li class="" id="informeevidenciaactive">
+								<a href="{{URL::to('informeevidencia')}}" >
+									<i class="menu-icon fa fa-caret-right"></i>
+
+									Evidencias
+									
+								</a>
+
+								<b class="arrow"></b>
+
+								
+							</li>
+
+							<li class="" id="mantencionactive">
+								<a href="{{URL::to('mantencion')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Mantención
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+@endif
+
+
+
+
 				</ul><!-- /.nav-list -->
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

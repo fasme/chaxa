@@ -326,6 +326,11 @@ Route::post('medica/update/{id}', 'MedicaController@update2');
 Route::get('medica/eliminar', 'MedicaController@eliminar');
 
 
+
+//INFORMES
+
+Route::get("informeevidencia", array("uses"=>"InformeController@informeevidencia"));
+
 // Manual
 
 Route::get('manual', function(){
