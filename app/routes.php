@@ -106,6 +106,7 @@ Route::post('archivo/insert', array('uses' => 'ArchivoController@insert2'));
 Route::get('archivo/update/{id}', 'ArchivoController@update');
 Route::post('archivo/update/{id}', 'ArchivoController@update2');
 Route::get('archivo/eliminar', 'ArchivoController@eliminar');
+Route::get('archivo/archivoobsoleto', 'ArchivoController@archivoobsoleto');
 
 //criterio
 Route::get('criterio', array('uses' => 'CriterioController@show')); 

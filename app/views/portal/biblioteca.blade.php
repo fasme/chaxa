@@ -14,7 +14,7 @@
 
 <?php
 //$actividadProgramadas = ActividadProgramada::all();
-$archivos = Archivo::all();
+$archivos = Archivo::where("obsoleto","<>","si")->get();
 ?>
 
 

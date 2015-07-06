@@ -76,8 +76,14 @@
             <div class="form-group">
             {{Form::label('Archivo', 'Archivo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
             {{Form::file('archivo')}}
+            {{$archivo->archivo}}
             </div>
            
+           <div class="form-group">
+           {{ Form::hidden('obsoleto', '') }}
+            {{Form::label('', 'Obsoleto?',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::checkbox('obsoleto', "si", $archivo->obsoleto)}}
+            </div>
         
      
 

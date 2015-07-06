@@ -1,7 +1,7 @@
 <?php
 class Archivo extends Eloquent { //Todos los modelos deben extender la clase Eloquent
     protected $table = 'archivo';
-    protected $fillable = array('nombre','categoria_id','archivo', 'extension','codigo','version','tiempo');
+    protected $fillable = array('nombre','categoria_id','archivo', 'extension','codigo','version','tiempo','obsoleto');
 
 
 

@@ -243,6 +243,16 @@
 								<b class="arrow"></b>
 							</li>
 
+
+							<li class="" id="obsoletoactive">
+								<a href="{{URL::to('archivo/archivoobsoleto')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Obsoleto
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
 							<!--<li class="">
 								<a href="elements.html">
 									<i class="menu-icon fa fa-caret-right"></i>
