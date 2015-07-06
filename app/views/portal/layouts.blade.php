@@ -107,7 +107,7 @@
                                         
                                         @foreach(Alertas::where("personal_id","=",Auth::user()->id)->get() as $alerta)
                                         <li>
-                                            <a href="#">
+                                            <a href="{{URL::to('misactividades')}}">
                                                 <i class="btn btn-xs btn-primary fa fa-user"></i>
                                                 {{"<b>".$alerta->personal->nombre."</b> ".$alerta->mensaje}}
                                                 

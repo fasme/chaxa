@@ -330,6 +330,7 @@ Route::get('medica/eliminar', 'MedicaController@eliminar');
 //INFORMES
 
 Route::get("informeevidencia", array("uses"=>"InformeController@informeevidencia"));
+Route::get("informemantencion", array("uses"=>"InformeController@informemantencion"));
 
 // Manual
 

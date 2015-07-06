@@ -124,7 +124,7 @@
 										
 										@foreach(Alertas::where("personal_id_admin","=",Auth::user()->id)->get() as $alerta)
 										<li>
-											<a href="#">
+											<a href="{{URL::to('evidenciaadmin')}}">
 												<i class="btn btn-xs btn-primary fa fa-user"></i>
 												{{"<b>".$alerta->personal->nombre."</b> ".$alerta->mensaje}}
 												
@@ -161,19 +161,9 @@
 							</a>
 
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-								<li>
-									<a href="#">
-										<i class="ace-icon fa fa-cog"></i>
-										Settings
-									</a>
-								</li>
+								
 
-								<li>
-									<a href="profile.html">
-										<i class="ace-icon fa fa-user"></i>
-										Profile
-									</a>
-								</li>
+								
 
 								<li class="divider"></li>
 
@@ -555,8 +545,8 @@
 								
 							</li>
 
-							<li class="" id="mantencionactive">
-								<a href="{{URL::to('mantencion')}}">
+							<li class="" id="informemantencionactive">
+								<a href="{{URL::to('informemantencion')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Mantención
 								</a>
