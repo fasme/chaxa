@@ -137,6 +137,8 @@ return Redirect::to('personal/update/'.$id)->withInput()->withErrors($personal->
     //return Redirect::to('usuarios/insert');
     }
 
+
+//PORTAL
     public function evidencia()
     {
 
@@ -479,6 +481,50 @@ return Redirect::to('misactividades');
 
 
  
+public function cambiarclave(){
+
+    $personal = Personal::find(Auth::user()->id);
+    return View::make('personal.cambiarclave')->with("personal",$personal);
+        
+}
+
+public function cambiarclave2(){
+
+    $data = Input::all();
+
+    $personal = Personal::find($data["id"]);
+
+    if (Hash::check($data["actual"], $personal->password))
+    {
+        $data["validar"] = true;
+    }
+    else
+    {
+        $data["validar"] = "NO";
+    }
+ 
+    if ($personal->isValid2($data))
+    {
+
+
+      
+           
+           $personal->password = $data["nueva"];
+           $personal->save();
+           return Redirect::to("login");
+       
+
+
+        
+
+    }
+     else
+        {
+            // En caso de error regresa a la acción create con los datos y los errores encontrados
+return Redirect::to('personal/cambiarclave')->withInput()->withErrors($personal->errors);
+            //return "mal2";
+        }
+}
 
 
 

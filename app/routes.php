@@ -263,6 +263,8 @@ Route::post('personal/insert', array('uses' => 'PersonalController@insert2'));
 Route::get('personal/update/{id}', 'PersonalController@update');
 Route::post('personal/update/{id}', 'PersonalController@update2');
 Route::get('personal/eliminar', 'PersonalController@eliminar');
+Route::get('personal/cambiarclave', 'PersonalController@cambiarclave');
+Route::post('personal/cambiarclave/{id}', 'PersonalController@cambiarclave2');
 
 //cargo
 Route::get('cargo', array('uses' => 'CargoController@show')); 
@@ -324,6 +326,8 @@ Route::post('medica/insert', array('uses' => 'MedicaController@insert2'));
 Route::get('medica/update/{id}', 'MedicaController@update');
 Route::post('medica/update/{id}', 'MedicaController@update2');
 Route::get('medica/eliminar', 'MedicaController@eliminar');
+
+
 
 
 

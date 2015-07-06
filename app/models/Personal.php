@@ -57,6 +57,34 @@ class Personal extends Eloquent implements UserInterface,RemindableInterface { /
 
 
 
+     public function isValid2($data) // funcion que valida los datos
+    {
+        $rules = array(
+            'actual' => "required",
+            'nueva' => 'confirmed|required',
+            'nueva_confirmation'=>'required',
+            'validar'=>"boolean"
+            
+            
+            
+            
+        );
+        
+        $validator = Validator::make($data, $rules);
+        
+        if ($validator->passes())
+        {
+            return true;
+        }
+        
+        $this->errors = $validator->errors();
+       
+        
+        return false;
+    }
+
+
+
 
 
 

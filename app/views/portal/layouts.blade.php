@@ -130,7 +130,18 @@
                             </ul>
                         </li>
 
-                        <li><a href="{{URL::to('logout')}}">Salir ({{Auth::user()->nombre}})</a></li> 
+                        
+                            <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle">{{Auth::user()->nombre}} </a>
+                            <ul class="dropdown-menu">
+
+                            <li>
+                            <a href="{{URL::to('personal/cambiarclave')}}">Cambiar Clave</a>
+                            </li> 
+                            <li>
+                            <a href="{{URL::to('logout')}}">Cerrar Sesión</a>
+                            </li> 
+                        
                         @endif                       
                     </ul>
                 </div>
