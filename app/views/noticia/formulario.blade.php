@@ -43,6 +43,18 @@
 
 ?>
 
+<div class="well">
+{{Form::open(array("url"=>"noticia/uploadimage", "files"=>true, "id"=>"uploadform"))}}
+ <div class="form-group">
+            {{Form::label('Nombre', 'Imagen',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::file('image', array("id"=>"image"))}}
+            
+            </div>
+
+            <div id="mensaje"></div>
+
+{{Form::close()}}
+</div>
 
 {{ Form::open($form_data) }}
        
@@ -50,6 +62,9 @@
             {{Form::label('Nombre', 'Titulo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
             {{Form::text('titulo', $noticia->titulo)}}
             </div>
+
+
+           
 
 
 
@@ -62,7 +77,6 @@
             {{Form::file('archivo1', array("id"=>"id-input-file-1"))}}
             {{$noticia->archivo1}}
             </div>
-
 
 
 
@@ -130,11 +144,11 @@ $('#editor1').ace_wysiwyg({
       'font',
       null,
       'fontSize',
-      null,
-      {name:'bold', className:'btn-info'},
-      {name:'italic', className:'btn-info'},
+      null, 
+      {name:'bold', className:'btn-info', title: 'Negrita'},
+      {name:'italic', className:'btn-info',title: 'Oblicua' },
       {name:'strikethrough', className:'btn-info'},
-      {name:'underline', className:'btn-info'},
+      {name:'underline', className:'btn-info', title: 'Subrayado'},
       null,
       {name:'insertunorderedlist', className:'btn-success'},
       {name:'insertorderedlist', className:'btn-success'},
@@ -149,7 +163,7 @@ $('#editor1').ace_wysiwyg({
       {name:'createLink', className:'btn-pink'},
       {name:'unlink', className:'btn-pink'},
       null,
-      {name:'insertImage', className:'btn-success', choose_file: false},
+      {name:'insertImage', className:'btn-success', choose_file: false,title: 'Insertar Imagen',},
 
       null,
       'foreColor',
@@ -174,6 +188,57 @@ $('#myform').on('submit', function() {
 
 
 $( "#noticiaactive" ).addClass( "active" );
+
+
+
+
+
+//$("#subir").click(function(){
+$("#image").change(function(){
+var formData = new FormData(document.getElementById("uploadform"));
+var mensaje = "";
+$.ajax({
+            
+            url: "{{URL::to('noticia/uploadimage')}}",  
+            type: 'POST',
+            // Form data
+            //datos del formulario
+            data: formData,
+            //necesario para subir archivos via ajax
+            cache: false,
+            contentType: false,
+            processData: false,
+            //mientras enviamos el archivo
+            beforeSend: function(){
+               // message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
+                 $("#mensaje").html("Subiendo Imagen, por favor espere");
+                 
+            },
+            //una vez finalizado correctamente
+            success: function(data){
+              
+                
+              
+                    $("#mensaje").html("<img width='100' src='"+data+"' /> <br><b>Copia el siguiente link:</b><br>" + data);
+
+                    //$("#mensaje").html(data);
+                
+                
+            },
+            //si ha ocurrido un error
+            error: function(){
+                //message = $("<span class='error'>Ha ocurrido un error.</span>");
+                alert("error");
+                //showMessage(message);
+            }
+        });
+
+
+
+})
+ 
+
+
     
   });   
 </script>

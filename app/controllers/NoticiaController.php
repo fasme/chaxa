@@ -213,6 +213,35 @@ $random = rand(0,99999);
     //return Redirect::to('usuarios/insert');
     }
 
+    public function uploadimage(){
+
+
+$random = rand(0,99999);
+
+        if (Input::hasFile("image"))
+                {
+                    $adjunto1 = Input::file('image');
+
+                    if ($adjunto1->getClientOriginalExtension() == "jpg" || $adjunto1->getClientOriginalExtension() == "png" || $adjunto1->getClientOriginalExtension() == "JPG" || $adjunto1->getClientOriginalExtension() == "PNG")
+                    {
+
+
+                    
+                    //$datos["archivo1"] = $random."_".str_replace(" ","_",$adjunto1->getClientOriginalName());
+                    $adjunto1->move("archivos/noticia/img",$random."_".str_replace(" ","_",$adjunto1->getClientOriginalName()));
+                    
+                 return url("/")."/archivos/noticia/img/".$random."_".str_replace(" ","_",$adjunto1->getClientOriginalName());
+             }
+             else{
+                return "Debes subir una foto con extension JPG o PNG";
+                   // return link_to_asset('archivos/noticia/'.$archivo->archivo);
+             }
+
+                   
+                }
+        //return "no";
+    }
+
 
 
  

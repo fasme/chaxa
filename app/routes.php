@@ -160,6 +160,7 @@ Route::post('noticia/insert', array('uses' => 'NoticiaController@insert2'));
 Route::get('noticia/update/{id}', 'NoticiaController@update');
 Route::post('noticia/update/{id}', 'NoticiaController@update2');
 Route::get('noticia/eliminar', 'NoticiaController@eliminar');
+Route::post('noticia/uploadimage', 'NoticiaController@uploadimage');
 
 
 // matriz

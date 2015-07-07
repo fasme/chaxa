@@ -159,25 +159,16 @@ var tableTools = new $.fn.dataTable.TableTools( table, {
     
       "aButtons": [
                     {
-                        "sExtends": "copy",
-                        //"sTitle": "Report Name",
-                        //"sPdfMessage": "Summary Info",
-                       // "sFileName": "<?php print('Actividad No Programada'); ?>.pdf",
-                        //"sPdfOrientation": "landscape",
-                        "oSelectorOpts": {page: 'current'},
-
-                    },
-                   
-                    {
                         "sExtends": "pdf",
-                        //"sTitle": "Report Name",
-                        //"sPdfMessage": "Summary Info",
-                        "sFileName": "<?php print('Actividad Programada'); ?>.pdf",
+                        "sButtonText":"Listado",
+                        "sTitle": "LISTADO:",
+                        "sPdfMessage": "",
+                        "sFileName": "<?php print('Informe'); ?>.pdf",
                         "sPdfOrientation": "landscape",
                         "oSelectorOpts": {page: 'current'},
+                         //"mColumns": [ 0, 1,2,3,4 ]
 
-                    },
-                    "print",
+                    }
 
                 ]
       

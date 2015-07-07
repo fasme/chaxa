@@ -6,7 +6,7 @@
      
 <div class="page-header position-relative">
             <h1>
-            Matriz Peligro
+            Requisito Legal
               <small>
                 <i class="icon-double-angle-right"></i>
                 

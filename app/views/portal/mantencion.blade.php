@@ -53,7 +53,7 @@ $vehiculos = Vehiculo::all();
                                 </a>
 
                                 <a data-toggle="modal" class="botoncito2" data-id="{{$vehiculo->id}}"  href="#" >
-                                  <span class="label label-warning arrowed">Editar Horometro</span>
+                                  <span class="label label-warning arrowed">Ingresar Horometro</span>
                                 </a>
 
                                
@@ -101,7 +101,7 @@ $vehiculos = Vehiculo::all();
 
 
  <table id="example2" class="table table-striped table-bordered table-hover">
-<div class="info"></div>
+<div class="info2"></div>
                         <thead>
                           <tr>
                             
@@ -223,15 +223,8 @@ var table = $('#example').DataTable( {
 
 
 
-var table = $('#example2').DataTable( {
-      
-       "language": {
-                "url": "datatables.spanish.json"
-            }
-    } );
 
-
-        var tableTools = new $.fn.dataTable.TableTools( table, {
+var tableTools = new $.fn.dataTable.TableTools( table, {
   
   "fnRowSelected": function(nodes) {
       var a = nodes[0].id;
@@ -253,6 +246,91 @@ var table = $('#example2').DataTable( {
                     {
                         "sExtends": "pdf",
                         "sButtonText":"Listado",
+                        "sTitle": "LISTADO",
+                        "sPdfMessage": "Summary Info",
+                        "sFileName": "<?php print('Informe'); ?>.pdf",
+                        "sPdfOrientation": "landscape",
+                        "oSelectorOpts": {page: 'current'},
+
+                    }
+                ]
+    
+      
+    } );
+
+$( tableTools.fnContainer() ).insertAfter('div.info');
+
+
+
+
+
+var table2 = $('#example2').DataTable( {
+      
+       "language": {
+                "url": "datatables.spanish.json"
+            }
+    } );
+
+
+
+var tableTools = new $.fn.dataTable.TableTools( table2, {
+  
+  "fnRowSelected": function(nodes) {
+      var a = nodes[0].id;
+      $("#selectmatrices").append("<option value="+a+" selected>"+a+"</option>");
+      /*
+        if (myDeselectList) {
+            var nodeList = myDeselectList;
+            myDeselectList = null;
+            this.fnDeselect(nodeList);
+        }
+        */
+    },
+    "fnRowDeselected": function(nodes){
+      var a = nodes[0].id;
+      $("#selectmatrices option[value="+a+"]").remove();
+
+    },
+      "aButtons": [
+                    {
+                        "sExtends": "pdf",
+                        "sButtonText":"Listado",
+                        "sTitle": "LISTADO",
+                        "sPdfMessage": "",
+                        "sFileName": "<?php print('Informe'); ?>.pdf",
+                        "sPdfOrientation": "landscape",
+                        "oSelectorOpts": {page: 'current'},
+
+                    }
+                ]
+    
+      
+    } );
+$( tableTools.fnContainer() ).insertAfter('div.info2');
+
+
+
+
+
+
+
+/*
+        var tableTools2 = new $.fn.dataTable.TableTools( table2, {
+  
+  "fnRowSelected": function(nodes) {
+      var a = nodes[0].id;
+      $("#selectmatrices").append("<option value="+a+" selected>"+a+"</option>");
+      
+    },
+    "fnRowDeselected": function(nodes){
+      var a = nodes[0].id;
+      $("#selectmatrices option[value="+a+"]").remove();
+
+    },
+      "aButtons": [
+                    {
+                        "sExtends": "pdf",
+                        "sButtonText":"Listado",
                         "sTitle": "Report Name",
                         "sPdfMessage": "Summary Info",
                         "sFileName": "<?php print('Informe'); ?>.pdf",
@@ -264,7 +342,10 @@ var table = $('#example2').DataTable( {
     
       
     } );
-$( tableTools.fnContainer() ).insertAfter('div.info');
+$( tableTools2.fnContainer() ).insertAfter('div.info2');
+
+*/
+
 
 
 

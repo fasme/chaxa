@@ -11,7 +11,7 @@
 
 <div class="col-xs-12">
 
-                    <h3 class="header smaller lighter">Matriz Ley: 
+                    <h3 class="header smaller lighter">Requisito Legal: 
                     <a href="{{URL::to('matrizLey/insert')}}"  class="btn btn-white btn-info btn-bold"> 
     <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>Agregar</a>
     </h3>
