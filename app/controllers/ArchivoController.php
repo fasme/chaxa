@@ -120,8 +120,8 @@ return Redirect::to('archivo/insert')->withInput()->withErrors($archivo->errors)
             if (Input::hasFile("archivo"))
                 {
                     $adjunto1 = Input::file('archivo');
-                    $datos["archivo"] = $random."_".$adjunto1->getClientOriginalName();
-                    $adjunto1->move("archivos/biblioteca",$random."_".$adjunto1->getClientOriginalName());
+                     $datos["archivo"] = $random."_".str_replace(" ","_",$adjunto1->getClientOriginalName());
+                    $adjunto1->move("archivos/biblioteca",$random."_".str_replace(" ","_",$adjunto1->getClientOriginalName()));
                     
                    
                 }
