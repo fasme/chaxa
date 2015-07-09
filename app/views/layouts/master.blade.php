@@ -125,7 +125,7 @@
 										@foreach(Alertas::where("personal_id_admin","=",Auth::user()->id)->get() as $alerta)
 										<li>
 											<a href="{{URL::to('evidenciaadmin')}}">
-												<i class="btn btn-xs btn-primary fa fa-user"></i>
+												<!--<i class="btn btn-xs btn-primary fa fa-user"></i>-->
 												{{"<b>".$alerta->personal->nombre."</b> ".$alerta->mensaje}}
 												
 											</a>
@@ -170,7 +170,7 @@
 								<li>
 									<a href="{{URL::to('logout')}}">
 										<i class="ace-icon fa fa-power-off"></i>
-										Logout
+										Cerrar Sesión
 									</a>
 								</li>
 							</ul>
@@ -529,6 +529,43 @@
 					</li>
 @endif			
 
+
+@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "admingerente"))
+<!--
+					<li class="" id="bodegaactive">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-certificate"></i>
+							<span class="menu-text">Bodega </span>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+
+						<ul class="submenu">
+							<li class="" id="productoactive">
+								<a href="{{URL::to('producto')}}" >
+									<i class="menu-icon fa fa-caret-right"></i>
+
+									Producto
+									
+								</a>
+
+								<b class="arrow"></b>
+
+								
+							</li>
+
+							<li class="" id="transaccionactive">
+								<a href="{{URL::to('productotransaccion')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Transaccion
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+@endif
+-->
 
 
 @if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "admingerente"))

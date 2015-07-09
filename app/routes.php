@@ -330,7 +330,22 @@ Route::post('medica/update/{id}', 'MedicaController@update2');
 Route::get('medica/eliminar', 'MedicaController@eliminar');
 
 
+//Producto
+Route::get('producto', array('uses' => 'ProductoController@show')); 
+Route::get('producto/insert', array('uses' => 'ProductoController@insert'));
+Route::post('producto/insert', array('uses' => 'ProductoController@insert2'));
+Route::get('producto/update/{id}', 'ProductoController@update');
+Route::post('producto/update/{id}', 'ProductoController@update2');
+Route::get('producto/eliminar', 'ProductoController@eliminar');
 
+
+//ProductoTransaccion
+Route::get('productotransaccion', array('uses' => 'ProductoTransaccionController@show')); 
+Route::get('productotransaccion/insert', array('uses' => 'ProductoTransaccionController@insert'));
+Route::post('productotransaccion/insert', array('uses' => 'ProductoTransaccionController@insert2'));
+Route::get('productotransaccion/update/{id}', 'ProductoTransaccionController@update');
+Route::post('productotransaccion/update/{id}', 'ProductoTransaccionController@update2');
+Route::get('productotransaccion/eliminar', 'ProductoTransaccionController@eliminar');
 
 
 //INFORMES
@@ -343,6 +358,36 @@ Route::get("informemantencion", array("uses"=>"InformeController@informemantenci
 Route::get('manual', function(){
 	return View::make('manual.show');
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

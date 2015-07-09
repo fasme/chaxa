@@ -11,8 +11,8 @@
 
 <div class="col-xs-12">
 
-                    <h3 class="header smaller lighter">Vehiculos: 
-                    <a href="{{URL::to('vehiculo/insert')}}"  class="btn btn-white btn-info btn-bold"> 
+                    <h3 class="header smaller lighter">Transacción: 
+                    <a href="{{URL::to('productotransaccion/insert')}}"  class="btn btn-white btn-info btn-bold"> 
     <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>Agregar</a>
     </h3>
 
@@ -27,13 +27,13 @@
         
  
 <table id="example" class="table table-striped table-bordered table-hover">
+<div class="info"></div>
   <thead>
           <tr>
-            <th>Familia</th>
-            <th>Tipo</th>
-            <th>N Interno</th>
-            <th>Patente</th>
-            <th>Horometro</th>
+          <th>Nombre</th>
+                            <th>Stock</th>
+                            <th>Tipo</th>
+                           
           
   <th>Acciones</th>
             
@@ -42,36 +42,34 @@
         <tbody>
 
 
-  @foreach($vehiculos as $vehiculo)
+  @foreach($productotransaccions as $productotransaccion)
            <tr>
-
-             <td> {{ $vehiculo->familia}}</td>
-             <td> {{ $vehiculo->tipo}}</td>
-             <td> {{ $vehiculo->ninterno}}</td>
-             <td> {{ $vehiculo->patente}}</td>
-             <td>{{$vehiculo->horometro}}</td>
+           <td>{{ $productotransaccion->nombre}}</td>
+                            
+                            <td>{{$productotransaccion->stock}}</td>
+                            <td>@if ($productotransaccion->tipoproductotransaccion == 1) 
+                            Insumo
+                            @elseif ($productotransaccion->tipoproductotransaccion == 2)
+                            Herramienta
+                            @endif</td>
+                            
          
 
   <td class="td-actions">
                        
                       
-                          <a class="blue bootbox-mostrar" data-id={{$vehiculo->id}}>
+                          <a class="blue bootbox-mostrar" data-id={{$productotransaccion->id}}>
                             <i class="fa fa-search-plus bigger-130"></i>
                           </a>
 
 
-                          <a class="green" href= {{ 'vehiculo/update/'.$vehiculo->id }}>
+                          <a class="green" href= {{ 'productotransaccion/update/'.$productotransaccion->id }}>
                             <i class="fa fa-pencil bigger-130"></i>
                           </a>
 
-                         <a class="red bootbox-confirm" data-id={{ $vehiculo->id }}>
+                         <a class="red bootbox-confirm" data-id={{ $productotransaccion->id }}>
                             <i class="fa fa-trash bigger-130"></i>
                           </a>
-
-                          <a class="blue" href={{'mantencion/insert/'.$vehiculo->id}}>
-                            <span class="label label-white middle">Generar Mantención</span>
-                          </a>
-
                       </td>
 </tr>
           @endforeach
@@ -85,7 +83,7 @@
  $(document).ready(function() {
 
 
-$('#example').DataTable( {
+var table = $('#example').DataTable( {
       
        "language": {
                 "url": "datatables.spanish.json"
@@ -93,8 +91,33 @@ $('#example').DataTable( {
     } );
 
 
-$( "#mantencionactive" ).addClass( "active" );
-$( "#vehiculoactive" ).addClass( "active" );
+var tableTools = new $.fn.dataTable.TableTools( table, {
+  
+
+    
+      "aButtons": [
+                    
+                   
+                    {
+                        "sExtends": "pdf",
+                        "sButtonText":"Listado pdf",
+                        //"sTitle": "Report Name",
+                        //"sPdfMessage": "Summary Info",
+                        "sFileName": "<?php print('Informe'); ?>.pdf",
+                        "sPdfOrientation": "landscape",
+                        "oSelectorOpts": {page: 'current'},
+
+                    }
+
+                ]
+      
+    } );
+
+
+$( tableTools.fnContainer() ).insertAfter('div.info');
+
+$( "#bodegaactive" ).addClass( "active" );
+$( "#productotransaccionactive" ).addClass( "active" );
 
 
 
@@ -108,7 +131,7 @@ var tr = $(this).parents('tr');
               
            
              
-             $.get("{{ url('vehiculo/eliminar')}}",
+             $.get("{{ url('productotransaccion/eliminar')}}",
               { id: id },
 
               function(data,status){ tr.fadeOut(1000); }
@@ -124,7 +147,7 @@ var tr = $(this).parents('tr');
 $(".bootbox-mostrar").on(ace.click_event, function() {
   var id = $(this).data('id');
 
- $.get("{{ url('vehiculo/mostrar')}}",
+ $.get("{{ url('productotransaccion/mostrar')}}",
               { id: id },
               function(data)
               { 

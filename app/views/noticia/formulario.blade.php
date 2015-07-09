@@ -43,7 +43,7 @@
 
 ?>
 
-<div class="well">
+<div class="alert alert-success">
 {{Form::open(array("url"=>"noticia/uploadimage", "files"=>true, "id"=>"uploadform"))}}
  <div class="form-group">
             {{Form::label('Nombre', 'Imagen',array("class"=>"col-sm-3 control-label no-padding-right"))}}
@@ -219,7 +219,7 @@ $.ajax({
               
                 
               
-                    $("#mensaje").html("<img width='100' src='"+data+"' /> <br><b>Copia el siguiente link:</b><br>" + data);
+                    $("#mensaje").html("<img width='100' src='"+data+"' /> <br><b>Copia el siguiente link y Pegalo en el icono verde de Insertar Imagen</b><br>" + data);
 
                     //$("#mensaje").html(data);
                 

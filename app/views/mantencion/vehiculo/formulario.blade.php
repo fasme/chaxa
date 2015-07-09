@@ -102,12 +102,14 @@
   $(document).ready(function(){
    
 
+$( "#mantencionactive" ).addClass( "active" );
+$( "#vehiculoactive" ).addClass( "active" );
+    
+    
 $('.input-mask-date').mask('99/99/9999');
 $('.input-mask-date2').mask('99/99/9999');
 
 
-$( "#vehiculoactive" ).addClass( "active" );
-    
   });   
 </script>
 

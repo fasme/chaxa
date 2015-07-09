@@ -314,7 +314,13 @@ $('#example tfoot th').eq(1).html( '<input type="text" placeholder="Buscar " sty
 $('#example tfoot th').eq(2).html( '<input type="text" placeholder="Buscar " style="width:50px" />' );
 
 
-var table = $('#example').DataTable();
+var table = $('#example').DataTable({
+
+   "language": {
+                "url": "datatables.spanish.json"
+            }
+          }
+            );
 
 table.columns().every( function () {
         var that = this;
@@ -325,42 +331,6 @@ table.columns().every( function () {
                 .draw();
         } );
     } );
-
-
-var oTable2 = 
-        $('#example1')
-        //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-        .dataTable( {
-            "language": {
-                 "url": "datatables.spanish.json"
-            }
-        });
-
-
-
-
-
-
-$(".bootbox-confirm").on(ace.click_event, function() {
-  var id = $(this).data('id');
-var tr = $(this).parents('tr'); 
-
-          bootbox.confirm("Deseas cerrar la actividad "+id, function(result) {
-            if(result) { // si se seleccion OK
-              
-           
-             
-             $.get("{{ url('evidenciaadmin/cerraractividad')}}",
-              { id: id },
-
-              function(data,status){ alert(data);}
-).fail(function(data){bootbox.alert("No se puede eliminar un registro padre: una restricción de clave externa falla");});
-
-     
-            }
-           
-          });
-        });
 
 
 
