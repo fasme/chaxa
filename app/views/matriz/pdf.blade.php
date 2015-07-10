@@ -188,8 +188,10 @@ $html .= "<table width='50%' border='1'><tr><th>Version</th><th>Cambio</th></tr>
 <?php
 
 $cambio = Cambio::orderby("id","desc")->first();
+if($cambio)
+{
 $html .= "<tr><td>$cambio->version</td><td>$cambio->descripcion</td></tr>";
-
+}
 ?>
 
 <?php
