@@ -430,7 +430,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             
                             
                             
-                            <td>{{$actividad->tipoactividad}}</td>
+                            <td>{{Personal::find($actividad->personal_id)->nombre}}</td>
                             <td>{{$actividad->estado}}</td>
                             <td>{{date_format(date_create($busqueda->frecuencia),"d/m/Y")}} {{$dif}}</td>
                             
