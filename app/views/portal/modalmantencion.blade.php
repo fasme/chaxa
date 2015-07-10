@@ -29,10 +29,22 @@
             </div>
 
 
+<?php
+$mantencionideal = $vehiculo->mantencion()->orderby("id","desc")->first();
 
-  <div class="form-group">
+if($mantencionideal)
+{
+  $mantencionideal = $mantencionideal->proximahorometro;
+}
+else
+{
+  $mantencionideal=0;
+}
+?>
+
+            <div class="form-group">
             {{Form::label('', 'Horometro mantencion ideal:',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{number_format($vehiculo->mantencion()->orderby("id","desc")->first()->proximahorometro,0,",",".")}}
+            {{number_format($mantencionideal,0,",",".")}}
             </div>
 
 
