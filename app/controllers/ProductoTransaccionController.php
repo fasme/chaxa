@@ -23,9 +23,11 @@ class ProductoTransaccionController extends BaseController {
      public function insert()
     {
         $productotransaccion = new ProductoTransaccion; 
+        $productos = Producto::lists("nombre","id");
     
         
-        return View::make('bodega.transaccion.formulario')->with("productotransaccion",$productotransaccion);
+        return View::make('bodega.transaccion.formulario')->with("productotransaccion",$productotransaccion)
+        ->with("productos",$productos);
     }
  
  
@@ -46,7 +48,10 @@ class ProductoTransaccionController extends BaseController {
             // Si la data es valida se la asignamos al usuario
 
 
-       
+            if($datos["tipo"] == 2)
+            {
+                $datos["cantidad"] = $datos["cantidad"] * -1;
+            }
 
             $productotransaccion->fill($datos);
             // Guardamos el usuario

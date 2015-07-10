@@ -1,7 +1,7 @@
 <?php
 class ProductoTransaccion extends Eloquent { //Todos los modelos deben extender la clase Eloquent
     protected $table = 'producto_transaccion';
-    protected $fillable = array('nombre','stock','tipoproducto','codigo');
+    protected $fillable = array('producto_id','tipo','cantidad');
 
 
 

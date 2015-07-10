@@ -67,7 +67,7 @@
 
             <div class="form-group">
             {{Form::label('', 'Mantención a realizar',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::number('mantencionrealizada', $mantencion->mantencionrealizada,  array("id"=>"mantencionrealizada", "class"=>"calculos"))}}
+            {{Form::select('mantencionrealizada', array(250=>"250",500=>"500",750=>"750",1000=>"1000",1250=>"1250",1500=>"1500",1750=>"1750",2000=>"2000"), $mantencion->mantencionrealizada,  array("id"=>"mantencionrealizada", "class"=>"calculos"))}}
             </div>
 
           <div class="form-group">
@@ -123,7 +123,7 @@ $('.date-picker').datepicker({
 
 
 
-$(".calculos").keyup(function(){
+$(".calculos").change(function(){
  
   var mantencionrealizada = $("#mantencionrealizada").val();
 

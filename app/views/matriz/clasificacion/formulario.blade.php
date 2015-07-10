@@ -71,7 +71,7 @@
 
             <div class="form-group">
             {{Form::label('', 'Color',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::text('color', $clasificacion->color)}}
+            {{Form::select('color', array("green"=>"Verde","yellow"=>"Amarillo","red"=>"Rojo"), $clasificacion->color)}}
             </div>
 
            

@@ -1,4 +1,5 @@
 <?php
+use Khill\Lavacharts\Lavacharts;
 class InformeController extends BaseController {
  
  
@@ -23,15 +24,18 @@ class InformeController extends BaseController {
     public function informemantencion()
     {
        
+      //  
+
+
+   $devlist = Vehiculo::lists("id","patente");
+
+        //return $devlist;
+
+
         
-        // Con el método all() le estamos pidiendo al modelo de Usuario
-        // que busque todos los registros contenidos en esa tabla y los devuelva en un Array
+       return View::make('informe.mantencion.informemantencion')->with("devlist",$devlist);
         
-        return View::make('informe.mantencion.informemantencion');
-        
-        // El método make de la clase View indica cual vista vamos a mostrar al usuario
-        //y también pasa como parámetro los datos que queramos pasar a la vista.
-        // En este caso le estamos pasando un array con todos los usuarios
+     
     }
 
 

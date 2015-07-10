@@ -31,7 +31,7 @@
   <thead>
           <tr>
           <th>Nombre</th>
-                            <th>Stock</th>
+                            <th>Cantidad</th>
                             <th>Tipo</th>
                            
           
@@ -44,13 +44,13 @@
 
   @foreach($productotransaccions as $productotransaccion)
            <tr>
-           <td>{{ $productotransaccion->nombre}}</td>
+           <td>{{ $productotransaccion->producto->nombre}}</td>
                             
-                            <td>{{$productotransaccion->stock}}</td>
-                            <td>@if ($productotransaccion->tipoproductotransaccion == 1) 
-                            Insumo
-                            @elseif ($productotransaccion->tipoproductotransaccion == 2)
-                            Herramienta
+                            <td>{{$productotransaccion->cantidad}}</td>
+                            <td>@if ($productotransaccion->tipo == 1) 
+                            Entrada
+                            @elseif ($productotransaccion->tipo == 2)
+                            Salida
                             @endif</td>
                             
          
@@ -58,7 +58,7 @@
   <td class="td-actions">
                        
                       
-                          <a class="blue bootbox-mostrar" data-id={{$productotransaccion->id}}>
+                        <!--  <a class="blue bootbox-mostrar" data-id={{$productotransaccion->id}}>
                             <i class="fa fa-search-plus bigger-130"></i>
                           </a>
 
@@ -69,7 +69,7 @@
 
                          <a class="red bootbox-confirm" data-id={{ $productotransaccion->id }}>
                             <i class="fa fa-trash bigger-130"></i>
-                          </a>
+                          </a>-->
                       </td>
 </tr>
           @endforeach

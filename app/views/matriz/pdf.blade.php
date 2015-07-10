@@ -184,14 +184,14 @@ $html .="</table><br>";
 <?php
 $html .= "<table width='50%' border='1'><tr><th>Version</th><th>Cambio</th></tr>";
 ?>
-@foreach(Cambio::all() as $cambio)
+
 <?php
 
-
+$cambio = Cambio::orderby("id","desc")->first();
 $html .= "<tr><td>$cambio->version</td><td>$cambio->descripcion</td></tr>";
 
 ?>
-@endforeach
+
 <?php
 $html .= "</table>"
 ?>

@@ -46,7 +46,7 @@
            <tr>
            <td>{{ $producto->nombre}}</td>
                             
-                            <td>{{$producto->productotransaccion->sum('stock')}}</td>
+                            <td>{{$producto->productotransaccion->sum('cantidad')}}</td>
                             <td>@if ($producto->tipoproducto == 1) 
                             Insumo
                             @elseif ($producto->tipoproducto == 2)

@@ -38,6 +38,9 @@
 {{HTML::script('js/dataTables.tableTools.min.js')}}
 
 
+{{HTML::script('js/chartjs/Chart.js')}}
+
+
 
 
 
@@ -564,8 +567,9 @@
 							</li>
 						</ul>
 					</li>
+					-->
 @endif
--->
+
 
 
 @if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "admingerente"))
