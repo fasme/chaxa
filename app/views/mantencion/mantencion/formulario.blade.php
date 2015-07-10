@@ -46,7 +46,11 @@
 
 {{ Form::open($form_data) }}
 
+
+
 {{ Form::hidden("vehiculo_id", $vehiculo->id)}}
+
+
        
             <div class="form-group">
             {{Form::label('', 'Vehiculo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
@@ -71,6 +75,25 @@ else
             </div>
 
 
+            <?php
+                              $array = Mantencion::find($mantencion->id);
+                              $arrayName = "";
+                              if(count($array) >0)
+                              {
+
+                              foreach ($array->muchaspersonal as $key) {
+                               echo $arrayName[] = $key->id;
+                               
+                              }
+                            }
+
+                              ?>
+
+            <div class="form-group">
+                              {{Form::label('', 'Personal',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+                              {{Form::select('personal_id[]', $personals, $arrayName, array("class"=>"chosen-select", "multiple"=>"multiple"))}}
+                              </div>
+
             <div class="form-group">
             {{Form::label('', 'Horometro Actual',array("class"=>"col-sm-3 control-label no-padding-right"))}}
             {{number_format($vehiculo->horometro,0,",",".")}}
@@ -78,7 +101,7 @@ else
 
             <div class="form-group">
             {{Form::label('', 'Mantención a realizar',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::select('mantencionrealizada', array(250=>"250",500=>"500",750=>"750",1000=>"1000",1250=>"1250",1500=>"1500",1750=>"1750",2000=>"2000"), $mantencion->mantencionrealizada,  array("id"=>"mantencionrealizada", "class"=>"calculos"))}}
+            {{Form::select('mantencionrealizada', array(0=>"Seleccione",250=>"250",500=>"500",750=>"750",1000=>"1000",1250=>"1250",1500=>"1500",1750=>"1750",2000=>"2000"), $mantencion->mantencionrealizada,  array("id"=>"mantencionrealizada", "class"=>"calculos"))}}
             </div>
 
           <div class="form-group">
@@ -88,9 +111,10 @@ else
 
             <div class="form-group">
             {{Form::label('', 'Fecha de Mantención',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::text('fecha_mantencion', date_format(date_create($mantencion->fecha_mantencion),'d/m/Y'), array("class"=>"date-picker"))}}
+            {{Form::text('fecha_mantencion', date_format(date_create($mantencion->fecha_mantencion),'d/m/Y'), array("class"=>"date-picker","data-date-format"=>"dd/mm/yyyy"))}}
             </div>
 
+<!--
             <div class="form-group">
             {{Form::label('', 'Hormetro de Mantención',array("class"=>"col-sm-3 control-label no-padding-right"))}}
             {{Form::number('horometromantencion', $vehiculo->horometro, array("id"=>"horometromantencion", "class"=>"calculos"))}}
@@ -101,7 +125,7 @@ else
             {{Form::text('proximahorometro', $mantencion->proximahorometro, array("id"=>"proximahorometro", "class"=>"calculos", "readonly"=>"readonly"))}}
             </div>
             
-       
+-->       
         
      
 
@@ -131,6 +155,8 @@ $('.date-picker').datepicker({
           todayHighlight: true
         });
        
+
+$(".chosen-select").chosen();
 
 
 

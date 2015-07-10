@@ -434,6 +434,7 @@ Route::get("mantencionportal", function(){
 
 Route::get("mantencionportal/mostrar", array("uses"=>"MantencionController@insertPortal"));
 Route::post('mantencionportal/insert', array('uses' => 'MantencionController@insert2Portal'));
+Route::post('mantencionportal/update/{id}', array('uses' => 'MantencionController@update2Portal'));
 Route::get('vehiculoportal/update', array('uses' => 'VehiculoController@updatePortal'));
 Route::post('vehiculoportal/update/{id}', array('uses' => 'VehiculoController@update2Portal'));
 

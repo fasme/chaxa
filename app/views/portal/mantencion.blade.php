@@ -48,9 +48,10 @@ $vehiculos = Vehiculo::all();
              <td>{{$vehiculo->horometro}}</td>
                             
                             <td>
-                            <a data-toggle="modal" class="botoncito" data-id="{{$vehiculo->id}}"  href="#" >
+                            <!-- <a data-toggle="modal" class="botoncito" data-id="{{$vehiculo->id}}"  href="#" >
                                   <span class="label label-success arrowed">Generar Mantencion</span>
                                 </a>
+                                -->
 
                                 <a data-toggle="modal" class="botoncito2" data-id="{{$vehiculo->id}}"  href="#" >
                                   <span class="label label-warning arrowed">Ingresar Horometro</span>
@@ -79,6 +80,16 @@ $vehiculos = Vehiculo::all();
     </section><!--/#services-->
 
     
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -114,6 +125,7 @@ $vehiculos = Vehiculo::all();
             <th>Horometro Proxima Mantencion</th>
             <th>Horometro Actual</th>
             <th>Horas Restantes Proximo Mantenimiento</th>
+            <th>Acciones</th>
           
  
             
@@ -144,6 +156,17 @@ $vehiculos = Vehiculo::all();
           <div class="btn btn-danger">{{$diferencia}}</div> 
           @endif 
           </td>
+
+          <td>
+          @if($mantencion->horometromantencion==0)
+          <a data-toggle="modal" class="botoncito" data-id="{{$mantencion->id}}"  href="#" >
+                                  <span class="label label-success arrowed">Generar Mantencion</span>
+                                </a>
+                                @else
+                                Enviada
+                                @endif
+
+                                </td>
                             
                             
                           

@@ -26,12 +26,14 @@ $vehiculos = Vehiculo::has("mantencion")->get();
     {
         $mantencion = new Mantencion; 
         $vehiculo = Vehiculo::find($idvehiculo);
+        $personals = Personal::lists("nombre","id");
 
 
         
         return View::make('mantencion.mantencion.formulario')
         ->with("mantencion",$mantencion)
-        ->with("vehiculo",$vehiculo);
+        ->with("vehiculo",$vehiculo)
+        ->with("personals",$personals);
     }
  
  
@@ -62,6 +64,25 @@ $vehiculos = Vehiculo::has("mantencion")->get();
       
             
            $mantencion->save();
+
+
+
+           $mantencion = Mantencion::find($mantencion->id);
+           //echo count($datos["actividad_id"]);
+           for($i=0;$i<count($datos["personal_id"]);$i++)
+           {
+            
+            $mantencion->muchaspersonal()->attach($datos["personal_id"][$i],array("personal_admin_id"=>Auth::user()->id, "estado"=>"Abierta","tipoactividad"=>"mantencion"));
+            
+
+            $alerta = new Alertas;
+            $alerta->mensaje = "ha enviado una Nueva Actividad";
+            $alerta->personal_id = Auth::user()->id;  // id_de
+            $alerta->personal_id_admin = $datos["personal_id"][$i];  // id_para
+            $alerta->save();
+
+
+           }
 
             return Redirect::to('mantencion')->with("mensaje","Datos Ingresados correctamente");
         }
@@ -164,7 +185,8 @@ return Redirect::to('mantencion/update/'.$id)->withInput()->withErrors($mantenci
 
 public function insertPortal(){
     $id = Input::get('id');
-    $mantencion = new Mantencion; 
+    $mantencion = Mantencion::find($id);
+    //$mantencion = new Mantencion; 
     return View::make("portal.modalmantencion")->with("id",$id)->with("mantencion",$mantencion);
 
 
@@ -211,6 +233,44 @@ return Redirect::to('mantencion/insert')->withInput()->withErrors($mantencion->e
 
 
 
+
+public function update2Portal($id)
+    {
+
+        $mantencion = Mantencion::find($id);
+
+         $datos = Input::all(); 
+        
+        if ($mantencion->isValid($datos))
+        {
+            // Si la data es valida se la asignamos al usuario
+
+            if($datos["fecha_mantencion"])
+            {
+                list($dia,$mes,$ano) = explode("/",$datos['fecha_mantencion']);
+            $datos['fecha_mantencion'] = "$ano-$mes-$dia";
+
+            }
+
+            $mantencion->fill($datos);
+
+          
+      
+            
+           $mantencion->save();
+
+            return Redirect::to('mantencionportal')->with("mensaje","Datos Ingresados correctamente");
+        }
+        else
+        {
+            // En caso de error regresa a la acción create con los datos y los errores encontrados
+//return Redirect::to('mantencion/insert')->withInput()->withErrors($mantencion->errors);
+            //return "mal2";
+        }
+     //   return Redirect::to('usuarios');
+    // el método redirect nos devuelve a la ruta de mostrar la lista de los usuarios
+ 
+    }
  
 
 

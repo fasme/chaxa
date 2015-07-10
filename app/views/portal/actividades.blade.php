@@ -21,6 +21,7 @@ $actividadresponsable_kpi = DB::table('actividad_responsable_kpi')->Where("perso
 $actividadresponsable_programada = DB::table('actividad_responsable_programada')->Where("personal_id","=",Auth::user()->id)->get();
 
 $actividadresponsable_pac = DB::table('actividad_responsable_pac')->Where("personal_id","=",Auth::user()->id)->get();
+$actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')->Where("personal_id","=",Auth::user()->id)->get();
 
 //print_r($actividadresponsable);
 ?>
@@ -356,6 +357,78 @@ $actividadresponsable_pac = DB::table('actividad_responsable_pac')->Where("perso
 
                             ?>
                             <td>{{$busqueda->actividad}}</td>
+                            
+                            
+                            
+                            <td>{{$actividad->tipoactividad}}</td>
+                            <td>{{$actividad->estado}}</td>
+                            <td>{{date_format(date_create($busqueda->frecuencia),"d/m/Y")}} {{$dif}}</td>
+                            
+                            <td>
+                            @if($actividad->estado == "Abierta")
+                            <div class="hidden-sm hidden-xs action-buttons">
+                                <a data-toggle="modal" class="botoncito" data-id="{{$actividad->id}}" data-actividadid="{{$actividad->actividad_id}}" data-tipoactividad="{{$actividad->tipoactividad}}" href="#" >
+                                  <i class="ace-icon fa fa-upload bigger-130"></i>
+                                </a>
+                              </div>
+                              @else
+
+                              <a href="archivos/evidencia/{{ $actividad->adjunto1}}">{{$actividad->adjunto1}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad->adjunto2}}">{{$actividad->adjunto2}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad->adjunto3}}">{{$actividad->adjunto3}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad->adjunto4}}">{{$actividad->adjunto4}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad->adjunto5}}">{{$actividad->adjunto5}}</a><br>
+
+                              @endif
+                              </td>
+                           
+                            </tr>
+
+                            @endforeach
+
+
+
+
+
+                            @foreach($actividadresponsable_mantencion as $actividad)
+                          <tr>
+                        
+                           <?php
+                           
+                            
+                             
+                            $busqueda = "";
+                            ?>
+
+                            
+                            <?php 
+                            $busqueda = Mantencion::find($actividad->actividad_id);
+                            ?>
+                            
+
+
+
+                            <?php
+
+                            $datetime1 = new DateTime($busqueda->frecuencia);
+                            $datetime2 = new DateTime(date("Y/m/d"));
+                            $interval = $datetime1->diff($datetime2);
+                            if($interval->format("%R") == "+")
+                            {
+                              $dif = "<font color='red'>(". $interval->format('Atrasado %a')." Dias)</font>";
+                            }
+                            else
+                            {
+                              $dif = "<font color='green'>(". $interval->format('Faltan %a')." Dias)</font>";
+                            }
+
+                            if($actividad->estado == "Cerrada")
+                            {
+                              $dif = "";
+                            }
+
+                            ?>
+                            <td>{{$busqueda->mantencionrealizada}}</td>
                             
                             
                             

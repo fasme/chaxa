@@ -69,7 +69,7 @@
                           </a>
 
                           <a class="blue" href={{'mantencion/insert/'.$vehiculo->id}}>
-                            <span class="label label-white middle">Generar Mantención</span>
+                            <span class="label label-white middle">Asignar Mantención</span>
                           </a>
 
                       </td>

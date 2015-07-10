@@ -10,6 +10,14 @@ public function vehiculo(){
 }
 
 
+public function muchaspersonal()
+{
+    return $this->belongsToMany("Personal",'actividad_responsable_mantencion','actividad_id','personal_id')
+    ->withpivot("id", "personal_admin_id","estado","tipoactividad","adjunto1","adjunto2","adjunto3","adjunto4","adjunto5",'fechaenvio')
+    ->withTimestamps();
+}
+
+
 
 
 public $errors;
@@ -17,7 +25,7 @@ public $errors;
     public function isValid($data) // funcion que valida los datos
     {
         $rules = array(
-            
+            //"personal_id" => "required",
             
          
         );

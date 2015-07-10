@@ -1,5 +1,8 @@
 
-<?php $vehiculo = Vehiculo::find($id) ?>
+<?php 
+$mantencion = Mantencion::find($id);
+//$vehiculo = Vehiculo::find($id); 
+?>
 
 
       <?php
@@ -21,15 +24,16 @@
 <div class="col-sm-12">
  <div class="form-group">
 
- {{ Form::hidden("vehiculo_id", $vehiculo->id)}}
+ {{ Form::hidden("id", $mantencion->id)}}
 
 
             {{Form::label('', 'Vehiculo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{$vehiculo->familia." / ".$vehiculo->patente}}
+            {{$mantencion->vehiculo->familia." / ".$mantencion->vehiculo->patente}}
             </div>
 
 
 <?php
+/*
 $mantencionideal = $vehiculo->mantencion()->orderby("id","desc")->first();
 
 if($mantencionideal)
@@ -40,37 +44,38 @@ else
 {
   $mantencionideal=0;
 }
+*/
 ?>
 
             <div class="form-group">
             {{Form::label('', 'Horometro mantencion ideal:',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{number_format($mantencionideal,0,",",".")}}
+            {{number_format($mantencion->proximahorometro,0,",",".")}}
             </div>
 
 
             <div class="form-group">
             {{Form::label('', 'Horometro Actual',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{number_format($vehiculo->horometro,0,",",".")}}
+            {{number_format($mantencion->vehiculo->horometro,0,",",".")}}
             </div>
 
             <div class="form-group">
             {{Form::label('', 'Mantención a realizar',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::select('mantencionrealizada', array(250=>"250",500=>"500",750=>"750",1000=>"1000",1250=>"1250",1500=>"1500",1750=>"1750",2000=>"2000"), $mantencion->mantencionrealizada,  array("id"=>"mantencionrealizada", "class"=>"calculos"))}}
+            {{ $mantencion->mantencionrealizada}}
             </div>
 
-          <div class="form-group">
+           <div class="form-group">
             {{Form::label('', 'Próxima Mantención',array("class"=>"col-sm-3 control-label no-padding-right"))}}
             {{Form::text('proximamantencion', $mantencion->proximamantencion, array("id"=>"proximamantencion","readonly"=>"readonly", "class"=>"calculos"))}}
             </div>
 
             <div class="form-group">
             {{Form::label('', 'Fecha de Mantención',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::text('fecha_mantencion', date_format(date_create($mantencion->fecha_mantencion),'d/m/Y'), array("class"=>"date-picker", " data-date-format"=>"dd/mm/yyyy"))}}
+            {{Form::text('fecha_mantencion', date_format(date_create($mantencion->fecha_mantencion),'d/m/Y'), array("class"=>"date-picker", "data-date-format"=>"dd/mm/yyyy", "readonly"=>"readonly"))}}
             </div>
 
             <div class="form-group">
             {{Form::label('', 'Hormetro de Mantención',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::number('horometromantencion', $vehiculo->horometro, array("id"=>"horometromantencion", "class"=>"calculos"))}}
+            {{Form::number('horometromantencion', $mantencion->vehiculo->horometro, array("id"=>"horometromantencion","readonly"=>"readonly"))}}
             </div>
 
             <div class="form-group">
@@ -102,27 +107,18 @@ else
        
 
 
- $(".calculos").change(function(){
+
 
  
-  var mantencionrealizada = $("#mantencionrealizada").val();
 
-   if(mantencionrealizada >= 2000)
-  {
-    mantencionrealizada = 0;
-   // $("#mantencionrealizada").val(mantencionrealizada);
-  }
-
-  
-  var suma1 = parseFloat(mantencionrealizada) + 250;
-  $("#proximamantencion").val(suma1);
 
   var horometromantencion = $("#horometromantencion").val();
   var suma1 = parseFloat(horometromantencion) + 250;
 
+
   $("#proximahorometro").val(suma1);
   //alert(horometroactual);
-});
+
 
 });
  </script>
