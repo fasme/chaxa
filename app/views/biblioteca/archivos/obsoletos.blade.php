@@ -58,10 +58,7 @@
             {{
 link_to_asset('archivos/biblioteca/'.$archivo->archivo, "Descargar", array("class"=>"label label-warning arrowed"))
 }}      
-                        <!--  <a class="blue bootbox-mostrar" data-id={{$archivo->id}}>
-                            <i class="fa fa-search-plus bigger-130"></i>
-                          </a>
-
+                       
 
                           <a class="green" href= {{ 'archivo/update/'.$archivo->id }}>
                             <i class="fa fa-pencil bigger-130"></i>
@@ -69,7 +66,7 @@ link_to_asset('archivos/biblioteca/'.$archivo->archivo, "Descargar", array("clas
 
                          <a class="red bootbox-confirm" data-id={{ $archivo->id }}>
                             <i class="fa fa-trash bigger-130"></i>
-                          </a> -->
+                          </a> 
                       </td>
 </tr>
           @endforeach
