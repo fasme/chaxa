@@ -596,14 +596,49 @@
 								
 							</li>
 
-							<li class="" id="informemantencionactive">
-								<a href="{{URL::to('informemantencion')}}">
+							<li class="" id="informeactive">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-line-chart"></i>
+							<span class="menu-text">Mantencion </span>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+
+						<ul class="submenu">
+							<li class="" id="informeevidenciaactive">
+								<a href="{{URL::to('informemantencionmensual')}}" >
 									<i class="menu-icon fa fa-caret-right"></i>
-									Mantención
+
+									Mensual
+									
+								</a>
+
+								<b class="arrow"></b>
+
+								
+							</li>
+
+							<li class="" id="informemantencionactive">
+								<a href="{{URL::to('informemantencionanual')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Anual
 								</a>
 
 								<b class="arrow"></b>
 							</li>
+
+							<li class="" id="informevehiculoactive">
+								<a href="{{URL::to('informemantencionvehiculo')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Vehiculo
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+
+
 						</ul>
 					</li>
 @endif

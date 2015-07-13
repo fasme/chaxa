@@ -352,6 +352,10 @@ Route::get('productotransaccion/eliminar', 'ProductoTransaccionController@elimin
 
 Route::get("informeevidencia", array("uses"=>"InformeController@informeevidencia"));
 Route::get("informemantencion", array("uses"=>"InformeController@informemantencion"));
+Route::get("informemantencionmensual", array("uses"=>"InformeController@informemantencionmensual"));
+Route::get("informemantencionanual", array("uses"=>"InformeController@informemantencionanual"));
+Route::get("informemantencionvehiculo", array("uses"=>"InformeController@informemantencionvehiculo"));
+
 
 // Manual
 

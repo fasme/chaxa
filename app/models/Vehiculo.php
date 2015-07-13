@@ -10,6 +10,11 @@ public function mantencion()
     return $this->hasMany("Mantencion");
 }
 
+public function vehiculohorometro()
+{
+    return $this->hasMany("VehiculoHorometro");
+}
+
 
 
 public $errors;

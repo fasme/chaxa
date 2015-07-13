@@ -151,22 +151,30 @@ return Redirect::to('vehiculo/update/'.$id)->withInput()->withErrors($vehiculo->
 public function update2Portal($id) //post
     {
         
+         $datos = Input::all(); 
+
          $vehiculo = Vehiculo::find($id);
 
+         $dif =  $datos["horometro"] - $vehiculo->horometro;
 
 
-        $datos = Input::all(); 
+         $vehiculohorometro = new VehiculoHorometro(array("horometro"=>$dif));
+
+
+
+
+       
         
         if ($vehiculo->isValid($datos))
         {
             // Si la data es valida se la asignamos al usuario
             $vehiculo->fill($datos);
-            // Guardamos el usuario
-             //$usuario->password = Hash::make($usuario->password);
 
-      
-            
+
            $vehiculo->save();
+
+
+           $vehiculo->vehiculohorometro()->save($vehiculohorometro);
 
             // Y Devolvemos una redirección a la acción show para mostrar el usuario
             //return Redirect::action('ClienteController@show');
