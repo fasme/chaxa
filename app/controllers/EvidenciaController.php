@@ -80,8 +80,8 @@ class EvidenciaController extends BaseController {
         }
         
 
-        //return $id;
-        
+      //return Redirect::to(url(URL::previous()));
+        return "Actividad Cerrada Correctamente";
     }
 
 
