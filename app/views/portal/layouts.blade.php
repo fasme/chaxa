@@ -72,7 +72,7 @@
 				
                 <div class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">
-                       <!-- <li id="homeactive"><a href="{{URL::to('portal')}}">Home</a></li>-->
+                        <li id="homeactive"><a href="{{URL::to('portal')}}"><i class="ace-icon fa fa-home icon-animated-bell"></i></a></li>
                         <li id="actividadactive"><a href="{{URL::to('misactividades')}}">Actividades</a></li>
                         <li id="matrizactive"><a href="{{URL::to('matrizportal')}}">Matriz</a></li>
                         <li id="biblioactive"><a href="{{URL::to('bibliotecaportal')}}">Biblioteca</a></li>

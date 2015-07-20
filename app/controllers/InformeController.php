@@ -123,10 +123,54 @@ class InformeController extends BaseController {
 
  
 
+public function informeevidenciamensual()
+{
+
+        $data = Input::all();
+       if(!isset($data["mes"]))
+        {
+            $data["mes"] = date("n");
+        }
+        if(!isset($data["ano"]))
+        {
+            $data["ano"] = date("Y");
+        }   
+    $actividadresponsable = DB::table('actividad_responsable_noprogramada')->join("actividad_noprogramada","actividad_responsable_noprogramada.actividad_id","=","actividad_noprogramada.id")->Where(DB::raw("MONTH(actividad_noprogramada.frecuencia)"),"=",$data["mes"])->where(DB::raw("YEAR(actividad_noprogramada.frecuencia)"),"=",$data["ano"])->Where("estado","=","Abierta")->count("*");
+ $actividadresponsable_kpi = DB::table('actividad_responsable_kpi')->join("actividad_kpi","actividad_responsable_kpi.actividad_id","=","actividad_kpi.id")->Where(DB::raw("MONTH(actividad_kpi.frecuencia)"),"=",$data["mes"])->where(DB::raw("YEAR(actividad_kpi.frecuencia)"),"=",$data["ano"])->Where("estado","=","Abierta")->count("*");
+$actividadresponsable_programada = DB::table('actividad_responsable_programada')->join("actividad_programada","actividad_responsable_programada.actividad_id","=","actividad_programada.id")->Where(DB::raw("MONTH(actividad_programada.frecuencia)"),"=",$data["mes"])->where(DB::raw("YEAR(actividad_programada.frecuencia)"),"=",$data["ano"])->Where("estado","=","Abierta")->count("*");
+$actividadresponsable_pac = DB::table('actividad_responsable_pac')->join("actividad_pac","actividad_responsable_pac.actividad_id","=","actividad_pac.id")->Where(DB::raw("MONTH(actividad_pac.frecuencia)"),"=",$data["mes"])->where(DB::raw("YEAR(actividad_pac.frecuencia)"),"=",$data["ano"])->Where("estado","=","Abierta")->count("*");
+$actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')->join("mantencion","actividad_responsable_mantencion.actividad_id","=","mantencion.id")->Where(DB::raw("MONTH(mantencion.fecha_mantencion)"),"=",$data["mes"])->where(DB::raw("YEAR(mantencion.fecha_mantencion)"),"=",$data["ano"])->Where("estado","=","Abierta")->count("*");
+
+$abiertas = $actividadresponsable + $actividadresponsable_kpi + $actividadresponsable_programada + $actividadresponsable_pac + $actividadresponsable_mantencion;
 
 
 
+$actividadresponsable = DB::table('actividad_responsable_noprogramada')->join("actividad_noprogramada","actividad_responsable_noprogramada.actividad_id","=","actividad_noprogramada.id")->Where(DB::raw("MONTH(actividad_noprogramada.frecuencia)"),"=",$data["mes"])->where(DB::raw("YEAR(actividad_noprogramada.frecuencia)"),"=",$data["ano"])->Where("estado","=","Cerrada")->count("*");
+ $actividadresponsable_kpi = DB::table('actividad_responsable_kpi')->join("actividad_kpi","actividad_responsable_kpi.actividad_id","=","actividad_kpi.id")->Where(DB::raw("MONTH(actividad_kpi.frecuencia)"),"=",$data["mes"])->where(DB::raw("YEAR(actividad_kpi.frecuencia)"),"=",$data["ano"])->Where("estado","=","Cerrada")->count("*");
+$actividadresponsable_programada = DB::table('actividad_responsable_programada')->join("actividad_programada","actividad_responsable_programada.actividad_id","=","actividad_programada.id")->Where(DB::raw("MONTH(actividad_programada.frecuencia)"),"=",$data["mes"])->where(DB::raw("YEAR(actividad_programada.frecuencia)"),"=",$data["ano"])->Where("estado","=","Cerrada")->count("*");
+$actividadresponsable_pac = DB::table('actividad_responsable_pac')->join("actividad_pac","actividad_responsable_pac.actividad_id","=","actividad_pac.id")->Where(DB::raw("MONTH(actividad_pac.frecuencia)"),"=",$data["mes"])->where(DB::raw("YEAR(actividad_pac.frecuencia)"),"=",$data["ano"])->Where("estado","=","Cerrada")->count("*");
+$actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')->join("mantencion","actividad_responsable_mantencion.actividad_id","=","mantencion.id")->Where(DB::raw("MONTH(mantencion.fecha_mantencion)"),"=",$data["mes"])->where(DB::raw("YEAR(mantencion.fecha_mantencion)"),"=",$data["ano"])->Where("estado","=","Cerrada")->count("*");
 
+$cerradas = $actividadresponsable + $actividadresponsable_kpi + $actividadresponsable_programada + $actividadresponsable_pac + $actividadresponsable_mantencion;
+
+    return View::make('informe.evidencia.informeevidencia')
+        ->with("abiertas",json_encode($abiertas))
+        ->with("cerradas",json_encode($cerradas))
+        ->with("data",$data);
+        
+}
+
+
+public function informepdf(){
+
+    $data = Input::all();
+
+    $view = View::make('informe.evidencia.informepdf')
+    ->with("data",$data);
+
+    return PDF::load($view, 'a4', 'portrait')->show();
+
+}
 
 }
 

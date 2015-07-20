@@ -2,340 +2,131 @@
 
 @section('contenido')
 
+            
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<?php
-$actividadresponsable = DB::table('actividad_responsable_noprogramada')->Where("estado","<>","Abierta")->get();
-$actividadresponsable_kpi = DB::table('actividad_responsable_kpi')->Where("estado","<>","Abierta")->get();
-$actividadresponsable_programada = DB::table('actividad_responsable_programada')->Where("estado","<>","Abierta")->get();
-
-$actividadresponsable_pac = DB::table('actividad_responsable_pac')->Where("estado","<>","Abierta")->get();
-?>
-
-<div class="row">
-
-
- <h3 class="header smaller lighter">Envio de Evidencias: 
+ <h3 class="header smaller lighter">Actividades Abiertas vs Actividades Cerradas 
                 
     </h3>
 
 
- <table id="example" class="table table-striped table-bordered table-hover">
-
-                        <thead>
-                          <tr>
-                            
-                            <th>Actividad</th>
-                            <th>Personal</th>
-                        
-                             <th>Estado</th>
-                            <th>Plazo</th>
-
-                           
-                            
-
-                           
-                          </tr>
-                        </thead>
-
-                         <tfoot>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                  <th>Position</th>
-                    <th></th>
-                      
-               
-            </tr>
-        </tfoot>
+<?php
+$meses = array(1=>"Enero",2=>"Feberero", 3=>"Marzo",4=>"Abril",5=>"Mayo",6=>"Junio",7=>"Julio",8=>"Agosto",9=>"Septiembre",10=>"Octubre",11=>"Noviembre",12=>"Diciembre");
+$mesnombre = $meses[$data["mes"]];
+?>
 
 
-                        <tbody>
+<div class="row">
+  <div class="col-xs-12">
+      <div class="alert alert-block alert-success">
 
-                        
-                        
-                             @foreach($actividadresponsable as $actividad)
+      {{ Form::open(array('url' => "informeevidencia", "method"=>"get")) }}
+            <div class="form-group">
+            {{Form::label('', 'Fecha',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::select('mes',$meses, $data["mes"])}}
 
-                              <?php
-                           $busqueda = "";
-                            ?>
+            {{Form::select('ano',array("2015"=>"2015"), $data["ano"])}}
+            {{Form::submit()}}
 
-                            <?php
-                             $busqueda = ActividadNoProgramada::find($actividad->actividad_id);
-                            ?>
-                            
+      {{ Form::close()}}
+            </div>
+      </div>
+</div>
+</div>
 
-                         
-                            
-                          <tr>
-                            
-                        
-                           <?php
-                            $datetime1 = new DateTime($busqueda->frecuencia);
-                            $datetime2 = new DateTime($actividad->fechaenvio);
-                            $interval = $datetime1->diff($datetime2);
-                            if($interval->format("%R") == "+")
-                            {
-                              $dif = "<font color='red'>Esta Evidencia se envio con (". $interval->format('%a')." Dias) de Atraso</font>";
-                            }
-                            else
-                            {
-                              $dif = "<font color='green'>Esta evidencia se envio con (". $interval->format('%a')." Dias) de anticipacion</font>";
-                            }
-                             
-                            ?>
+ <div class="row">
+  <div class="col-xs-6">
+ <canvas id="myChart1" width="400" height="300"></canvas>
+ </div>
+ <div class="col-xs-6">
+ <div id="chart1"></div>
+ <a class="label label-success" href='' download="GraficoMensual.png"  id="img1">Descargar Grafico</a>
 
-                            <td>{{ $busqueda->actividad}}</td>
-                            <td>{{Personal::find($actividad->personal_id)->nombre}}</td>
-                          
-                            <td>{{$actividad->estado}}</td>
-                            <td>{{$dif}}</td>
-                            
-                            </tr>
-                                @endforeach
+
+{{ Form::open(array('url' => "informepdf")) }}
+            <div class="form-group">
+            {{Form::hidden('img',"", array("id"=>"img64"))}}
+
+            {{Form::submit()}}
+
+            
+
+      {{ Form::close()}}
+
+ </div>
+ </div>
 
 
 
 
-
-
-
-
-
-                                 @foreach($actividadresponsable_kpi as $actividad)
-
-                              <?php
-                           $busqueda = "";
-                            ?>
-
-                           
-                            <?php
-                            $busqueda = ActividadKpi::find($actividad->actividad_id);
-                              ?>
-                          
-
-                         
-                            
-                          <tr>
-                            
-                        
-                          <?php
-                            $datetime1 = new DateTime($busqueda->frecuencia);
-                            $datetime2 = new DateTime($actividad->fechaenvio);
-                            $interval = $datetime1->diff($datetime2);
-                            if($interval->format("%R") == "+")
-                            {
-                              $dif = "<font color='red'>Esta Evidencia se envio con (". $interval->format('%a')." Dias) de Atraso</font>";
-                            }
-                            else
-                            {
-                              $dif = "<font color='green'>Esta evidencia se envio con (". $interval->format('%a')." Dias) de anticipacion</font>";
-                            }
-                             
-                            ?>
-                            ?>
-
-                            <td>{{ $busqueda->actividad}}</td>
-                            <td>{{Personal::find($actividad->personal_id)->nombre}}</td>
-                          
-                            <td>{{$actividad->estado}}</td>
-                            <td> {{$dif}}</td>
-                         
-                            </tr>
-                                @endforeach
-
-
-
-
-
-
-
-
-
-                                 @foreach($actividadresponsable_programada as $actividad)
-
-                              <?php
-                           $busqueda = "";
-                            ?>
-
-                         
-                            <?php 
-                            $busqueda = ActividadProgramada::find($actividad->actividad_id);
-                            ?>
-                            
-
-                         
-                            
-                          <tr>
-                            
-                        
-                           <?php
-                            $datetime1 = new DateTime($busqueda->frecuencia);
-                            $datetime2 = new DateTime($actividad->fechaenvio);
-                            $interval = $datetime1->diff($datetime2);
-                            if($interval->format("%R") == "+")
-                            {
-                              $dif = "<font color='red'>Esta Evidencia se envio con (". $interval->format('%a')." Dias) de Atraso</font>";
-                            }
-                            else
-                            {
-                              $dif = "<font color='green'>Esta evidencia se envio con (". $interval->format('%a')." Dias) de anticipacion</font>";
-                            }
-                             
-                            ?>
-
-                            <td>{{ $busqueda->actividad}}</td>
-                            <td>{{Personal::find($actividad->personal_id)->nombre}}</td>
-                          
-                            <td>{{$actividad->estado}}</td>
-                            <td> {{$dif}}</td>
-                           
-                            </tr>
-                                @endforeach
-
-
-
-
-
-
-
-
-
-                                 @foreach($actividadresponsable_pac as $actividad)
-
-                              <?php
-                           $busqueda = "";
-                            ?>
-
-                          
-                        
-                            <?php
-                            $busqueda = ActividadPac::find($actividad->actividad_id);
-                              ?>
-                          
-
-                         
-                            
-                          <tr>
-                            
-                        
-                           <?php
-                            $datetime1 = new DateTime($busqueda->frecuencia);
-                            $datetime2 = new DateTime($actividad->fechaenvio);
-                            $interval = $datetime1->diff($datetime2);
-                            if($interval->format("%R") == "+")
-                            {
-                              $dif = "<font color='red'>Esta Evidencia se envio con (". $interval->format('%a')." Dias) de Atraso</font>";
-                            }
-                            else
-                            {
-                              $dif = "<font color='green'>Esta evidencia se envio con (". $interval->format('%a')." Dias) de anticipacion</font>";
-                            }
-                             
-                            ?>
-
-                            <td>{{ $busqueda->actividad}}</td>
-                            <td>{{Personal::find($actividad->personal_id)->nombre}}</td>
-                          
-                            <td>{{$actividad->estado}}</td>
-                            <td> {{$dif}}</td>
-                            
-                            </tr>
-                                @endforeach
-                           
-                            
-                            </tbody>
-
-
-
-                           
-
-
-                            </table>
-
-
-
-
-
-
-
-                
-                                                   
-            </div><!--/.row-->
+   
+<script type="text/javascript">
     
+     $(document).ready(function() {
+
+$( "#informeactive" ).addClass( "active" );
+
+      
+
+     var ctx = document.getElementById("myChart1").getContext("2d");
+
+
+ var data = {
+    labels: ["{{$mesnombre}}"],
+    datasets: [
+        {
+            label: "Actividades Abiertas",
+            fillColor: "#FA5858",
+          //  strokeColor: "rgba(220,220,220,0.8)",
+           // highlightFill: "rgba(220,220,220,0.75)",
+           // highlightStroke: "rgba(220,220,220,1)",
+            data: [{{$abiertas}}]
+        },
+        {
+            label: "Actividades Cerradas",
+            fillColor: "#5882FA",
+           // strokeColor: "rgba(151,187,205,0.8)",
+           // highlightFill: "rgba(151,187,205,0.75)",
+           // highlightStroke: "rgba(151,187,205,1)",
+            data: [{{$cerradas}}]
+        }
+    ]
+};
+
+var options = {
+  legendTemplate : '<ul>'
+                  +'<% for (var i=0; i<datasets.length; i++) { %>'
+                    +'<li>'
+                    +'<span style=\"background-color:<%=datasets[i].fillColor%>\">  &nbsp;&nbsp;  &nbsp;&nbsp;</span>'
+                    +'<% if (datasets[i].label) { %><%= datasets[i].label %><% } %>'
+                  +'</li>'
+                +'<% } %>'
+              +'</ul>',
+
+              animation: false
+  };
 
 
 
+var myBarChart = new Chart(ctx).Bar(data,options);
+var legend = myBarChart.generateLegend();
+
+var wa = ctx.canvas.toDataURL();
+//alert(wa);
+var url=myBarChart.toBase64Image();
+    document.getElementById("img1").href=url;
 
 
+    $("#img64").val(wa);
 
-
-    
-
-  
-
-    
-
-
-
-
-
-
-
-
-    <script type="text/javascript">
-
-
- $(document).ready(function() {
-
-
-$( "#evidenciaactive" ).addClass( "active" );
-
-/*
-$('#example tfoot th').each( function () {
-        var title = $('#example thead th').eq( $(this).index() ).text();
-        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-    } );
-*/
-$('#example tfoot th').eq(0).html( '<input type="text" placeholder="Buscar " style="width:50px" />' );
-$('#example tfoot th').eq(1).html( '<input type="text" placeholder="Buscar " style="width:50px" />' );
-$('#example tfoot th').eq(2).html( '<input type="text" placeholder="Buscar " style="width:50px" />' );
-
-
-var table = $('#example').DataTable({
-
-   "language": {
-                "url": "datatables.spanish.json"
-            }
-          }
-            );
-
-table.columns().every( function () {
-        var that = this;
- 
-        $( 'input', this.footer() ).on( 'keyup change', function () {
-            that
-                .search( this.value )
-                .draw();
-        } );
-    } );
+  //and append it to your page somewhere
+  $('#chart1').append(legend);
 
 
 
 
 });
- </script>
+
+</script>
+    
 
 @stop
