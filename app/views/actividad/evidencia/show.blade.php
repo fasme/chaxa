@@ -113,6 +113,10 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             {
                               $dif = "<font color='green'>(". $interval->format('%R%a')." Dias)</font>";
                             }
+                              if($actividad->estado == "Cerrada")
+                            {
+                              $dif = "";
+                            }
                              
                             ?>
 
@@ -191,6 +195,10 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             else
                             {
                               $dif = "<font color='green'>(". $interval->format('%R%a')." Dias)</font>";
+                            }
+                              if($actividad->estado == "Cerrada")
+                            {
+                              $dif = "";
                             }
                              
                             ?>
@@ -271,6 +279,10 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             {
                               $dif = "<font color='green'>(". $interval->format('%R%a')." Dias)</font>";
                             }
+                              if($actividad->estado == "Cerrada")
+                            {
+                              $dif = "";
+                            }
                              
                             ?>
 
@@ -349,6 +361,10 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             else
                             {
                               $dif = "<font color='green'>(". $interval->format('%R%a')." Dias)</font>";
+                            }
+                              if($actividad->estado == "Cerrada")
+                            {
+                              $dif = "";
                             }
                              
                             ?>

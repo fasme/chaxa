@@ -96,6 +96,12 @@ $mantencion = "";
                          <a class="red bootbox-confirm" data-id={{ $mantencion->id }}> 
                             <i class="fa fa-trash bigger-130"></i> 
                           </a> 
+
+
+                          <a class="blue" href={{'mantencion/insert/'.$mantencion->vehiculo->id}}>
+                            <span class="label label-white middle">Asignar Mantención</span>
+                          </a>
+
                       </td>
 
 

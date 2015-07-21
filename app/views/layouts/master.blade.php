@@ -582,19 +582,34 @@
 						</a>
 
 
-						<ul class="submenu">
-							<li class="" id="informeevidenciaactive">
-								<a href="{{URL::to('informeevidencia')}}" >
-									<i class="menu-icon fa fa-caret-right"></i>
+							<ul class="submenu">
+							
+							<li class="" id="informeactive">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-line-chart"></i>
+							<span class="menu-text">Evidencias </span>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
 
-									Evidencias
+
+								<ul class="submenu">
+									<li class="" id="informeevidenciaactive">
+										<a href="{{URL::to('informeevidencia')}}" >
+											<i class="menu-icon fa fa-caret-right"></i>
+
+											Mensual
+											
+										</a>
+
+										<b class="arrow"></b>
+
+										
+									</li>
+
 									
-								</a>
-
-								<b class="arrow"></b>
-
-								
-							</li>
+								</ul>
+						</li>
+						</ul>
 
 							<li class="" id="informeactive">
 						<a href="#" class="dropdown-toggle">
