@@ -33,7 +33,17 @@
  </div>
  <div class="col-xs-3">
  <div id="chart1"></div>
-  <a class="label label-success" href='' download="GraficoAnual.png"  id="img1">Descargar Grafico</a>
+
+
+{{ Form::open(array('url' => "informepdf")) }}
+            <div class="form-group">
+            {{Form::hidden('img',"", array("id"=>"img64"))}}
+            {{Form::hidden('titulo',$titulo)}}
+            {{Form::submit("Descargar PDF", array("class"=>"btn btn-success"))}}
+
+            
+
+      {{ Form::close()}}
 
 
  </div>
@@ -95,9 +105,10 @@ var myBarChart = new Chart(ctx).Bar(data,options);
 var legend = myBarChart.generateLegend();
 
 
-var url=myBarChart.toBase64Image();
-    document.getElementById("img1").href=url;
-
+//var url=myBarChart.toBase64Image();
+  //  document.getElementById("img1").href=url;
+var wa = ctx.canvas.toDataURL();
+$("#img64").val(wa);
   //and append it to your page somewhere
   $('#chart1').append(legend);
 

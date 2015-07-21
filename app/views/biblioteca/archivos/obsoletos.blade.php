@@ -34,7 +34,7 @@
                             <th>Categoria</th>
                             <th>Codigo</th>
                             <th>Version</th>
-                            <th>Tiempo Vigencia</th>
+                          
           
   <th>Acciones</th>
             
@@ -49,7 +49,7 @@
                             <td>{{$archivo->categoria->nombre}}</td>
                             <td>{{$archivo->codigo}}</td>
                             <td>{{$archivo->version}}</td>
-                            <td>{{$archivo->tiempo}}</td>
+                    
          
          
 

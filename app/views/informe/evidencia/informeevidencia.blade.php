@@ -39,14 +39,13 @@ $mesnombre = $meses[$data["mes"]];
  </div>
  <div class="col-xs-6">
  <div id="chart1"></div>
- <a class="label label-success" href='' download="GraficoMensual.png"  id="img1">Descargar Grafico</a>
 
 
 {{ Form::open(array('url' => "informepdf")) }}
             <div class="form-group">
             {{Form::hidden('img',"", array("id"=>"img64"))}}
-
-            {{Form::submit()}}
+            {{Form::hidden('titulo',$titulo)}}
+            {{Form::submit("Descargar PDF", array("class"=>"btn btn-success"))}}
 
             
 
@@ -111,10 +110,6 @@ var myBarChart = new Chart(ctx).Bar(data,options);
 var legend = myBarChart.generateLegend();
 
 var wa = ctx.canvas.toDataURL();
-//alert(wa);
-var url=myBarChart.toBase64Image();
-    document.getElementById("img1").href=url;
-
 
     $("#img64").val(wa);
 

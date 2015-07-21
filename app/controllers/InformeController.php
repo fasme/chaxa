@@ -26,7 +26,7 @@ class InformeController extends BaseController {
        
       //  
 
-
+        $titulo = "Mantencion Programda vs Mantencion Realizada";
         $data = Input::all();
         if(!isset($data["mes"]))
         {
@@ -46,6 +46,7 @@ class InformeController extends BaseController {
        return View::make('informe.mantencion.informemantencionmensual')
        ->with("programada",$programada)
        ->with("realizada",$realizada)
+       ->with("titulo", $titulo)
        ->with("data",$data);
       
         
@@ -56,7 +57,7 @@ class InformeController extends BaseController {
 
     public function informemantencionanual()
     {
-
+        $titulo = "Mantencion Programda vs Mantencion Realizada";
         $data = Input::all();
        
         if(!isset($data["ano"]))
@@ -75,6 +76,7 @@ class InformeController extends BaseController {
         return View::make('informe.mantencion.informemantencionanual')
         ->with("programada",$programada)
         ->with("realizada",$realizada)
+        ->with("titulo", $titulo)
         ->with("data",$data);
 
 
@@ -87,6 +89,7 @@ class InformeController extends BaseController {
     public function informemantencionvehiculo()
     {
 
+        $titulo = "Horas Utilizadas vs Mantencion Realizadas";
         $data = Input::all();
        if(!isset($data["mes"]))
         {
@@ -114,6 +117,7 @@ class InformeController extends BaseController {
         ->with("programada",json_encode($programada))
         ->with("realizada",json_encode($realizada))
 	   ->with("vehiculos",json_encode($vehiculos))
+       ->with("titulo", $titulo)
         ->with("data",$data);
 
 
@@ -126,6 +130,7 @@ class InformeController extends BaseController {
 public function informeevidenciamensual()
 {
 
+        $titulo = "Actividades Abiertas vs Actividades Cerradas";
         $data = Input::all();
        if(!isset($data["mes"]))
         {
@@ -156,6 +161,7 @@ $cerradas = $actividadresponsable + $actividadresponsable_kpi + $actividadrespon
     return View::make('informe.evidencia.informeevidencia')
         ->with("abiertas",json_encode($abiertas))
         ->with("cerradas",json_encode($cerradas))
+        ->with("titulo", $titulo)
         ->with("data",$data);
         
 }
@@ -165,7 +171,7 @@ public function informepdf(){
 
     $data = Input::all();
 
-    $view = View::make('informe.evidencia.informepdf')
+    $view = View::make('informe.informepdf')
     ->with("data",$data);
 
     return PDF::load($view, 'a4', 'portrait')->show();

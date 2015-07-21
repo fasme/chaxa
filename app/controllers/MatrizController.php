@@ -246,10 +246,27 @@ return Redirect::to('matriz/update/'.$id)->withInput()->withErrors($matriz->erro
 
           $datos = Input::all();
 
-          $matrizs = Matriz::Wherein("id", $datos["selectmatrices"])->get();
+          $rules = array(
+            
+            'selectmatrices'     => 'required',
+           
+        );
+          $validator = Validator::make($datos, $rules);
+          if($validator->passes())
+          {
+
+            $matrizs = Matriz::Wherein("id", $datos["selectmatrices"])->get();
 
           $view = View::make('matriz.pdf')->with("matrizs",$matrizs);
        return PDF::load($view, 'tabloid', 'landscape')->show();
+
+          }
+          else
+          {
+            return "Debes seleccionar al menos 1 registro";
+          }
+
+          
         
         //$matriz = Matriz::find($id);
         // $view = View::make('matriz.pdfid')->with("matriz",$matriz);
