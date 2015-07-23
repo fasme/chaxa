@@ -113,7 +113,7 @@
 						<li class="purple">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<i class="ace-icon fa fa-bell icon-animated-bell"></i>
-								<span class="badge badge-important">{{Alertas::where("personal_id_admin","=",Auth::user()->id)->get()->count()}}</span>
+								<span class="badge badge-important">{{Alertas::where("personal_id_admin","=",Auth::user()->id)->where("tipo","=","aadmin")->count()}}</span>
 							</a>
 
 							<ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
@@ -125,11 +125,11 @@
 								<li class="dropdown-content">
 									<ul class="dropdown-menu dropdown-navbar navbar-pink">
 										
-										@foreach(Alertas::where("personal_id_admin","=",Auth::user()->id)->get() as $alerta)
+										@foreach(Alertas::where("personal_id_admin","=",Auth::user()->id)->where("tipo","=","aadmin")->get() as $alerta)
 										<li>
 											<a href="{{URL::to('evidenciaadmin')}}">
 												<!--<i class="btn btn-xs btn-primary fa fa-user"></i>-->
-												{{"<b>".$alerta->personal->nombre."</b> ".$alerta->mensaje}}
+												{{$alerta->mensaje}}
 												
 											</a>
 										</li>

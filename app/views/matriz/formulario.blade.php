@@ -66,10 +66,7 @@
                             <li>
                               <a data-toggle="tab" href="#tres">3.-Controles Preventivos</a>
                             </li>
-                            <li>
-                              <a data-toggle="tab" href="#cuatro">4.-Control de Cambio</a>
-                            </li>
-
+                            
                           </ul>
                         </div>
                       </div>
@@ -306,16 +303,7 @@
 
 
 
-                            <div id="cuatro" class="tab-pane">
-                              <div class="row">
-                                <div class="col-xs-6">
-                                  <div class="form-group">
-                                  {{Form::label('', 'Cambios',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-                                  {{Form::textarea('cambio', $matriz->cambio, ['size' => '60x5'])}}
-                                  </div>
-                                </div>
-                                </div>                                
-                            </div>
+                          
                           </div>
                         </div>
                       </div>

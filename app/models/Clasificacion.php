@@ -1,7 +1,7 @@
 <?php
 class Clasificacion extends Eloquent { //Todos los modelos deben extender la clase Eloquent
     protected $table = 'clasificacion';
-    protected $fillable = array('desde','hasta','clasficiacion','color','accion');
+    protected $fillable = array('desde','hasta','clasificacion','color','accion');
 
 
 
