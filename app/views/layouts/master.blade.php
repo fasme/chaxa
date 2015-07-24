@@ -612,6 +612,8 @@
 						</li>
 						</ul>
 
+
+						<ul class="submenu">
 							<li class="" id="informeactive">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-line-chart"></i>
@@ -653,6 +655,7 @@
 							</li>
 						</ul>
 					</li>
+					</ul>
 
 
 						</ul>
