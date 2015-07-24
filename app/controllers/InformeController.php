@@ -100,7 +100,9 @@ class InformeController extends BaseController {
             $data["ano"] = date("Y");
         }   
 
-
+        $programada = array();
+        $realizada = array();
+        $vehiculos = array();
 	
         foreach(Vehiculo::all() as $vehiculo)
         {
