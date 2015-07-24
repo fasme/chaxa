@@ -434,7 +434,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             
                             <td>{{$actividad->tipoactividad}}</td>
                             <td>{{$actividad->estado}}</td>
-                            <td>{{date_format(date_create($busqueda->frecuencia),"d/m/Y")}} {{$dif}}</td>
+                            <td>{{date_format(date_create($busqueda->fecha_mantencion),"d/m/Y")}} {{$dif}}</td>
                             
                             <td>
                             @if($actividad->estado == "Abierta")
