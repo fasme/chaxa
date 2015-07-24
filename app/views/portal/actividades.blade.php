@@ -410,7 +410,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
 
                             <?php
 
-                            $datetime1 = new DateTime($busqueda->frecuencia);
+                            $datetime1 = new DateTime($busqueda->fecha_mantencion);
                             $datetime2 = new DateTime(date("Y/m/d"));
                             $interval = $datetime1->diff($datetime2);
                             if($interval->format("%R") == "+")

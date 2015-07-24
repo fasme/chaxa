@@ -4,7 +4,7 @@
 
             
 
- <h3 class="header smaller lighter">Actividades Programadas vs Actividades Realizadas Anual: 
+ <h3 class="header smaller lighter">Horas realizadas vs Cantidad de mantenciones: 
                 
     </h3>
 {{$programada}}
