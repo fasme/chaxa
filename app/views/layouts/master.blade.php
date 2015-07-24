@@ -520,7 +520,7 @@
 								
 							</li>
 
-							<li class="" id="mantencionactive">
+							<!--<li class="" id="mantencionactive">
 								<a href="{{URL::to('mantencion')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Ultima Mantencion
@@ -528,6 +528,7 @@
 
 								<b class="arrow"></b>
 							</li>
+							-->
 						</ul>
 					</li>
 @endif			
