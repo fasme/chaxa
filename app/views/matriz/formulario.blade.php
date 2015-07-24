@@ -276,7 +276,7 @@
 <div class="hr hr-24"></div>
 
                               <div class="form-group">
-                                  {{Form::label('', 'Administrativo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+                                  {{Form::label('', 'EPP',array("class"=>"col-sm-3 control-label no-padding-right"))}}
                                   {{Form::textarea('actepp', $matriz->actepp, ['size' => '30x5'])}}
                                   </div>
 
