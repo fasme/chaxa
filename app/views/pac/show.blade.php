@@ -31,7 +31,10 @@
 <div class="info"></div>
   <thead>
           <tr>
-            <th>Actividad</th>
+            <th>Quien ingresa</th>
+            <th>Faena</th>
+            <th>Causa</th>
+            <th>Origen</th>
           
   <th>Acciones</th>
             
@@ -43,8 +46,10 @@
   @foreach($pacs as $pac)
            <tr>
 
-             <td> {{ $pac->faena}}</td>
-         
+             <td> {{ $pac->personal_id}}</td>
+         <td> {{ $pac->faena}}</td>
+         <td> {{ $pac->identificacion}}</td>
+         <td> {{ $pac->porque1}}</td>
 
   <td class="td-actions">
                        
