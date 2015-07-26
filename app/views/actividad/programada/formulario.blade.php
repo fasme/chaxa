@@ -101,6 +101,13 @@
             <div class="row">
   <div class="col-xs-12">
 
+
+
+ @foreach($actividadprogramada->muchaspersonal as $actividad)
+
+  <div>{{Form::text("frecuencia[]", date_format(date_create($actividad->pivot->frecuencia), 'd/m/Y'), array("id"=>"plazo", "class"=>"date-picker",  "data-date-format"=>"dd/mm/yyyy"))}}<a href="#" class="eliminar">&times;</a></div>
+
+  @endforeach
             <a id="agregarCampo" class="btn btn-info" href="#">Agregar Plazo</a>
         <div id="contenedor">
            
@@ -187,10 +194,10 @@ var MaxInputs       = 50; //Número Maximo de Campos
     });
 
     $("body").on("click",".eliminar", function(e){ //click en eliminar campo
-        if( x > 1 ) {
+     //   if( x > 1 ) {
             $(this).parent('div').remove(); //eliminar el campo
-            x--;
-        }
+       //     x--;
+        //}
         return false;
     });
 
