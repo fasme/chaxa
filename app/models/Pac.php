@@ -11,6 +11,14 @@ public function actividadPac()
 }
 
 
+    public function muchaspersonal()
+{
+    return $this->belongsToMany("Personal",'actividad_pac','pac_id','personal_id')
+    ->withpivot("id","actividad","frecuencia","tipoplan","personal_admin_id","id", "estado","adjunto1", "adjunto2","adjunto3","adjunto4","adjunto5",'fechaenvio')
+
+    ->withTimestamps();
+}
+
 
 public $errors;
     

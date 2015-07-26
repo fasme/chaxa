@@ -5,16 +5,26 @@ class Kpi extends Eloquent { //Todos los modelos deben extender la clase Eloquen
 
 
 
-
+/*
 public function actividadKpi()
 {
     return $this->hasMany("ActividadKpi");
 }
+*/
 
 public function kpiobjetivo()
 {
     return $this->BelongsTo("kpiobjetivo");
 }
+
+    public function muchaspersonal()
+{
+    return $this->belongsToMany("Personal",'actividad_kpi','kpi_id','personal_id')
+    ->withpivot("id","actividad","frecuencia","tipoplan","personal_admin_id","id", "estado","adjunto1", "adjunto2","adjunto3","adjunto4","adjunto5",'fechaenvio')
+
+    ->withTimestamps();
+}
+
 
 public $errors;
     

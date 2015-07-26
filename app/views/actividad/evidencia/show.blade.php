@@ -18,10 +18,10 @@
 
 <?php
 $actividadresponsable = DB::table('actividad_responsable_noprogramada')->Where("personal_admin_id","=",Auth::user()->id)->get();
-$actividadresponsable_kpi = DB::table('actividad_responsable_kpi')->Where("personal_admin_id","=",Auth::user()->id)->get();
+//$actividadresponsable_kpi =  Kpi::all(); //DB::table('actividad_responsable_kpi')->Where("personal_admin_id","=",Auth::user()->id)->get();
 $actividadresponsable_programada = DB::table('actividad_responsable_programada')->Where("personal_admin_id","=",Auth::user()->id)->get();
 
-$actividadresponsable_pac = DB::table('actividad_responsable_pac')->Where("personal_admin_id","=",Auth::user()->id)->get();
+//$actividadresponsable_pac = DB::table('actividad_responsable_pac')->Where("personal_admin_id","=",Auth::user()->id)->get();
 $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')->Where("personal_id","=",Auth::user()->id)->get();
 
 
@@ -78,23 +78,10 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                            $busqueda = "";
                             ?>
 
-                            @if($actividad->tipoactividad == "programada")
-                            <?php 
-                            $busqueda = ActividadProgramada::find($actividad->actividad_id);
-                            ?>
-                            @elseif($actividad->tipoactividad == "noprogramada")
+                          
                             <?php
                              $busqueda = ActividadNoProgramada::find($actividad->actividad_id);
                             ?>
-                            @elseif($actividad->tipoactividad == "kpi")
-                            <?php
-                            $busqueda = ActividadKpi::find($actividad->actividad_id);
-                              ?>
-                            @elseif($actividad->tipoactividad == "pac")
-                            <?php
-                            $busqueda = ActividadPac::find($actividad->actividad_id);
-                              ?>
-                            @endif
 
                          
                             
@@ -113,7 +100,8 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             {
                               $dif = "<font color='green'>(". $interval->format('%R%a')." Dias)</font>";
                             }
-                              if($actividad->estado == "Cerrada")
+
+                             if($actividad->estado == "Cerrada")
                             {
                               $dif = "";
                             }
@@ -154,38 +142,14 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
 
 
 
-
-                                 @foreach($actividadresponsable_kpi as $actividad)
-
-                              <?php
-                           $busqueda = "";
-                            ?>
-
-                            @if($actividad->tipoactividad == "programada")
-                            <?php 
-                            $busqueda = ActividadProgramada::find($actividad->actividad_id);
-                            ?>
-                            @elseif($actividad->tipoactividad == "noprogramada")
-                            <?php
-                             $busqueda = ActividadNoProgramada::find($actividad->actividad_id);
-                            ?>
-                            @elseif($actividad->tipoactividad == "kpi")
-                            <?php
-                            $busqueda = ActividadKpi::find($actividad->actividad_id);
-                              ?>
-                            @elseif($actividad->tipoactividad == "pac")
-                            <?php
-                            $busqueda = ActividadPac::find($actividad->actividad_id);
-                              ?>
-                            @endif
-
-                         
-                            
+                                 @foreach(Kpi::all() as $actividad)
+                                  @foreach($actividad->muchaspersonal()->get() as $actividad2)
+                        
                           <tr>
                             
                         
                            <?php
-                            $datetime1 = new DateTime($busqueda->frecuencia);
+                            $datetime1 = new DateTime($actividad->frecuencia);
                             $datetime2 = new DateTime(date("Y/m/d"));
                             $interval = $datetime1->diff($datetime2);
                             if($interval->format("%R") == "+")
@@ -196,22 +160,26 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             {
                               $dif = "<font color='green'>(". $interval->format('%R%a')." Dias)</font>";
                             }
-                              if($actividad->estado == "Cerrada")
+
+                             if($actividad->estado == "Cerrada")
                             {
                               $dif = "";
                             }
                              
                             ?>
 
-                            <td>{{ $busqueda->actividad}}</td>
-                            <td>{{Personal::find($actividad->personal_id)->nombre}}</td>
-                          <td>{{$actividad->tipoactividad}}</td>
-                            <td>{{$actividad->estado}}</td>
-                            <td>{{date_format(date_create($busqueda->frecuencia),"d/m/Y")}} {{$dif}}</td>
+                            <td>{{ $actividad2->pivot->actividad}}</td>
+                            <td>{{Personal::find($actividad2->pivot->personal_id)->nombre}}</td>
+                            <td>{{"KPI"}}</td>
+                            <td>{{$actividad2->pivot->estado}}</td>
+                            
+
+                          
+                            <td>{{date_format(date_create($actividad2->pivot->frecuencia),"d/m/Y")}} {{$dif}}</td>
                             <td>
-                            @if($actividad->estado == "Abierta")
+                            @if($actividad2->pivot->estado == "Abierta")
                             <div class="hidden-sm hidden-xs action-buttons">
-                                <a data-toggle="modal" class="botoncito" data-id="{{$actividad->id}}" data-actividadid="{{$actividad->actividad_id}}" data-tipoactividad="{{$actividad->tipoactividad}}" href="#" >
+                                <a data-toggle="modal" class="botoncito"  href="#" >
                                   <i class="ace-icon fa fa-times bigger-130 red"></i>
                                 </a>
                               </div>
@@ -222,13 +190,14 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                            <a href="archivos/evidencia/{{ $actividad->adjunto4}}">{{$actividad->adjunto4}}</a><br>
                            <a href="archivos/evidencia/{{ $actividad->adjunto5}}">{{$actividad->adjunto5}}</a><br>
                            
-                                     @if($actividad->estado != "Cerrada")
-                                      <a href='#' data-id="{{$actividad->id}}" data-tipoactividad="{{$actividad->tipoactividad}}" class="bootbox-confirm"><button class="btn btn-success">Cerrar actividad</button></a>
+                                     @if($actividad2->pivot->estado != "Cerrada")
+                                      <a href='#' data-id="{{$actividad2->pivot->id}}"  data-tipoactividad="kpi" data-actividadid="{{$actividad2->pivot->kpi_id}}" data-personalid="{{$actividad2->pivot->personal_id}}" class="bootbox-confirm"><button class="btn btn-success">Cerrar actividad</button></a>
                                     @endif
                               @endif
                               </td>
                             </tr>
                                 @endforeach
+                                  @endforeach
 
 
 
@@ -244,23 +213,10 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                            $busqueda = "";
                             ?>
 
-                            @if($actividad->tipoactividad == "programada")
                             <?php 
                             $busqueda = ActividadProgramada::find($actividad->actividad_id);
                             ?>
-                            @elseif($actividad->tipoactividad == "noprogramada")
-                            <?php
-                             $busqueda = ActividadNoProgramada::find($actividad->actividad_id);
-                            ?>
-                            @elseif($actividad->tipoactividad == "kpi")
-                            <?php
-                            $busqueda = ActividadKpi::find($actividad->actividad_id);
-                              ?>
-                            @elseif($actividad->tipoactividad == "pac")
-                            <?php
-                            $busqueda = ActividadPac::find($actividad->actividad_id);
-                              ?>
-                            @endif
+                           
 
                          
                             
@@ -279,7 +235,9 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             {
                               $dif = "<font color='green'>(". $interval->format('%R%a')." Dias)</font>";
                             }
-                              if($actividad->estado == "Cerrada")
+
+
+                             if($actividad->estado == "Cerrada")
                             {
                               $dif = "";
                             }
@@ -290,7 +248,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             <td>{{Personal::find($actividad->personal_id)->nombre}}</td>
                           <td>{{$actividad->tipoactividad}}</td>
                             <td>{{$actividad->estado}}</td>
-                            <td>{{date_format(date_create($busqueda->frecuencia),"d/m/Y")}} {{$dif}}</td>
+                            <td>{{date_format(date_create($actividad->frecuencia),"d/m/Y")}} {{$dif}}</td>
                             <td>
                             @if($actividad->estado == "Abierta")
                             <div class="hidden-sm hidden-xs action-buttons">
@@ -321,37 +279,14 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
 
 
 
-                                 @foreach($actividadresponsable_pac as $actividad)
-
-                              <?php
-                           $busqueda = "";
-                            ?>
-
-                            @if($actividad->tipoactividad == "programada")
-                            <?php 
-                            $busqueda = ActividadProgramada::find($actividad->actividad_id);
-                            ?>
-                            @elseif($actividad->tipoactividad == "noprogramada")
-                            <?php
-                             $busqueda = ActividadNoProgramada::find($actividad->actividad_id);
-                            ?>
-                            @elseif($actividad->tipoactividad == "kpi")
-                            <?php
-                            $busqueda = ActividadKpi::find($actividad->actividad_id);
-                              ?>
-                            @elseif($actividad->tipoactividad == "pac")
-                            <?php
-                            $busqueda = ActividadPac::find($actividad->actividad_id);
-                              ?>
-                            @endif
-
-                         
-                            
+                                 @foreach(Pac::all() as $actividad)
+                                  @foreach($actividad->muchaspersonal()->get() as $actividad2)
+                        
                           <tr>
                             
                         
                            <?php
-                            $datetime1 = new DateTime($busqueda->frecuencia);
+                            $datetime1 = new DateTime($actividad->frecuencia);
                             $datetime2 = new DateTime(date("Y/m/d"));
                             $interval = $datetime1->diff($datetime2);
                             if($interval->format("%R") == "+")
@@ -362,22 +297,26 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             {
                               $dif = "<font color='green'>(". $interval->format('%R%a')." Dias)</font>";
                             }
-                              if($actividad->estado == "Cerrada")
+
+                             if($actividad->estado == "Cerrada")
                             {
                               $dif = "";
                             }
                              
                             ?>
 
-                            <td>{{ $busqueda->actividad}}</td>
-                            <td>{{Personal::find($actividad->personal_id)->nombre}}</td>
-                          <td>{{$actividad->tipoactividad}}</td>
-                            <td>{{$actividad->estado}}</td>
-                            <td>{{date_format(date_create($busqueda->frecuencia),"d/m/Y")}} {{$dif}}</td>
+                            <td>{{ $actividad2->pivot->actividad}}</td>
+                            <td>{{Personal::find($actividad2->pivot->personal_id)->nombre}}</td>
+                            <td>{{"Pac"}}</td>
+                            <td>{{$actividad2->pivot->estado}}</td>
+                            
+
+                          
+                            <td>{{date_format(date_create($actividad2->pivot->frecuencia),"d/m/Y")}} {{$dif}}</td>
                             <td>
-                            @if($actividad->estado == "Abierta")
+                            @if($actividad2->pivot->estado == "Abierta")
                             <div class="hidden-sm hidden-xs action-buttons">
-                                <a data-toggle="modal" class="botoncito" data-id="{{$actividad->id}}" data-actividadid="{{$actividad->actividad_id}}" data-tipoactividad="{{$actividad->tipoactividad}}" href="#" >
+                                <a data-toggle="modal" class="botoncito"  href="#" >
                                   <i class="ace-icon fa fa-times bigger-130 red"></i>
                                 </a>
                               </div>
@@ -388,13 +327,14 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                            <a href="archivos/evidencia/{{ $actividad->adjunto4}}">{{$actividad->adjunto4}}</a><br>
                            <a href="archivos/evidencia/{{ $actividad->adjunto5}}">{{$actividad->adjunto5}}</a><br>
                            
-                                     @if($actividad->estado != "Cerrada")
-                                      <a href='#' data-id="{{$actividad->id}}" data-tipoactividad="{{$actividad->tipoactividad}}" class="bootbox-confirm"><button class="btn btn-success">Cerrar actividad</button></a>
+                                     @if($actividad2->pivot->estado != "Cerrada")
+                                      <a href='#' data-id="{{$actividad2->pivot->id}}"  data-tipoactividad="pac" data-actividadid="{{$actividad2->pivot->pac_id}}" data-personalid="{{$actividad2->pivot->personal_id}}" class="bootbox-confirm"><button class="btn btn-success">Cerrar actividad</button></a>
                                     @endif
                               @endif
                               </td>
                             </tr>
                                 @endforeach
+                                  @endforeach
 
 
 
@@ -424,7 +364,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
 
                             <?php
 
-                            $datetime1 = new DateTime($busqueda->fecha_mantencion);
+                            $datetime1 = new DateTime($busqueda->frecuencia);
                             $datetime2 = new DateTime(date("Y/m/d"));
                             $interval = $datetime1->diff($datetime2);
                             if($interval->format("%R") == "+")
@@ -449,7 +389,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             <td>{{Personal::find($actividad->personal_id)->nombre}}</td>
                             <td>{{$actividad->tipoactividad}}</td>
                             <td>{{$actividad->estado}}</td>
-                            <td>{{date_format(date_create($busqueda->fecha_mantencion),"d/m/Y")}} {{$dif}}</td>
+                            <td>{{date_format(date_create($busqueda->frecuencia),"d/m/Y")}} {{$dif}}</td>
                             
                             <td>
                             @if($actividad->estado == "Abierta")
@@ -565,7 +505,8 @@ var oTable2 =
 $(".bootbox-confirm").on(ace.click_event, function() {
   var id = $(this).data('id');
   var tipoactividad = $(this).data("tipoactividad");
- 
+  var actividadid = $(this).data("actividadid");
+  var personalid  = $(this).data("personalid");
 var tr = $(this).parents('tr'); 
 
           bootbox.confirm("Deseas cerrar la actividad "+id, function(result) {
@@ -574,7 +515,7 @@ var tr = $(this).parents('tr');
            
              
              $.get("{{ url('evidenciaadmin/cerraractividad')}}",
-              { id: id, tipoactividad: tipoactividad },
+              { id: id, tipoactividad: tipoactividad, actividadid: actividadid, personalid:personalid },
 
               function(data,status){ alert(data);}
 ).fail(function(data){bootbox.alert("No se puede eliminar un registro padre: una restricción de clave externa falla");});

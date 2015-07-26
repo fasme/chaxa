@@ -186,9 +186,9 @@
 
 <div class="row">
   <div class="col-xs-12">
-  @foreach($pac->actividadPac as $actividadpac)
+  @foreach($pac->muchaspersonal as $actividadpac)
 
-  <div>{{Form::select("selectpac[]",$personals,$actividadpac->personal_id)}}{{Form::text("actividad[]", $actividadpac->actividad)}}{{Form::text("plazo[]", date_format(date_create($actividadpac->plazo), 'd/m/Y'), array("id"=>"plazo", "class"=>"date-picker",  "data-date-format"=>"dd/mm/yyyy"))}}{{Form::select("tipoplan[]",array("1"=>"Plan de accion inmediato","2"=>"Plan de accion Correctivo","3"=>"Plan de accion preventivo"), $actividadpac->tipoplan)}}<a href="#" class="eliminar">&times;</a></div>
+  <div>{{Form::select("selectpac[]",$personals,$actividadpac->pivot->personal_id)}}{{Form::text("actividad[]", $actividadpac->pivot->actividad)}}{{Form::text("frecuencia[]", date_format(date_create($actividadpac->pivot->plazo), 'd/m/Y'), array("id"=>"plazo", "class"=>"date-picker",  "data-date-format"=>"dd/mm/yyyy"))}}{{Form::select("tipoplan[]",array("1"=>"Plan de accion inmediato","2"=>"Plan de accion Correctivo","3"=>"Plan de accion preventivo"), $actividadpac->pivot->tipoplan)}}<a href="#" class="eliminar">&times;</a></div>
 
   @endforeach
             <a id="agregarCampo" class="btn btn-info" href="#">Agregar Solucion</a>
@@ -244,7 +244,7 @@ $(".chosen-select").chosen();
 
 
 
-var MaxInputs       = 50; //Número Maximo de Campos
+var MaxInputs       = 8; //Número Maximo de Campos
     var contenedor       = $("#contenedor"); //ID del contenedor
     var AddButton       = $("#agregarCampo"); //ID del Botón Agregar
 
@@ -274,10 +274,10 @@ var MaxInputs       = 50; //Número Maximo de Campos
     });
 
     $("body").on("click",".eliminar", function(e){ //click en eliminar campo
-        if( x > 1 ) {
+        //if( x > 1 ) {
             $(this).parent('div').remove(); //eliminar el campo
-            x--;
-        }
+          //  x--;
+        //}
         return false;
     });
 

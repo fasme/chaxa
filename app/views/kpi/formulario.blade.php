@@ -65,12 +65,12 @@
 
           
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-xs-12))">
  
 
- @foreach($kpi->actividadKpi as $actividadkpi)
+ @foreach($kpi->muchaspersonal as $actividadkpi)
 
-  <div>{{Form::select("selectpac[]",$personals,$actividadkpi->personal_id)}}{{Form::text("actividad[]", $actividadkpi->actividad)}}{{Form::text("frecuencia[]", date_format(date_create($actividadkpi->frecuencia), 'd/m/Y'), array("id"=>"plazo", "class"=>"date-picker",  "data-date-format"=>"dd/mm/yyyy"))}}<a href="#" class="eliminar">&times;</a></div>
+  <div>{{Form::select("selectpac[]",$personals,$actividadkpi->pivot->personal_id)}}{{Form::text("actividad[]", $actividadkpi->pivot->actividad)}}{{Form::text("frecuencia[]", date_format(date_create($actividadkpi->pivot->frecuencia), 'd/m/Y'), array("id"=>"plazo", "class"=>"date-picker",  "data-date-format"=>"dd/mm/yyyy"))}}<a href="#" class="eliminar">&times;</a></div>
 
   @endforeach
 
@@ -123,7 +123,7 @@ $(".chosen-select").chosen();
 
 
 
-var MaxInputs       = 8; //Número Maximo de Campos
+var MaxInputs       = 20; //Número Maximo de Campos
     var contenedor       = $("#contenedor"); //ID del contenedor
     var AddButton       = $("#agregarCampo"); //ID del Botón Agregar
 
@@ -153,10 +153,10 @@ var MaxInputs       = 8; //Número Maximo de Campos
     });
 
     $("body").on("click",".eliminar", function(e){ //click en eliminar campo
-        if( x > 1 ) {
+        //if( x > 1 ) {
             $(this).parent('div').remove(); //eliminar el campo
-            x--;
-        }
+          //  x--;
+       // }
         return false;
     });
 

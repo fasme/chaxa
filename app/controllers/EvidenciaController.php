@@ -48,6 +48,8 @@ class EvidenciaController extends BaseController {
 
         $id = Input::get("id");
         $tabla  = Input::get("tipoactividad");
+        $actividadid = Input::get("actividadid");
+        $personalid = Input::get("personalid");
 
         if($tabla == "noprogramada")
         {
@@ -69,14 +71,18 @@ class EvidenciaController extends BaseController {
 
         if($tabla == "pac")
         {
-            $actividadrespoonsable = DB::table('actividad_responsable_pac')
+            $actividadrespoonsable = DB::table('actividad_pac')
             ->Where("id","=",$id)->update(array("estado"=>"Cerrada"));
         }
 
         if($tabla == "kpi")
         {
-            $actividadrespoonsable = DB::table('actividad_responsable_kpi')
+            $actividadrespoonsable = DB::table('actividad_kpi')
             ->Where("id","=",$id)->update(array("estado"=>"Cerrada"));
+            
+        
+
+            
         }
         
 

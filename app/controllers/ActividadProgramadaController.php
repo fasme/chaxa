@@ -37,7 +37,8 @@ class ActividadProgramadaController extends BaseController {
      * Crear el usuario nuevo
      */
     public function insert2()
-    {
+    
+{
 
         
 
@@ -51,25 +52,25 @@ class ActividadProgramadaController extends BaseController {
             $datos['frecuencia'] = "$ano-$mes-$dia";
 
           }*/
+          $actividadprogramada = new ActividadProgramada;
+          $actividadprogramada->fill($datos);
+          $actividadprogramada->save();
+
 
           foreach ($datos["frecuencia"] as $frecuencia) {
-            $actividadprogramada = new ActividadProgramada;
+            
 
                     list($dia,$mes,$ano) = explode("/",$frecuencia);
-            $datos['frecuencia'] = "$ano-$mes-$dia";
+                    $frecuencia = "$ano-$mes-$dia";
           
-                    $actividadprogramada->fill($datos);
-               
-              
                     
-                   $actividadprogramada->save();
 
                      $actividadprogramada = ActividadProgramada::find($actividadprogramada->id);
                    //echo count($datos["actividad_id"]);
                    for($i=0;$i<count($datos["personal_id"]);$i++)
                    {
                     
-                    $actividadprogramada->muchaspersonal()->attach($datos["personal_id"][$i],array("personal_admin_id"=>Auth::user()->id, "estado"=>"Abierta","tipoactividad"=>"programada"));
+                    $actividadprogramada->muchaspersonal()->attach($datos["personal_id"][$i],array("frecuencia"=>$frecuencia, "personal_admin_id"=>Auth::user()->id, "estado"=>"Abierta","tipoactividad"=>"programada"));
                    
                     $alerta = new Alertas;
                     $alerta->mensaje = "ha enviado una nueva evidencia";
@@ -119,53 +120,41 @@ class ActividadProgramadaController extends BaseController {
 
 
         $datos = Input::all(); 
+
+        $actividadprogramada->fill($datos);
+          $actividadprogramada->save();
+
+          $actividadprogramada->muchaspersonal()->detach();
+          foreach ($datos["frecuencia"] as $frecuencia) {
+            
+
+                    list($dia,$mes,$ano) = explode("/",$frecuencia);
+                    $frecuencia = "$ano-$mes-$dia";
+          
+                    
+
+                     $actividadprogramada = ActividadProgramada::find($id);
+                   //echo count($datos["actividad_id"]);
+                     
+                   for($i=0;$i<count($datos["personal_id"]);$i++)
+                   {
+                    
+                    $actividadprogramada->muchaspersonal()->attach($datos["personal_id"][$i],array("frecuencia"=>$frecuencia, "personal_admin_id"=>Auth::user()->id, "estado"=>"Abierta","tipoactividad"=>"programada"));
+                   
+                    $alerta = new Alertas;
+                    $alerta->mensaje = "ha enviado una nueva evidencia";
+                    $alerta->personal_id = $datos["personal_id"][$i]; // id de
+                    $alerta->personal_id_admin = Auth::user()->id; //id para
+                    $alerta->tipo = "aportal";
+                    $alerta->save();
+
+
+                   }
+        }
         
-        if ($actividadprogramada->isValid($datos))
-        {
+       
 
-            if($datos["frecuencia"])
-            {
-                list($dia,$mes,$ano) = explode("/",$datos['frecuencia']);
-            $datos['frecuencia'] = "$ano-$mes-$dia";
-
-            }
-            // Si la data es valida se la asignamos al usuario
-            $actividadprogramada->fill($datos);
-            // Guardamos el usuario
-             //$usuario->password = Hash::make($usuario->password);
-
-        $actividadprogramada->muchaspersonal()->detach();
-           for($i=0;$i<count($datos["personal_id"]);$i++)
-           {
-            
-            $actividadprogramada->muchaspersonal()->attach($datos["personal_id"][$i],array("estado"=>"Abierta","tipoactividad"=>"programada"));
-            
-
-            $alerta = new Alertas;
-            $alerta->mensaje = "ha enviado una nueva evidencia";
-            $alerta->personal_id = $datos["personal_id"][$i]; // id de
-            $alerta->personal_id_admin = Auth::user()->id; //id para
-            $alerta->tipo = "aportal";
-            $alerta->save();
-
-           }
-
-
-            
-           $actividadprogramada->save();
-
-            // Y Devolvemos una redirección a la acción show para mostrar el usuario
-            //return Redirect::action('ClienteController@show');
-           return Redirect::to('actividadprogramada')->with("mensaje","Datos actualizados correctamente");
-
-            
-        }
-        else
-        {
-            // En caso de error regresa a la acción create con los datos y los errores encontrados
-return Redirect::to('actividadprogramada/update/'.$id)->withInput()->withErrors($actividadprogramada->errors);
-            //return "mal2";
-        }
+     
 
         return Redirect::to('actividadprogramada')->with("mensaje","NO");
       

@@ -58,8 +58,25 @@ class KpiController extends BaseController {
 
            $kpi = Kpi::find($kpi->id);
 
+
            for($i=0; $i<count($datos["selectpac"]); $i++)
         {
+
+            list($dia,$mes,$ano) = explode("/",$datos['frecuencia'][$i]);
+            $frecuencia = "$ano-$mes-$dia";
+
+            $kpi->muchaspersonal()->attach($datos["selectpac"][$i],array("frecuencia"=>$frecuencia, "actividad"=>$datos["actividad"][$i],"personal_admin_id"=>Auth::user()->id,"estado"=>"Abierta"));
+            
+            $alerta = new Alertas;
+            $alerta->mensaje = "ha enviado una Nueva Actividad";
+            $alerta->personal_id = $datos["selectpac"][$i];  // id_de
+            $alerta->personal_id_admin = Auth::user()->id;  // id_para
+            $alerta->tipo = "aportal";
+            $alerta->save();
+            //$kpi->muchaspersonal()->attach($datos["selectpac"][$i],array("personal_admin_id"=>Auth::user()->id, "estado"=>"Abierta","tipoactividad"=>"kpi"));
+
+            //return $kpi->id;
+            /*
             $kpiactividad = new ActividadKpi;
             $kpiactividad->actividad = $datos["actividad"][$i];
             $kpiactividad->personal_id = $datos["selectpac"][$i];
@@ -76,14 +93,15 @@ class KpiController extends BaseController {
             $kpiactividad = ActividadKpi::find($kpiactividad->id);
             $kpiactividad->muchaspersonal()->attach($datos["selectpac"][$i],array("personal_admin_id"=>Auth::user()->id, "estado"=>"Abierta","tipoactividad"=>"kpi"));
 
+            
             $alerta = new Alertas;
-            $alerta->mensaje = "ha enviado una nueva evidencia";
-            $alerta->personal_id = $datos["selectpac"][$i]; // id de
-            $alerta->personal_id_admin = Auth::user()->id; //id para
+            $alerta->mensaje = "ha enviado una Nueva Actividad";
+            $alerta->personal_id = $datos["selectpac"][$i];  // id_de
+            $alerta->personal_id_admin = Auth::user()->id;  // id_para
             $alerta->tipo = "aportal";
             $alerta->save();
-            
             //echo $datos["selectpac"][$i]." ".$datos["actividad"][$i]."<br>";
+            */
         }
 
          
@@ -145,9 +163,21 @@ return Redirect::to('kpi/insert')->withInput()->withErrors($kpi->errors);
             // Guardamos el usuario
              //$usuario->password = Hash::make($usuario->password);
 
-            $kpi->actividadKpi()->delete();
+            $kpi->muchaspersonal()->detach();
             for($i=0; $i<count($datos["selectpac"]); $i++)
         {
+          
+           
+
+            list($dia,$mes,$ano) = explode("/",$datos['frecuencia'][$i]);
+            $frecuencia = "$ano-$mes-$dia";
+
+            $kpi->muchaspersonal()->attach($datos["selectpac"][$i],array("frecuencia"=>$frecuencia, "actividad"=>$datos["actividad"][$i],"personal_admin_id"=>Auth::user()->id,"estado"=>"Abierta"));
+            
+            //$kpi->muchaspersonal()->attach($datos["selectpac"][$i],array("personal_admin_id"=>Auth::user()->id, "estado"=>"Abierta","tipoactividad"=>"kpi"));
+
+            //return $kpi->id;
+            /*
             $kpiactividad = new ActividadKpi;
             $kpiactividad->actividad = $datos["actividad"][$i];
             $kpiactividad->personal_id = $datos["selectpac"][$i];
@@ -165,7 +195,15 @@ return Redirect::to('kpi/insert')->withInput()->withErrors($kpi->errors);
             $kpiactividad->muchaspersonal()->attach($datos["selectpac"][$i],array("personal_admin_id"=>Auth::user()->id, "estado"=>"Abierta","tipoactividad"=>"kpi"));
 
             
+            $alerta = new Alertas;
+            $alerta->mensaje = "ha enviado una Nueva Actividad";
+            $alerta->personal_id = $datos["selectpac"][$i];  // id_de
+            $alerta->personal_id_admin = Auth::user()->id;  // id_para
+            $alerta->tipo = "aportal";
+            $alerta->save();
             //echo $datos["selectpac"][$i]." ".$datos["actividad"][$i]."<br>";
+            */
+        
         }
         
 
