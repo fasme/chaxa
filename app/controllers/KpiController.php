@@ -242,6 +242,25 @@ return Redirect::to('kpi/update/'.$id)->withInput()->withErrors($kpi->errors);
 
 
 
+
+    public function mostrar() //get
+    {
+        //echo $id;
+     
+ $id = Input::get('id'); //acedemos a la variable id traida por AJAX ($.get)
+           $kpi = Kpi::find($id);
+           $personals = Personal::lists("nombre","id");
+            $kpiobjetivos = Kpiobjetivo::lists("nombre","id");
+         
+        return View::make('kpi.mostrar')
+        ->with("kpi",$kpi)
+        ->with("personals",$personals)
+        ->with("kpiobjetivos",$kpiobjetivos);
+ 
+                
+ 
+      
+    }
  
 
 

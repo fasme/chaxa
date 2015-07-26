@@ -69,9 +69,9 @@ class ActividadNoProgramadaController extends BaseController {
             
 
             $alerta = new Alertas;
-            $alerta->mensaje = "ha enviado una nueva evidencia";
-            $alerta->personal_id = $datos["personal_id"][$i]; // id de
-            $alerta->personal_id_admin = Auth::user()->id; //id para
+            $alerta->mensaje = "ha enviado una Nueva Actividad";
+            $alerta->personal_id = $datos["personal_id"][$i];  // id_de
+            $alerta->personal_id_admin = Auth::user()->id;  // id_para
             $alerta->tipo = "aportal";
             $alerta->save();
 
@@ -146,10 +146,11 @@ return Redirect::to('actividadnoprogramada/update/'.$id)->withInput()->withError
             
             $actividadnoprogramada->muchaspersonal()->attach($datos["personal_id"][$i]);
            
-            $alerta = new Alertas;
-            $alerta->mensaje = "ha enviado una nueva evidencia";
-            $alerta->personal_id = $datos["personal_id"][$i]; // id de
-            $alerta->personal_id_admin = Auth::user()->id; //id para
+
+             $alerta = new Alertas;
+            $alerta->mensaje = "ha enviado una Nueva Actividad";
+            $alerta->personal_id = $datos["personal_id"][$i];  // id_de
+            $alerta->personal_id_admin = Auth::user()->id;  // id_para
             $alerta->tipo = "aportal";
             $alerta->save();
             
@@ -185,6 +186,23 @@ return Redirect::to('actividadnoprogramada/insert')->withInput()->withErrors($ac
         $actividadnoprogramada->delete();
 
     //return Redirect::to('usuarios/insert');
+    }
+
+
+
+     public function mostrar()
+    {
+
+$id = Input::get('id'); //acedemos a la variable id traida por AJAX ($.get)
+       
+        $actividadnoprogramada = ActividadNoProgramada::find($id);
+           $personals = Personal::lists("nombre","id");
+   
+        return View::make('actividad.noprogramada.mostrar')
+        ->with("actividadnoprogramada", $actividadnoprogramada)
+        ->with("personals",$personals);
+ 
+        
     }
 
 

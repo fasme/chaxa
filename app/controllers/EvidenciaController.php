@@ -91,6 +91,131 @@ class EvidenciaController extends BaseController {
     }
 
 
+    public function mostrar(){
+
+         $id = Input::get('id'); 
+         $tabla = Input::get("tipoactividad");
+
+
+         if($tabla == "noprogramada")
+        {
+            $actividadrespoonsable = DB::table('actividad_responsable_noprogramada')
+            ->Where("id","=",$id)->update(array("estado"=>"Cerrada"));
+        }
+
+        if($tabla == "programada")
+        {
+            $actividadprogramada = ActividadProgramada::find($id);
+           $personals = Personal::lists("nombre","id");
+   
+        return View::make('actividad.programada.mostrar')
+        ->with("actividadprogramada", $actividadprogramada)
+        ->with("personals",$personals);
+        }
+
+        if($tabla == "mantencion")
+        {
+            $actividadrespoonsable = DB::table('actividad_responsable_mantencion')
+            ->Where("id","=",$id)->update(array("estado"=>"Cerrada"));
+        }
+
+        if($tabla == "pac")
+        {
+            $pac = Pac::find($id);
+           $personals = Personal::lists("nombre","id");
+            $personal = Personal::where("id","=",Auth::user()->id)->lists("nombre","id");
+   
+        return View::make('pac.mostrar')
+        ->with("pac", $pac)
+        ->with("personals",$personals)
+        ->with("personal",$personal);
+        }
+
+        if($tabla == "kpi")
+        {
+
+            $kpi = Kpi::find($id);
+           $personals = Personal::lists("nombre","id");
+            $kpiobjetivos = Kpiobjetivo::lists("nombre","id");
+         
+        return View::make('kpi.mostrar')
+        ->with("kpi",$kpi)
+        ->with("personals",$personals)
+        ->with("kpiobjetivos",$kpiobjetivos);
+        
+
+            
+        }
+
+
+    }
+
+
+
+    public function mostrarportal(){
+
+         $id = Input::get('id'); 
+         $tabla = Input::get("tipoactividad");
+         $nomostrarpersonal = "no";
+
+
+         if($tabla == "noprogramada")
+        {
+            $actividadrespoonsable = DB::table('actividad_responsable_noprogramada')
+            ->Where("id","=",$id)->update(array("estado"=>"Cerrada"));
+        }
+
+        if($tabla == "programada")
+        {
+            $actividadprogramada = ActividadProgramada::find($id);
+           $personals = Personal::lists("nombre","id");
+   
+        return View::make('actividad.programada.mostrar')
+        ->with("actividadprogramada", $actividadprogramada)
+        ->with("personals",$personals)
+        ->with("nomostrarpersonal",$nomostrarpersonal);
+        }
+
+        if($tabla == "mantencion")
+        {
+            $actividadrespoonsable = DB::table('actividad_responsable_mantencion')
+            ->Where("id","=",$id)->update(array("estado"=>"Cerrada"));
+        }
+
+        if($tabla == "pac")
+        {
+            $pac = Pac::find($id);
+           $personals = Personal::lists("nombre","id");
+            $personal = Personal::where("id","=",Auth::user()->id)->lists("nombre","id");
+   
+        return View::make('pac.mostrar')
+        ->with("pac", $pac)
+        ->with("personals",$personals)
+        ->with("personal",$personal)
+        ->with("nomostrarpersonal",$nomostrarpersonal);
+        }
+
+        if($tabla == "kpi")
+        {
+
+            $kpi = Kpi::find($id);
+           $personals = Personal::lists("nombre","id");
+            $kpiobjetivos = Kpiobjetivo::lists("nombre","id");
+         
+        return View::make('kpi.mostrar')
+        ->with("kpi",$kpi)
+        ->with("personals",$personals)
+        ->with("kpiobjetivos",$kpiobjetivos)
+        ->with("nomostrarpersonal",$nomostrarpersonal);
+        
+
+            
+        }
+
+
+    }
+
+
 
 
 

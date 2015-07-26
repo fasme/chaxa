@@ -240,6 +240,35 @@ return Redirect::to('pac/update/'.$id)->withInput()->withErrors($pac->errors);
     }
 
 
+    public function mostrar()
+    {
+        $id = Input::get('id'); //acedemos a la variable id traida por AJAX ($.get)
+        $pac = Pac::find($id);
+
+        $html = "<table width='100%' class='table table-striped table-bordered table-hover'>";
+        $html .= "<tr><td>Actividad </td><td>".$pac->actividad."</td></tr>";
+        $html .= "<tr><td>Plazo </td><td>".$pac->frecuencia."</td></tr>";
+        $html .= "<tr><td>Personal </td><td>";
+        foreach($pac->muchaspersonal as $personas)
+            { $html.= $personas->nombre.", ";}
+        $html.="</td></tr>";
+        
+       
+        $html.= "</table>";
+        //return $html;
+
+        $pac = Pac::find($id);
+           $personals = Personal::lists("nombre","id");
+            $personal = Personal::where("id","=",Auth::user()->id)->lists("nombre","id");
+   
+        return View::make('pac.mostrar')
+        ->with("pac", $pac)
+        ->with("personals",$personals)
+        ->with("personal",$personal);
+
+    }
+
+
 
  
 

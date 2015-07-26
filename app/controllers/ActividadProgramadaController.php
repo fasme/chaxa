@@ -173,6 +173,16 @@ class ActividadProgramadaController extends BaseController {
     }
 
 
+    public function mostrar()
+    {
+        $id = Input::get('id'); //acedemos a la variable id traida por AJAX ($.get)
+        $actividadprogramada = ActividadProgramada::find($id);
+           $personals = Personal::lists("nombre","id");
+   
+        return View::make('actividad.programada.mostrar')
+        ->with("actividadprogramada", $actividadprogramada)
+        ->with("personals",$personals);
+    }
 
  
 

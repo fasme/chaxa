@@ -229,7 +229,7 @@ Route::post('actividadprogramada/insert', array('uses' => 'ActividadProgramadaCo
 Route::get('actividadprogramada/update/{id}', 'ActividadProgramadaController@update');
 Route::post('actividadprogramada/update/{id}', 'ActividadProgramadaController@update2');
 Route::get('actividadprogramada/eliminar', 'ActividadProgramadaController@eliminar');
-
+Route::get('actividadprogramada/mostrar', 'ActividadProgramadaController@mostrar');
 
 // actividadnoprogramadaes
 Route::get('actividadnoprogramada', array('uses' => 'ActividadNoProgramadaController@show')); 
@@ -238,6 +238,7 @@ Route::post('actividadnoprogramada/insert', array('uses' => 'ActividadNoPrograma
 Route::get('actividadnoprogramada/update/{id}', 'ActividadNoProgramadaController@update');
 Route::post('actividadnoprogramada/update/{id}', 'ActividadNoProgramadaController@update2');
 Route::get('actividadnoprogramada/eliminar', 'ActividadNoProgramadaController@eliminar');
+Route::get('actividadnoprogramada/mostrar', 'ActividadNoProgramadaController@mostrar');
 
 //actividadPac
 Route::get('actividadpac', array('uses' => 'ActividadPacController@show')); 
@@ -247,6 +248,8 @@ Route::get('evidenciaadmin', array('uses' => 'EvidenciaController@show'));
 Route::get('evidenciaadmin/eliminar', array('uses' => 'EvidenciaController@eliminar'));
 Route::get('evidenciaadmin/eliminarusuario', array('uses' => 'EvidenciaController@eliminarusuario')); 
 Route::get('evidenciaadmin/cerraractividad', array('uses' => 'EvidenciaController@cerraractividad')); 
+Route::get('evidenciaadmin/mostrar', array('uses' => 'EvidenciaController@mostrar')); 
+Route::get('evidenciaadmin/mostrarportal', array('uses' => 'EvidenciaController@mostrarportal')); 
 
 
 //clasificacion
@@ -283,6 +286,8 @@ Route::post('pac/insert', array('uses' => 'PacController@insert2'));
 Route::get('pac/update/{id}', 'PacController@update');
 Route::post('pac/update/{id}', 'PacController@update2');
 Route::get('pac/eliminar', 'PacController@eliminar');
+Route::get('pac/mostrar', 'PacController@mostrar');
+
 
 
 //KPI
@@ -292,6 +297,8 @@ Route::post('kpi/insert', array('uses' => 'KpiController@insert2'));
 Route::get('kpi/update/{id}', 'KpiController@update');
 Route::post('kpi/update/{id}', 'KpiController@update2');
 Route::get('kpi/eliminar', 'KpiController@eliminar');
+Route::get('kpi/mostrar', 'KpiController@mostrar');
+
 
 
 //KPI Objetivo

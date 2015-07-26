@@ -47,9 +47,7 @@
   <td class="td-actions">
                        
                       
-                          <a class="blue bootbox-mostrar" data-id={{$categoria->id}}>
-                            <i class="fa fa-search-plus bigger-130"></i>
-                          </a>
+                         
 
 
                           <a class="green" href= {{ 'categoria/update/'.$categoria->id }}>

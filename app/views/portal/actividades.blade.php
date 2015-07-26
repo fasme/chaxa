@@ -97,6 +97,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             <td>{{date_format(date_create($busqueda->frecuencia),"d/m/Y")}} {{$dif}}</td>
                             
                             <td>
+
                             @if($actividad->estado == "Abierta")
                             <div class="hidden-sm hidden-xs action-buttons">
                                 <a data-toggle="modal" class="botoncito" data-id="{{$actividad->id}}" data-actividadid="{{$actividad->actividad_id}}" data-tipoactividad="{{$actividad->tipoactividad}}" href="#" >
@@ -173,6 +174,9 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                           
                             <td>{{date_format(date_create($actividad2->pivot->frecuencia),"d/m/Y")}} {{$dif}}</td>
                              <td>
+                              <a class="blue bootbox-mostrar" data-id="{{$actividad->id}}" data-tipoactividad="kpi">
+                            <i class="fa fa-search-plus bigger-130"></i>
+                          </a>
                             @if($actividad2->pivot->estado == "Abierta")
                             <div class="hidden-sm hidden-xs action-buttons">
                                 <a data-toggle="modal" class="botoncito" data-id="{{$actividad2->pivot->id}}" data-actividadid="{{$actividad2->pivot->kpi_id}}" data-tipoactividad="kpi" href="#" >
@@ -242,6 +246,9 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             <td>{{date_format(date_create($actividad->frecuencia),"d/m/Y")}} {{$dif}}</td>
                             
                             <td>
+                            <a class="blue bootbox-mostrar" data-id="{{$busqueda->id}}" data-tipoactividad="programada">
+                            <i class="fa fa-search-plus bigger-130"></i>
+                          </a>
                             @if($actividad->estado == "Abierta")
                             <div class="hidden-sm hidden-xs action-buttons">
                                 <a data-toggle="modal" class="botoncito" data-id="{{$actividad->id}}" data-actividadid="{{$actividad->actividad_id}}" data-tipoactividad="{{$actividad->tipoactividad}}" href="#" >
@@ -314,6 +321,9 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                           
                             <td>{{date_format(date_create($actividad2->pivot->frecuencia),"d/m/Y")}} {{$dif}}</td>
                              <td>
+                             <a class="blue bootbox-mostrar" data-id="{{$actividad->id}}" data-tipoactividad="pac">
+                            <i class="fa fa-search-plus bigger-130"></i>
+                          </a>
                             @if($actividad2->pivot->estado == "Abierta")
                             <div class="hidden-sm hidden-xs action-buttons">
                                 <a data-toggle="modal" class="botoncito" data-id="{{$actividad2->pivot->id}}" data-actividadid="{{$actividad2->pivot->pac_id}}" data-tipoactividad="pac" href="#" >
@@ -539,6 +549,23 @@ $(".botoncito").click(function(){
   //alert(id);
   $('#myModal').modal("show");
 });
+
+
+
+$(".bootbox-mostrar").on(ace.click_event, function() {
+  var id = $(this).data('id');
+  var tipoactividad = $(this).data("tipoactividad");
+
+ $.get("{{ url('evidenciaadmin/mostrarportal')}}",
+              { id: id, tipoactividad:tipoactividad },
+              function(data)
+              { 
+                bootbox.dialog({message: data});
+
+              });
+          
+             
+          });
 
 
 });
