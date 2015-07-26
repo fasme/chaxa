@@ -188,7 +188,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                            <a href="archivos/evidencia/{{ $actividad2->pivot->adjunto2}}">{{$actividad2->pivot->adjunto2}}</a><br>
                            <a href="archivos/evidencia/{{ $actividad2->pivot->adjunto3}}">{{$actividad2->pivot->adjunto3}}</a><br>
                            <a href="archivos/evidencia/{{ $actividad2->pivot->adjunto4}}">{{$actividad2->pivot->adjunto4}}</a><br>
-                           <a href="archivos/evidencia/{{ $actividad2->pivot>adjunto5}}">{{$actividad2->pivot->adjunto5}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad2->pivot->adjunto5}}">{{$actividad2->pivot->adjunto5}}</a><br>
                            
                                      @if($actividad2->pivot->estado != "Cerrada")
                                       <a href='#' data-id="{{$actividad2->pivot->id}}"  data-tipoactividad="kpi" data-actividadid="{{$actividad2->pivot->kpi_id}}" data-personalid="{{$actividad2->pivot->personal_id}}" class="bootbox-confirm"><button class="btn btn-success">Cerrar actividad</button></a>
