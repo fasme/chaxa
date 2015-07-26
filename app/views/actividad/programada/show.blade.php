@@ -35,7 +35,7 @@
             <th>Cumplimiento Normativo</th>
             <th>Requisito</th>
             <th>Actividad</th>
-            <th>Plazo</th>
+            
           
   <th>Acciones</th>
             
@@ -51,8 +51,7 @@
            <td>{{$actividadprogramada->cumplimientonormativo}}</td>
            <td>{{$actividadprogramada->requisito}}</td>
              <td> {{ $actividadprogramada->actividad}}</td>
-             <td>{{date_format(date_create($actividadprogramada->frecuencia),'d/m/Y')}}</td>
-         
+            
              
   <td class="td-actions">
                        

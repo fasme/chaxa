@@ -184,11 +184,11 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                                 </a>
                               </div>
                               @else
-                              <a href="archivos/evidencia/{{ $actividad->adjunto1}}">{{$actividad->adjunto1}}</a><br>
-                           <a href="archivos/evidencia/{{ $actividad->adjunto2}}">{{$actividad->adjunto2}}</a><br>
-                           <a href="archivos/evidencia/{{ $actividad->adjunto3}}">{{$actividad->adjunto3}}</a><br>
-                           <a href="archivos/evidencia/{{ $actividad->adjunto4}}">{{$actividad->adjunto4}}</a><br>
-                           <a href="archivos/evidencia/{{ $actividad->adjunto5}}">{{$actividad->adjunto5}}</a><br>
+                              <a href="archivos/evidencia/{{ $actividad2->pivot->adjunto1}}">{{$actividad2->pivot->adjunto1}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad2->pivot->adjunto2}}">{{$actividad2->pivot->adjunto2}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad2->pivot->adjunto3}}">{{$actividad2->pivot->adjunto3}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad2->pivot->adjunto4}}">{{$actividad2->pivot->adjunto4}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad2->pivot>adjunto5}}">{{$actividad2->pivot->adjunto5}}</a><br>
                            
                                      @if($actividad2->pivot->estado != "Cerrada")
                                       <a href='#' data-id="{{$actividad2->pivot->id}}"  data-tipoactividad="kpi" data-actividadid="{{$actividad2->pivot->kpi_id}}" data-personalid="{{$actividad2->pivot->personal_id}}" class="bootbox-confirm"><button class="btn btn-success">Cerrar actividad</button></a>
@@ -321,11 +321,11 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                                 </a>
                               </div>
                               @else
-                              <a href="archivos/evidencia/{{ $actividad->adjunto1}}">{{$actividad->adjunto1}}</a><br>
-                           <a href="archivos/evidencia/{{ $actividad->adjunto2}}">{{$actividad->adjunto2}}</a><br>
-                           <a href="archivos/evidencia/{{ $actividad->adjunto3}}">{{$actividad->adjunto3}}</a><br>
-                           <a href="archivos/evidencia/{{ $actividad->adjunto4}}">{{$actividad->adjunto4}}</a><br>
-                           <a href="archivos/evidencia/{{ $actividad->adjunto5}}">{{$actividad->adjunto5}}</a><br>
+                              <a href="archivos/evidencia/{{ $actividad2->pivot->adjunto1}}">{{$actividad2->pivot->adjunto1}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad2->pivot->adjunto2}}">{{$actividad2->pivot->adjunto2}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad2->pivot->adjunto3}}">{{$actividad2->pivot->adjunto3}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad2->pivot->adjunto4}}">{{$actividad2->pivot->adjunto4}}</a><br>
+                           <a href="archivos/evidencia/{{ $actividad2->pivot->adjunto5}}">{{$actividad2->pivot->adjunto5}}</a><br>
                            
                                      @if($actividad2->pivot->estado != "Cerrada")
                                       <a href='#' data-id="{{$actividad2->pivot->id}}"  data-tipoactividad="pac" data-actividadid="{{$actividad2->pivot->pac_id}}" data-personalid="{{$actividad2->pivot->personal_id}}" class="bootbox-confirm"><button class="btn btn-success">Cerrar actividad</button></a>
