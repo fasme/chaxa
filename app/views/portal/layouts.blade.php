@@ -41,6 +41,8 @@
 
 {{HTML::script('portal1/js/main.js')}}
 {{HTML::script('portal1/js/bootstrap-datepicker.min.js')}}
+{{HTML::script('portal1/js/ace.min.js')}}
+{{HTML::script('portal1/js/bootbox.min.js')}}
 
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
