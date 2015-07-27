@@ -27,6 +27,7 @@
         
  
 <table id="example" class="table table-striped table-bordered table-hover">
+<div class="info"></div>
   <thead>
           <tr>
             <th>Actividad</th>
@@ -74,12 +75,39 @@
  $(document).ready(function() {
 
 
-$('#example').DataTable( {
+
+var table = $('#example').DataTable( {
+      
       
        "language": {
                 "url": "datatables.spanish.json"
             }
     } );
+
+
+var tableTools = new $.fn.dataTable.TableTools( table, {
+  
+
+    
+      "aButtons": [
+                   {
+                        "sExtends": "pdf",
+                        "sButtonText":"Listado pdf",
+                        "sTitle": "plan de actividades no programadas",
+                        //"sPdfMessage": "Summary Info",
+                        "sFileName": "<?php print('Informe'); ?>.pdf",
+                        "sPdfOrientation": "landscape",
+                        "oSelectorOpts": {page: 'current'},
+                        "mColumns": [ 0, 1 ]
+
+                    }
+
+                ]
+      
+    } );
+
+
+$( tableTools.fnContainer() ).insertAfter('div.info');
 
 
 $( "#actividadactive" ).addClass( "active" );

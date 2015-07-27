@@ -35,7 +35,7 @@
             <th>Cumplimiento Normativo</th>
             <th>Requisito</th>
             <th>Actividad</th>
-            
+         
           
   <th>Acciones</th>
             
@@ -98,11 +98,12 @@ var tableTools = new $.fn.dataTable.TableTools( table, {
                    {
                         "sExtends": "pdf",
                         "sButtonText":"Listado pdf",
-                        //"sTitle": "Report Name",
+                        "sTitle": "plan de actividades programadas",
                         //"sPdfMessage": "Summary Info",
                         "sFileName": "<?php print('Informe'); ?>.pdf",
                         "sPdfOrientation": "landscape",
                         "oSelectorOpts": {page: 'current'},
+                        "mColumns": [ 0, 1,2,3 ]
 
                     }
 
