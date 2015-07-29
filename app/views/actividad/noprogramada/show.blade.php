@@ -31,7 +31,7 @@
   <thead>
           <tr>
             <th>Actividad</th>
-            <th>Fecha</th>
+           
           
   <th>Acciones</th>
             
@@ -44,8 +44,7 @@
            <tr>
 
              <td> {{ $actividadnoprogramada->actividad}}</td>
-             <td>{{date_format(date_create($actividadnoprogramada->frecuencia),'d/m/Y')}}</td>
-         
+             
 
   <td class="td-actions">
                        

@@ -41,16 +41,11 @@ class ActividadNoProgramadaController extends BaseController {
 
         $actividadnoprogramada = new ActividadNoProgramada;
 
-        $datos = Input::all(); 
+         $datos = Input::all(); 
         
         if ($actividadnoprogramada->isValid($datos))
         {
-            if($datos["frecuencia"])
-            {
-                list($dia,$mes,$ano) = explode("/",$datos['frecuencia']);
-            $datos['frecuencia'] = "$ano-$mes-$dia";
-
-            }
+            
 
             $actividadnoprogramada->fill($datos);
             // Guardamos el usuario
@@ -65,7 +60,10 @@ class ActividadNoProgramadaController extends BaseController {
            for($i=0;$i<count($datos["personal_id"]);$i++)
            {
             
-            $actividadnoprogramada->muchaspersonal()->attach($datos["personal_id"][$i],array("personal_admin_id"=>Auth::user()->id, "estado"=>"Abierta","tipoactividad"=>"noprogramada"));
+            list($dia,$mes,$ano) = explode("/",$datos['frecuencia'][$i]);
+            $frecuencia = "$ano-$mes-$dia";
+
+            $actividadnoprogramada->muchaspersonal()->attach($datos["personal_id"][$i],array("frecuencia"=>$frecuencia, "personal_admin_id"=>Auth::user()->id, "estado"=>"Abierta","tipoactividad"=>"noprogramada"));
             
 
             $alerta = new Alertas;
@@ -126,12 +124,6 @@ return Redirect::to('actividadnoprogramada/update/'.$id)->withInput()->withError
         if ($actividadnoprogramada->isValid($datos))
         {
 
-           if($datos["frecuencia"])
-            {
-                list($dia,$mes,$ano) = explode("/",$datos['frecuencia']);
-            $datos['frecuencia'] = "$ano-$mes-$dia";
-
-            }
             $actividadnoprogramada->fill($datos);
             // Guardamos el usuario
              //$usuario->password = Hash::make($usuario->password);
@@ -144,8 +136,11 @@ return Redirect::to('actividadnoprogramada/update/'.$id)->withInput()->withError
            for($i=0;$i<count($datos["personal_id"]);$i++)
            {
             
-            $actividadnoprogramada->muchaspersonal()->attach($datos["personal_id"][$i]);
-           
+            list($dia,$mes,$ano) = explode("/",$datos['frecuencia'][$i]);
+            $frecuencia = "$ano-$mes-$dia";
+
+            $actividadnoprogramada->muchaspersonal()->attach($datos["personal_id"][$i],array("frecuencia"=>$frecuencia, "personal_admin_id"=>Auth::user()->id, "estado"=>"Abierta","tipoactividad"=>"noprogramada"));
+            
 
              $alerta = new Alertas;
             $alerta->mensaje = "ha enviado una Nueva Actividad";

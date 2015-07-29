@@ -84,12 +84,12 @@
                             }
 
                               ?>
-
+<!--
                               <div class="form-group">
                               {{Form::label('', 'Personal',array("class"=>"col-sm-3 control-label no-padding-right"))}}
                               {{Form::select('personal_id[]', $personals, $arrayName, array("class"=>"chosen-select", "multiple"=>"multiple"))}}
                               </div>
-
+-->
             <!-- <div class="form-group">
             {{Form::label('', 'Plazo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
             {{Form::text('frecuencia', date_format(date_create($actividadprogramada->frecuencia),'d/m/Y'), array("class"=>"date-picker", "id"=>"id-date-picker-1", "data-date-format"=>"dd/mm/yyyy"))}}
@@ -105,7 +105,8 @@
 
  @foreach($actividadprogramada->muchaspersonal as $actividad)
 
-  <div>{{Form::text("frecuencia[]", date_format(date_create($actividad->pivot->frecuencia), 'd/m/Y'), array("id"=>"plazo", "class"=>"date-picker",  "data-date-format"=>"dd/mm/yyyy"))}}<a href="#" class="eliminar">&times;</a></div>
+  <div>{{Form::select('personal_id[]', $personals, $actividad->pivot->personal_id, array("class"=>"chosen-select"))}}
+{{Form::text("frecuencia[]", date_format(date_create($actividad->pivot->frecuencia), 'd/m/Y'), array("id"=>"plazo", "class"=>"date-picker",  "data-date-format"=>"dd/mm/yyyy"))}}<a href="#" class="eliminar">&times;</a></div>
 
   @endforeach
             <a id="agregarCampo" class="btn btn-info" href="#">Agregar Plazo</a>
@@ -164,7 +165,7 @@ $('.date-picker').datepicker({
 
 
 
-var MaxInputs       = 50; //Número Maximo de Campos
+var MaxInputs       = 100; //Número Maximo de Campos
     var contenedor       = $("#contenedor"); //ID del contenedor
     var AddButton       = $("#agregarCampo"); //ID del Botón Agregar
 
@@ -178,7 +179,7 @@ var MaxInputs       = 50; //Número Maximo de Campos
             FieldCount++;
             //agregar campo
 
-            $(contenedor).after('<div>{{Form::text("frecuencia[]", "", array("id"=>"plazo", "class"=>"date-picker",  "data-date-format"=>"dd/mm/yyyy"))}}<a href="#" class="eliminar">&times;</a></div>');
+            $(contenedor).after('<div>{{Form::select('personal_id[]', $personals, "", array("class"=>"chosen-select"))}}{{Form::text("frecuencia[]", "", array("id"=>"plazo", "class"=>"date-picker",  "data-date-format"=>"dd/mm/yyyy"))}}<a href="#" class="eliminar">&times;</a></div>');
             x++; //text box increment
            
 
@@ -188,6 +189,7 @@ var MaxInputs       = 50; //Número Maximo de Campos
         });
 
             //$("#plazo").addClass("date-picker");
+            $(".chosen-select").chosen();
 
         }
         return false;

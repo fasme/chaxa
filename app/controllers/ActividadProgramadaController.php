@@ -42,7 +42,7 @@ class ActividadProgramadaController extends BaseController {
 
         
 
-        $datos = Input::all(); 
+         $datos = Input::all(); 
         
        
 
@@ -57,11 +57,7 @@ class ActividadProgramadaController extends BaseController {
           $actividadprogramada->save();
 
 
-          foreach ($datos["frecuencia"] as $frecuencia) {
-            
-
-                    list($dia,$mes,$ano) = explode("/",$frecuencia);
-                    $frecuencia = "$ano-$mes-$dia";
+                   
           
                     
 
@@ -70,6 +66,9 @@ class ActividadProgramadaController extends BaseController {
                    for($i=0;$i<count($datos["personal_id"]);$i++)
                    {
                     
+                     list($dia,$mes,$ano) = explode("/",$datos["frecuencia"][$i]);
+                    $frecuencia = "$ano-$mes-$dia";
+
                     $actividadprogramada->muchaspersonal()->attach($datos["personal_id"][$i],array("frecuencia"=>$frecuencia, "personal_admin_id"=>Auth::user()->id, "estado"=>"Abierta","tipoactividad"=>"programada"));
                    
                     $alerta = new Alertas;
@@ -80,7 +79,7 @@ class ActividadProgramadaController extends BaseController {
                     $alerta->save();
 
 
-                   }
+                   
         }
 
 
@@ -125,11 +124,7 @@ class ActividadProgramadaController extends BaseController {
           $actividadprogramada->save();
 
           $actividadprogramada->muchaspersonal()->detach();
-          foreach ($datos["frecuencia"] as $frecuencia) {
-            
-
-                    list($dia,$mes,$ano) = explode("/",$frecuencia);
-                    $frecuencia = "$ano-$mes-$dia";
+          
           
                     
 
@@ -139,8 +134,12 @@ class ActividadProgramadaController extends BaseController {
                    for($i=0;$i<count($datos["personal_id"]);$i++)
                    {
                     
+                    list($dia,$mes,$ano) = explode("/",$datos["frecuencia"][$i]);
+                    $frecuencia = "$ano-$mes-$dia";
+
                     $actividadprogramada->muchaspersonal()->attach($datos["personal_id"][$i],array("frecuencia"=>$frecuencia, "personal_admin_id"=>Auth::user()->id, "estado"=>"Abierta","tipoactividad"=>"programada"));
                    
+                    
                     $alerta = new Alertas;
                     $alerta->mensaje = "ha enviado una nueva evidencia";
                     $alerta->personal_id = $datos["personal_id"][$i]; // id de
@@ -150,7 +149,7 @@ class ActividadProgramadaController extends BaseController {
 
 
                    }
-        }
+        
         
        
 
