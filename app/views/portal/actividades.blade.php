@@ -70,7 +70,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
 
                             <?php
 
-                            $datetime1 = new DateTime($busqueda->frecuencia);
+                            $datetime1 = new DateTime($actividad->frecuencia);
                             $datetime2 = new DateTime(date("Y/m/d"));
                             $interval = $datetime1->diff($datetime2);
                             if($interval->format("%R") == "+")
@@ -94,7 +94,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             
                             <td>{{$actividad->tipoactividad}}</td>
                             <td>{{$actividad->estado}}</td>
-                            <td>{{date_format(date_create($busqueda->frecuencia),"d/m/Y")}} {{$dif}}</td>
+                            <td>{{date_format(date_create($actividad->frecuencia),"d/m/Y")}} {{$dif}}</td>
                             
                             <td>
 
