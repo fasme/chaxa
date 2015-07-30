@@ -125,18 +125,20 @@ $mantencion = "";
   @foreach($vehiculos as $vehiculo)
 
        <?php
-       $mantencion = $vehiculo->mantencion()->orderby("id","desc")->first();
-
+        $mantencion = $vehiculo->mantencion()->orderby("id","desc")->first();
+        //return "hlola";
       //$mantencion = Mantencion::Where("vehiculo_id","=",$vehiculo->id)->first();
       //echo $mantencion;
       //exit();
       ?>
 
-
+@if(count($mantencion) >0)
 <?php 
            //echo "<td>$mantencion</td>"; 
            //exit(); 
+
            $diferencia = $mantencion->proximahorometro - $mantencion->vehiculo->horometro; 
+           //$diferencia=$mantencion->proximahorometro;
            ?> 
 <tr>
              <td> {{ $mantencion->vehiculo->familia." / ". $mantencion->vehiculo->patente}}</td> 
@@ -177,11 +179,13 @@ $mantencion = "";
 
                       </td>
 
-
+@endif
      
         
 @endforeach
 </tr>
+
+
   
           
         </tbody>
