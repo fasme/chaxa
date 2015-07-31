@@ -137,7 +137,9 @@ $vehiculos = Vehiculo::all();
   @foreach(Vehiculo::has("mantencion")->get() as $vehiculo)
 <?php
   $mantencion = $vehiculo->mantencion()->orderby("id","desc")->first();
-  $diferencia = $mantencion->proximahorometro - $mantencion->vehiculo->horometro; 
+          $mantencionanterior = $vehiculo->mantencion()->where("proximahorometro",">",0)->orderby("id","desc")->first();
+
+  $diferencia = $mantencionanterior->proximahorometro - $mantencion->vehiculo->horometro; 
            
   ?>
            <tr>
