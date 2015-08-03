@@ -121,7 +121,7 @@ $vehiculos = Vehiculo::all();
             <th>Mantencion Realizada</th>
             <th>Proxima Mantencion</th>
             <th>Fecha Mantencion</th>
-            <th>Horometro Mantencion</th>
+            <!--<th>Horometro Mantencion</th>-->
             <th>Horometro Proxima Mantencion</th>
             <th>Horometro Actual</th>
             <th>Horas Restantes Proximo Mantenimiento</th>
@@ -135,21 +135,46 @@ $vehiculos = Vehiculo::all();
 
 
   @foreach(Vehiculo::has("mantencion")->get() as $vehiculo)
+
+
 <?php
   $mantencion = $vehiculo->mantencion()->orderby("id","desc")->first();
-          $mantencionanterior = $vehiculo->mantencion()->where("proximahorometro",">",0)->orderby("id","desc")->first();
+  $mantencionanterior = $vehiculo->mantencion()->where("proximahorometro",">",0)->orderby("id","desc")->first();
 
-  $diferencia = $mantencionanterior->proximahorometro - $mantencion->vehiculo->horometro; 
+  
+
+?>
+
+
+
+@if(count($mantencion) >0) 
+
+
+<?php
+
+if(count($mantencionanterior) == 0)
+  {
+    $anterior =$mantencion->vehiculo->horometro+250;
+  }
+else
+{
+  $anterior = $mantencionanterior->proximahorometro;
+}
+
+
+  $diferencia = $anterior - $mantencion->vehiculo->horometro; 
            
   ?>
+
+
            <tr>
 
             <td> {{ $mantencion->vehiculo->familia." / ". $mantencion->vehiculo->patente}}</td> 
             <td>{{ $mantencion->mantencionrealizada}}</td> 
             <td>{{$mantencion->proximamantencion}}</td> 
             <td>{{date_format(date_create($mantencion->fecha_mantencion),'d/m/Y')}} 
-          <td>{{$mantencion->horometromantencion}}</td> 
-          <td>{{$mantencion->proximahorometro}}</td>
+          <!--<td>{{$mantencion->horometromantencion}}</td> -->
+          <td>{{$anterior}}</td>
           <td>{{$vehiculo->horometro}}</td> 
           <td> 
           @if($diferencia>0) 
@@ -173,7 +198,7 @@ $vehiculos = Vehiculo::all();
                             
                           
                             </tr>
-
+@endif
                             @endforeach
                             
                             </tbody>

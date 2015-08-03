@@ -106,7 +106,7 @@
             <th>Mantencion Realizada</th>
             <th>Proxima Mantencion</th>
             <th>Fecha Mantencion</th>
-            <th>Horometro Mantencion</th>
+           <!-- <th>Horometro Mantencion</th> -->
             <th>Horometro Proxima Mantencion</th>
             <th>Horometro Actual</th>
             <th>Horas Restantes Proximo Mantenimiento</th>
@@ -133,22 +133,30 @@ $mantencion = "";
       //exit();
       ?>
 
-@if(count($mantencion) >0 && count($mantencionanterior) >0)
+@if(count($mantencion) >0)
 <?php 
-           //echo "<td>$mantencion</td>"; 
-           //exit(); 
+          
 
-          // $diferencia = $mantencion->proximahorometro - $mantencion->vehiculo->horometro; 
-            $diferencia = $mantencionanterior->proximahorometro - $mantencion->vehiculo->horometro; 
-         //$diferencia=$mantencion->proximahorometro;
+ if(count($mantencionanterior) == 0)
+  {
+    $anterior =$mantencion->vehiculo->horometro+250;
+  }
+else
+{
+  $anterior = $mantencionanterior->proximahorometro;
+}
+
+echo $anterior;
+
+  $diferencia = $anterior - $mantencion->vehiculo->horometro; 
            ?> 
 <tr>
           <td> {{ $mantencion->vehiculo->familia." / ". $mantencion->vehiculo->patente}}</td> 
           <td>{{ $mantencion->mantencionrealizada}} Horas</td> 
           <td>{{$mantencion->proximamantencion}} Horas</td> 
           <td>{{date_format(date_create($mantencion->fecha_mantencion),'d/m/Y')}} 
-          <td>{{$mantencion->horometromantencion}}</td> 
-          <td>{{$mantencion->proximahorometro}}</td>
+          <!--<td>{{$mantencion->horometromantencion}}</td>--> 
+          <td>{{$anterior}}</td>
           <td>{{$vehiculo->horometro}}</td> 
           <td> 
           @if($diferencia>0) 

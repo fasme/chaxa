@@ -84,7 +84,7 @@ $vehiculos = Vehiculo::has("mantencion")->get();
 
            }
 
-            return Redirect::to('mantencion')->with("mensaje","Datos Ingresados correctamente");
+            return Redirect::to('vehiculo')->with("mensaje","Datos Ingresados correctamente");
         }
         else
         {
@@ -149,7 +149,7 @@ return Redirect::to('mantencion/insert')->withInput()->withErrors($mantencion->e
 
             // Y Devolvemos una redirección a la acción show para mostrar el usuario
             //return Redirect::action('ClienteController@show');
-           return Redirect::to('mantencion')->with("mensaje","Datos actualizados correctamente");
+           return Redirect::to('vehiculo')->with("mensaje","Datos actualizados correctamente");
 
             
         }
