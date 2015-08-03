@@ -133,7 +133,7 @@ $mantencion = "";
       //exit();
       ?>
 
-@if(count($mantencion) >0)
+@if(count($mantencion) >0 && count($mantencionanterior) >0)
 <?php 
            //echo "<td>$mantencion</td>"; 
            //exit(); 
@@ -143,10 +143,10 @@ $mantencion = "";
          //$diferencia=$mantencion->proximahorometro;
            ?> 
 <tr>
-             <td> {{ $mantencion->vehiculo->familia." / ". $mantencion->vehiculo->patente}}</td> 
-            <td>{{ $mantencion->mantencionrealizada}} Horas</td> 
-            <td>{{$mantencion->proximamantencion}} Horas</td> 
-            <td>{{date_format(date_create($mantencion->fecha_mantencion),'d/m/Y')}} 
+          <td> {{ $mantencion->vehiculo->familia." / ". $mantencion->vehiculo->patente}}</td> 
+          <td>{{ $mantencion->mantencionrealizada}} Horas</td> 
+          <td>{{$mantencion->proximamantencion}} Horas</td> 
+          <td>{{date_format(date_create($mantencion->fecha_mantencion),'d/m/Y')}} 
           <td>{{$mantencion->horometromantencion}}</td> 
           <td>{{$mantencion->proximahorometro}}</td>
           <td>{{$vehiculo->horometro}}</td> 
