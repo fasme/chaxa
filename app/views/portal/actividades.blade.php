@@ -353,6 +353,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
 
 
                             @foreach($actividadresponsable_mantencion as $actividad)
+
                           <tr>
                         
                            <?php
@@ -402,7 +403,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             <td>
                             @if($actividad->estado == "Abierta")
                             <div class="hidden-sm hidden-xs action-buttons">
-                                <a data-toggle="modal" class="botoncito" data-id="{{$actividad->pivot->id}}" data-actividadid="{{$actividad->pivot->actividad_id}}" data-tipoactividad="mantencion" href="#" >
+                                <a data-toggle="modal" class="botoncito" data-id="{{$actividad->id}}" data-actividadid="{{$actividad->actividad_id}}" data-tipoactividad="mantencion" href="#" >
                                   <i class="ace-icon fa fa-upload bigger-130"></i>
                                 </a>
                               </div>
