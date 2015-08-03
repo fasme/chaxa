@@ -125,7 +125,7 @@ $mantencion = "";
   @foreach($vehiculos as $vehiculo)
 
        <?php
-        echo $mantencion = $vehiculo->mantencion()->orderby("id","desc")->first();
+         $mantencion = $vehiculo->mantencion()->orderby("id","desc")->first();
         $mantencionanterior = $vehiculo->mantencion()->where("proximahorometro",">",0)->orderby("id","desc")->first();
         //return "hlola";
       //$mantencion = Mantencion::Where("vehiculo_id","=",$vehiculo->id)->first();

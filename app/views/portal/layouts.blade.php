@@ -90,7 +90,7 @@
                                 <li><a href="shortcodes.html">Shortcodes</a></li>
                             </ul>
                         </li>-->
-                        @if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "adminprevencion") || (Auth::user()->perfil == "adminmantencion") || (Auth::user()->perfil == "admingerente"))
+                        @if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "adminprevencion") || (Auth::user()->perfil == "adminmantencion") || (Auth::user()->perfil == "admingerente") || (Auth::user()->perfil == "adminfacturacion") )
                          <li><a href="{{URL::to('/')}}">Administracion</a></li> 
                         @endif
                         @if (Auth::check())

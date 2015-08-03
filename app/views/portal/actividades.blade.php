@@ -33,7 +33,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                         <thead>
                           <tr>
                             
-                           
+                           <th>id</th>
                             <th class="hidden-480">Actividad</th>
                             <th>Tipo</th>
                              <th>Estado</th>
@@ -88,6 +88,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             }
 
                             ?>
+                            <td>{{$actividad->created_at}}</td>
                             <td>{{$busqueda->actividad}}</td>
                             
                             
@@ -165,7 +166,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             }
                              
                             ?>
-
+                            <td>{{$actividad->created_at}}</td>
                             <td>{{ $actividad2->pivot->actividad}}</td>
                             <td>{{"KPI"}}</td>
                             <td>{{$actividad2->pivot->estado}}</td>
@@ -237,6 +238,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             }
 
                             ?>
+                            <td>{{$actividad->created_at}}</td>
                             <td>{{$busqueda->actividad}}</td>
                             
                             
@@ -312,7 +314,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             }
                              
                             ?>
-
+                            <td>{{$actividad->created_at}}</td>
                             <td>{{ $actividad2->pivot->actividad}}</td>
                             <td>{{"Pac"}}</td>
                             <td>{{$actividad2->pivot->estado}}</td>
@@ -388,6 +390,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             }
 
                             ?>
+                            <td>{{$actividad->created_at}}</td>
                             <td>{{$busqueda->mantencionrealizada}}</td>
                             
                             
@@ -512,29 +515,25 @@ var oTable1 =
         .dataTable( {
             "language": {
                 "url": "datatables.spanish.json"
+            },
+
+            "columnDefs": [
+            {
+                "targets": [ 2 ],
+                "visible": true
+              
+            },
+            {
+                "targets": [ 0 ],
+                "visible": false
             }
+        ],
+
+             "order": [[ 0, 'desc' ]]
         });
 
 
 
-var oTable1 = 
-        $('#example1')
-        //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-        .dataTable( {
-            "language": {
-                "url": "datatables.spanish.json"
-            }
-        });
-
-
-        var oTable1 = 
-        $('#example2')
-        //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-        .dataTable( {
-            "language": {
-                "url": "datatables.spanish.json"
-            }
-        });
 
 
 $(".botoncito").click(function(){

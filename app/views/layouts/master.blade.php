@@ -196,7 +196,7 @@
 
 				<ul class="nav nav-list">
 
-				@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "adminmantencion") || (Auth::user()->perfil == "adminprevencion") || (Auth::user()->perfil == "admingerente"))
+				@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "adminmantencion") || (Auth::user()->perfil == "adminprevencion") || (Auth::user()->perfil == "admingerente") || (Auth::user()->perfil == "adminfacturacion"))
 					<li class="">
 						<a href="{{URL::to('portal')}}"> 
 							<i class="menu-icon fa fa-tachometer"></i>
@@ -209,7 +209,7 @@
 					@endif
 
 
-@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "admingerente"))
+@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "admingerente") || (Auth::user()->perfil == "adminfacturacion"))
 
 					<li class="" id="bibliotecaactive">
 						<a href="#" class="dropdown-toggle">
@@ -275,7 +275,7 @@
 
 
 
-@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "adminmantencion") || (Auth::user()->perfil == "adminprevencion") || (Auth::user()->perfil == "admingerente"))
+@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "adminmantencion") || (Auth::user()->perfil == "adminprevencion") || (Auth::user()->perfil == "admingerente") || (Auth::user()->perfil == "adminfacturacion"))
 
 					<li class="" id="actividadactive">
 						<a href="#" class="dropdown-toggle">
@@ -323,7 +323,7 @@
 @endif
 
 
-				@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "adminmantencion") || (Auth::user()->perfil == "adminprevencion") || (Auth::user()->perfil == "admingerente"))
+				@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "adminmantencion") || (Auth::user()->perfil == "adminprevencion") || (Auth::user()->perfil == "admingerente") || (Auth::user()->perfil == "adminfacturacion"))
 
 					<li class="" id="pacactive">
 						<a href="{{URL::to('evidenciaadmin')}}">
@@ -340,7 +340,7 @@
 					@endif
 
 
-									@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "adminmantencion") || (Auth::user()->perfil == "adminprevencion") || (Auth::user()->perfil == "admingerente"))
+									@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "adminmantencion") || (Auth::user()->perfil == "adminprevencion") || (Auth::user()->perfil == "admingerente") || (Auth::user()->perfil == "adminfacturacion"))
 
 
 					<li class="" id="pacactive">
@@ -359,7 +359,7 @@
 
 
 
-				@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "admingerente"))
+				@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "admingerente") || (Auth::user()->perfil == "adminfacturacion"))
 
 					<li class="" id="kpiactive">
 						<a href="{{URL::to('kpi')}}">
