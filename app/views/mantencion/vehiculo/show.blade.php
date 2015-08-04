@@ -132,10 +132,10 @@ $mantencion = "";
       
       ?>
 
-
+@if(count($mantencion) >0) 
 <?php 
-           if(count($mantencion) >0) 
-           {
+           
+           
 
 
              if($mantencion->horometromantencion != 0)
@@ -148,7 +148,7 @@ $mantencion = "";
               $diferencia = $mantencion->proximahorometro - $mantencion->vehiculo->horometro; 
               $estado = "Pendiente";
              }
-         }
+
            
 
            ?> 
@@ -194,7 +194,7 @@ $mantencion = "";
 
 @endforeach
 </tr>
-
+@endif
 
   
           
