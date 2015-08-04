@@ -134,17 +134,21 @@ $mantencion = "";
 
 
 <?php 
-           
-           if($mantencion->horometromantencion != 0)
+           if(count($mantencion) >0) 
            {
-            $diferencia = $mantencion->proximahorometro - $mantencion->horometromantencion; 
-            $estado = "Enviada";
-           }
-           else
-           {
-            $diferencia = $mantencion->proximahorometro - $mantencion->vehiculo->horometro; 
-            $estado = "Pendiente";
-           }
+
+
+             if($mantencion->horometromantencion != 0)
+             {
+              $diferencia = $mantencion->proximahorometro - $mantencion->horometromantencion; 
+              $estado = "Enviada";
+             }
+             else
+             {
+              $diferencia = $mantencion->proximahorometro - $mantencion->vehiculo->horometro; 
+              $estado = "Pendiente";
+             }
+         }
            
 
            ?> 
