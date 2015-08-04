@@ -116,7 +116,7 @@ else
   var suma1 = parseFloat(horometromantencion) + 250;
 
 
-  $("#proximahorometro").val(suma1);
+  //$("#proximahorometro").val(suma1);
   //alert(horometroactual);
 
 

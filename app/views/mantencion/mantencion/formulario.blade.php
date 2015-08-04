@@ -100,6 +100,13 @@ else
             </div>
 
             <div class="form-group">
+            {{Form::label('', 'Proximo horometro',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::text('proximahorometro', $vehiculo->horometro +250, array("id"=>"proximahorometro","readonly"=>"readonly"))}}
+            </div>
+
+
+
+            <div class="form-group">
             {{Form::label('', 'Mantención a realizar',array("class"=>"col-sm-3 control-label no-padding-right"))}}
             {{Form::select('mantencionrealizada', array(0=>"Seleccione",250=>"250",500=>"500",750=>"750",1000=>"1000",1250=>"1250",1500=>"1500",1750=>"1750",2000=>"2000"), $mantencion->mantencionrealizada,  array("id"=>"mantencionrealizada", "class"=>"calculos"))}}
             </div>
@@ -178,8 +185,6 @@ $(".calculos").change(function(){
   var horometromantencion = $("#horometromantencion").val();
   var suma1 = parseFloat(horometromantencion) + 250;
 
-  $("#proximahorometro").val(suma1);
-  //alert(horometroactual);
 });
     
   });   

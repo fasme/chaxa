@@ -139,7 +139,7 @@ $vehiculos = Vehiculo::all();
 
 <?php
   $mantencion = $vehiculo->mantencion()->orderby("id","desc")->first();
-  $mantencionanterior = $vehiculo->mantencion()->where("proximahorometro",">",0)->orderby("id","desc")->first();
+  //$mantencionanterior = $vehiculo->mantencion()->where("proximahorometro",">",0)->orderby("id","desc")->first();
 
   
 
@@ -148,21 +148,12 @@ $vehiculos = Vehiculo::all();
 
 
 @if(count($mantencion) >0) 
-
+@if($mantencion->horometromantencion == 0)
 
 <?php
 
-if(count($mantencionanterior) == 0)
-  {
-    $anterior =$mantencion->vehiculo->horometro+250;
-  }
-else
-{
-  $anterior = $mantencionanterior->proximahorometro;
-}
 
-
-  $diferencia = $anterior - $mantencion->vehiculo->horometro; 
+  $diferencia = $mantencion->proximahorometro - $mantencion->vehiculo->horometro; 
            
   ?>
 
@@ -174,14 +165,19 @@ else
             <td>{{$mantencion->proximamantencion}}</td> 
             <td>{{date_format(date_create($mantencion->fecha_mantencion),'d/m/Y')}} 
           <!--<td>{{$mantencion->horometromantencion}}</td> -->
-          <td>{{$anterior}}</td>
+           <td>{{$mantencion->proximahorometro}}</td> 
+          
+          
+
           <td>{{$vehiculo->horometro}}</td> 
           <td> 
-          @if($diferencia>0) 
-          <div class="btn btn-success">{{$diferencia}}</div> 
-          @else 
-          <div class="btn btn-danger">{{$diferencia}}</div> 
-          @endif 
+          
+            @if($diferencia>0) 
+            <div class="btn btn-success">Faltan {{$diferencia}}</div> 
+            @else 
+            <div class="btn btn-danger">Atrasado {{$diferencia}}</div> 
+            @endif 
+         
           </td>
 
           <td>
@@ -198,6 +194,7 @@ else
                             
                           
                             </tr>
+@endif
 @endif
                             @endforeach
                             

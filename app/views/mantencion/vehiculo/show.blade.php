@@ -110,6 +110,7 @@
             <th>Horometro Proxima Mantencion</th>
             <th>Horometro Actual</th>
             <th>Horas Restantes Proximo Mantenimiento</th>
+            <th>Estado</th>
            
           
   <th>Acciones</th>
@@ -124,31 +125,28 @@ $mantencion = "";
 
   @foreach($vehiculos as $vehiculo)
 
+    
        <?php
-         $mantencion = $vehiculo->mantencion()->orderby("id","desc")->first();
-        $mantencionanterior = $vehiculo->mantencion()->where("proximahorometro",">",0)->orderby("id","desc")->first();
-        //return "hlola";
-      //$mantencion = Mantencion::Where("vehiculo_id","=",$vehiculo->id)->first();
-      //echo $mantencion;
-      //exit();
+       $mantencion = $vehiculo->mantencion()->orderby("id","desc")->first();
+
+      
       ?>
 
-@if(count($mantencion) >0)
+
 <?php 
-          
+           
+           if($mantencion->horometromantencion != 0)
+           {
+            $diferencia = $mantencion->proximahorometro - $mantencion->horometromantencion; 
+            $estado = "Enviada";
+           }
+           else
+           {
+            $diferencia = $mantencion->proximahorometro - $mantencion->vehiculo->horometro; 
+            $estado = "Pendiente";
+           }
+           
 
- if(count($mantencionanterior) == 0)
-  {
-    $anterior =$mantencion->vehiculo->horometro+250;
-  }
-else
-{
-  $anterior = $mantencionanterior->proximahorometro;
-}
-
-echo $anterior;
-
-  $diferencia = $anterior - $mantencion->vehiculo->horometro; 
            ?> 
 <tr>
           <td> {{ $mantencion->vehiculo->familia." / ". $mantencion->vehiculo->patente}}</td> 
@@ -156,15 +154,16 @@ echo $anterior;
           <td>{{$mantencion->proximamantencion}} Horas</td> 
           <td>{{date_format(date_create($mantencion->fecha_mantencion),'d/m/Y')}} 
           <!--<td>{{$mantencion->horometromantencion}}</td>--> 
-          <td>{{$anterior}}</td>
+          <td>{{$mantencion->proximahorometro}}</td>
           <td>{{$vehiculo->horometro}}</td> 
           <td> 
           @if($diferencia>0) 
-          <div class="green">{{$diferencia}}</div> 
+          <div class="green">faltan: {{$diferencia}}</div> 
           @else 
-          <div class="red">{{$diferencia}}</div> 
+          <div class="red">atrasado: {{$diferencia}}</div> 
           @endif 
           </td>
+          <td>{{$estado}}</td>
 
   <td class="td-actions"> 
                        
@@ -189,9 +188,6 @@ echo $anterior;
 
                       </td>
 
-@endif
-     
-        
 @endforeach
 </tr>
 
