@@ -67,6 +67,7 @@
                               <a data-toggle="tab" href="#tres">3.-Controles Preventivos</a>
                             </li>
                             
+
                           </ul>
                         </div>
                       </div>
@@ -202,7 +203,7 @@
 
                                   <div class="form-group">
                                   {{Form::label('', 'Sustitucion',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-                                  {{Form::textarea('sustitucion', $matriz->sustitucion, ['size' => '30x5'])}}
+                                  {{Form::textarea('actsustitucion', $matriz->actsustitucion, ['size' => '30x5'])}}
                                   </div>
 
                                   <div class="form-group">
@@ -229,7 +230,7 @@
 
                                   <div class="form-group">
                               {{Form::label('', 'Resultado',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-                              {{Form::text('resultadoeliminacioon', $matriz->resultadoadministrativo, array("id"=>"resultado6", "readonly"=>"readonly"))}}
+                              {{Form::text('resultadoadministrativo', $matriz->resultadoadministrativo, array("id"=>"resultado6", "readonly"=>"readonly"))}}
                               </div>
 
                               <div class="hr hr-24"></div>
@@ -254,7 +255,7 @@
 
                                   <div class="form-group">
                               {{Form::label('', 'Resultado',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-                              {{Form::text('resultadoeliminacioon', $matriz->resultadoeliminacion, array("id"=>"resultado3", "readonly"=>"readonly"))}}
+                              {{Form::text('resultadoeliminacion', $matriz->resultadoeliminacion, array("id"=>"resultado3", "readonly"=>"readonly"))}}
                               </div>
 
 <div class="hr hr-24"></div>
@@ -271,7 +272,7 @@
 
                                   <div class="form-group">
                               {{Form::label('', 'Resultado',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-                              {{Form::text('resultadoeliminacioon', $matriz->resultadoingenieria, array("id"=>"resultado5", "readonly"=>"readonly"))}}
+                              {{Form::text('resultadoingenieria', $matriz->resultadoingenieria, array("id"=>"resultado5", "readonly"=>"readonly"))}}
                               </div>
 <div class="hr hr-24"></div>
 
@@ -287,7 +288,7 @@
 
                                   <div class="form-group">
                               {{Form::label('', 'Resultado',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-                              {{Form::text('resultadoeliminacioon', $matriz->resultadoepp, array("id"=>"resultado7", "readonly"=>"readonly"))}}
+                              {{Form::text('resultadoepp', $matriz->resultadoepp, array("id"=>"resultado7", "readonly"=>"readonly"))}}
                               </div>
 
                               <div class="hr hr-24"></div>
@@ -303,7 +304,7 @@
 
 
 
-                          
+                            
                           </div>
                         </div>
                       </div>

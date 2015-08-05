@@ -1,7 +1,7 @@
 <?php
 class Mantencion extends Eloquent { //Todos los modelos deben extender la clase Eloquent
     protected $table = 'mantencion';
-    protected $fillable = array('vehiculo_id','mantencionrealizada', 'proximamantencion','fecha_mantencion','horometromantencion','proximahorometro');
+    protected $fillable = array('proceso','matriz_actividad_id','matriz_peligro_id','rutinaria','factorseveridad','factorexposicion','factorprobabilidad','resultado','actprevio','totalprevio', 'resultadoprevio', 'acteliminacion', 'totaleliminacion','resultadoeliminacion','actsustitucion','totalsustitucion','resultadosustitucion','actingenieria','totalingenieria','resultadoingenieria','actadministrativo', 'totaladministrativo','resultadoadministrativo','actepp', 'totalepp','resultadoepp','magnitud','cambio');
 
 
 
