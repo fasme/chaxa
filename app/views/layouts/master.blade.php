@@ -209,7 +209,7 @@
 					@endif
 
 
-@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "admingerente") || (Auth::user()->perfil == "adminfacturacion"))
+@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "admingerente") || (Auth::user()->perfil == "adminfacturacion") || (Auth::user()->perfil == "adminprevencion"))
 
 					<li class="" id="bibliotecaactive">
 						<a href="#" class="dropdown-toggle">
@@ -359,7 +359,7 @@
 
 
 
-				@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "admingerente") || (Auth::user()->perfil == "adminfacturacion"))
+				@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "admingerente") || (Auth::user()->perfil == "adminfacturacion") || (Auth::user()->perfil == "adminprevencion"))
 
 					<li class="" id="kpiactive">
 						<a href="{{URL::to('kpi')}}">
