@@ -212,7 +212,8 @@ $('#example').DataTable( {
       
        "language": {
                 "url": "datatables.spanish.json"
-            }
+            },
+            "iDisplayLength": -1
     } );
 
 
@@ -220,7 +221,8 @@ $('#example2').DataTable( {
       
        "language": {
                 "url": "datatables.spanish.json"
-            }
+            },
+            "iDisplayLength": -1
     } );
 
 
