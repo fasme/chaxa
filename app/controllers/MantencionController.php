@@ -45,7 +45,7 @@ $vehiculos = Vehiculo::has("mantencion")->get();
 
         $mantencion = new Mantencion;
 
-        $datos = Input::all(); 
+         $datos = Input::all(); 
         
         if ($mantencion->isValid($datos))
         {
