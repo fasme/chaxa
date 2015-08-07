@@ -47,6 +47,8 @@ class ArchivoController extends BaseController {
         {
             // Si la data es valida se la asignamos al usuario
 
+            list($dia,$mes,$ano) = explode("/",$datos['elaboracion']);
+            $datos['elaboracion'] = "$ano-$mes-$dia";
 
             if (Input::hasFile("archivo"))
                 {
@@ -116,7 +118,9 @@ return Redirect::to('archivo/insert')->withInput()->withErrors($archivo->errors)
         {
             // Si la data es valida se la asignamos al usuario
 
-
+            list($dia,$mes,$ano) = explode("/",$datos['elaboracion']);
+            $datos['elaboracion'] = "$ano-$mes-$dia";
+            
             if (Input::hasFile("archivo"))
                 {
                     $adjunto1 = Input::file('archivo');

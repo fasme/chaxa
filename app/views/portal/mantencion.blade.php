@@ -148,7 +148,7 @@ $vehiculos = Vehiculo::all();
 
 
 @if(count($mantencion) >0) 
-@if($mantencion->horometromantencion == 0)
+
 
 <?php
 
@@ -171,8 +171,10 @@ $vehiculos = Vehiculo::all();
 
           <td>{{$vehiculo->horometro}}</td> 
           <td> 
-          
-            @if($diferencia>0) 
+            
+            @if(($diferencia>1) & ($diferencia <90))
+             <div class="btn btn-warning">Faltan {{$diferencia}}</div> 
+            @elseif($diferencia>0) 
             <div class="btn btn-success">Faltan {{$diferencia}}</div> 
             @else 
             <div class="btn btn-danger">Atrasado {{$diferencia}}</div> 
@@ -194,7 +196,7 @@ $vehiculos = Vehiculo::all();
                             
                           
                             </tr>
-@endif
+
 @endif
                             @endforeach
                             

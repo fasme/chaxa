@@ -607,6 +607,20 @@
 										
 									</li>
 
+
+									<li class="" id="informeevidenciaactive">
+										<a href="{{URL::to('informeevidenciaanualpersonal')}}" >
+											<i class="menu-icon fa fa-caret-right"></i>
+
+											Anual/Personal
+											
+										</a>
+
+										<b class="arrow"></b>
+
+										
+									</li>
+
 									
 								</ul>
 						</li>

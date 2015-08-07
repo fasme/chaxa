@@ -84,6 +84,13 @@
             {{Form::label('', 'Obsoleto?',array("class"=>"col-sm-3 control-label no-padding-right"))}}
             {{Form::checkbox('obsoleto', "si", $archivo->obsoleto)}}
             </div>
+
+
+             <div class="form-group">
+            {{Form::label('',"Fecha Elaboración", array("class"=>"col-sm-3 control-label no-padding-right"))}}
+            {{Form::text("elaboracion", date_format(date_create($archivo->elaboracion), 'd/m/Y'), array("class"=>"date-picker",  "data-date-format"=>"dd/mm/yyyy"))}}
+            </div>
+        
         
      
 

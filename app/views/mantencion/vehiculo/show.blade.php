@@ -140,7 +140,8 @@ $mantencion = "";
 
              if($mantencion->horometromantencion != 0)
              {
-              $diferencia = $mantencion->proximahorometro - $mantencion->horometromantencion; 
+             // $diferencia = $mantencion->proximahorometro - $mantencion->horometromantencion; 
+              $diferencia = $mantencion->proximahorometro - $mantencion->vehiculo->horometro;
               $estado = "Enviada";
              }
              else
@@ -161,10 +162,12 @@ $mantencion = "";
           <td>{{$mantencion->proximahorometro}}</td>
           <td>{{$vehiculo->horometro}}</td> 
           <td> 
-          @if($diferencia>0) 
-          <div class="green">faltan: {{$diferencia}}</div> 
-          @else 
-          <div class="red">atrasado: {{$diferencia}}</div> 
+          @if(($diferencia>1) & ($diferencia <90))
+          <div style="background-color: yellow">faltan: {{$diferencia}}</div> 
+          @elseif($diferencia<0)
+          <div style="background-color: #FF000F">atrasado: {{$diferencia}}</div> 
+          @else
+          <div style="background-color: #00D632">Faltan: {{$diferencia}}</div> 
           @endif 
           </td>
           <td>{{$estado}}</td>

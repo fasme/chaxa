@@ -358,6 +358,8 @@ Route::get('productotransaccion/eliminar', 'ProductoTransaccionController@elimin
 //INFORMES
 
 Route::get("informeevidencia", array("uses"=>"InformeController@informeevidenciamensual"));
+Route::get("informeevidenciaanualpersonal", "InformeController@informeevidenciaanualpersonal");
+
 Route::post("informepdf", array("uses"=>"InformeController@informepdf"));
 Route::get("informemantencion", array("uses"=>"InformeController@informemantencion"));
 Route::get("informemantencionmensual", array("uses"=>"InformeController@informemantencionmensual"));

@@ -47,7 +47,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             <th>Plazo</th>
 
                             <th>
-                              <i class="ace-icon fa fa-clock-o bigger-110 hidden-480 red"></i>
+                              
                               Accion
                             </th>
                             
@@ -57,14 +57,18 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                         </thead>
 
                          <tfoot>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                  <th>Position</th>
-                    <th></th>
-                      <th></th>
-               
-            </tr>
+           <tr>
+                            
+                            <th>Actividad</th>
+                            <th>Personal</th>
+                        <th>Tipo</th>
+                             <th>Estado</th>
+                          
+                            
+                            
+
+                           
+                          </tr>
         </tfoot>
 
 
@@ -373,7 +377,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
 
                             <?php
 
-                            $datetime1 = new DateTime($busqueda->frecuencia);
+                            $datetime1 = new DateTime($busqueda->fecha_mantencion);
                             $datetime2 = new DateTime(date("Y/m/d"));
                             $interval = $datetime1->diff($datetime2);
                             if($interval->format("%R") == "+")
@@ -398,7 +402,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             <td>{{Personal::find($actividad->personal_id)->nombre}}</td>
                             <td>{{$actividad->tipoactividad}}</td>
                             <td>{{$actividad->estado}}</td>
-                            <td>{{date_format(date_create($busqueda->frecuencia),"d/m/Y")}} {{$dif}}</td>
+                            <td>{{date_format(date_create($busqueda->fecha_mantencion),"d/m/Y")}} {{$dif}}</td>
                             
                             <td>
                             @if($actividad->estado == "Abierta")
@@ -473,38 +477,73 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
 
 $( "#evidenciaactive" ).addClass( "active" );
 
-/*
+
 $('#example tfoot th').each( function () {
         var title = $('#example thead th').eq( $(this).index() ).text();
-        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+        $(this).html( '<input type="text" placeholder="Buscar '+title+'" />' );
     } );
-*/
+
+/*
 $('#example tfoot th').eq(0).html( '<input type="text" placeholder="Buscar " style="width:50px" />' );
 $('#example tfoot th').eq(1).html( '<input type="text" placeholder="Buscar " style="width:50px" />' );
 $('#example tfoot th').eq(2).html( '<input type="text" placeholder="Buscar " style="width:50px" />' );
-
-
+*/
+/*
 var table = $('#example').DataTable();
 
 table.columns().every( function () {
-        var that = this;
- 
+        that = this;
+
         $( 'input', this.footer() ).on( 'keyup change', function () {
-            that
+        
+                that
                 .search( this.value )
                 .draw();
+
+
         } );
+
+
     } );
 
+*/
 
-var oTable2 = 
-        $('#example1')
-        //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-        .dataTable( {
-            "language": {
-                "url": "js/spanish.datatables.json"
-            }
-        });
+
+$('#example').DataTable( {
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
+    } );
+
+/*
+$('input').on( 'keyup', function () {
+    table
+        .columns( 3 )
+        .search( this.value )
+        .draw();
+} );
+*/
+
+
+
+
 
 
 
