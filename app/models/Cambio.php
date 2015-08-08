@@ -1,7 +1,7 @@
 <?php
 class Cambio extends Eloquent { //Todos los modelos deben extender la clase Eloquent
     protected $table = 'matriz_cambio';
-    protected $fillable = array('version','descripcion');
+    protected $fillable = array('version','descripcion','responsable','aprobado','aprobado');
 
 
 
