@@ -35,6 +35,8 @@
             <th>Cumplimiento Normativo</th>
             <th>Requisito</th>
             <th>Actividad</th>
+            <th>Personal/Plazo</th>
+
          
           
   <th>Acciones</th>
@@ -51,6 +53,11 @@
            <td>{{$actividadprogramada->cumplimientonormativo}}</td>
            <td>{{$actividadprogramada->requisito}}</td>
              <td> {{ $actividadprogramada->actividad}}</td>
+             <td>
+             @foreach($actividadprogramada->muchaspersonal as $persona)
+             {{Personal::find($persona->id)->nombre}}:{{date_format(date_create($persona->pivot->frecuencia),"d/m/Y")}}<br>
+             @endforeach
+             </td>
             
              
   <td class="td-actions">

@@ -47,9 +47,19 @@
 {{ Form::open($form_data) }}
        
 
-             <div class="form-group">
-            {{Form::label('', 'Actividad',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::textarea('actividad', $actividadnoprogramada->actividad)}}
+            <div class="form-group">
+            {{Form::label('', 'Actividad',array("class"=>"col-sm-1 control-label no-padding-right"))}}
+            <div class="col-sm-9">
+            {{Form::textarea('actividad', $actividadnoprogramada->actividad, array("class"=>"form-control"))}}
+            </div>
+            </div>
+
+
+            <div class="form-group">
+            {{Form::label('', 'Origen',array("class"=>"col-sm-1 control-label no-padding-right"))}}
+            <div class="col-sm-9">
+            {{Form::text('origen', $actividadnoprogramada->origen, array("class"=>"form-control"))}}
+            </div>
             </div>
 
 

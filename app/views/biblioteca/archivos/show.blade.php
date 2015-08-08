@@ -35,6 +35,7 @@
                             <th>Codigo</th>
                             <th>Version</th>
                             <th>Tiempo Vigencia</th>
+                            <th>Fecha Elaboracion</th>
           
   <th>Acciones</th>
             
@@ -50,7 +51,8 @@
                             <td>{{$archivo->codigo}}</td>
                             <td>{{$archivo->version}}</td>
                             <td>{{$archivo->tiempo}}</td>
-         
+                            <td>{{ date_format(date_create($archivo->elaboracion), 'd/m/Y')}}
+                  
 
   <td class="td-actions">
                        

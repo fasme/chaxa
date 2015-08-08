@@ -31,6 +31,8 @@
   <thead>
           <tr>
             <th>Actividad</th>
+                <th>Origen</th>
+            <th>Personal/Plazo</th>
            
           
   <th>Acciones</th>
@@ -44,6 +46,12 @@
            <tr>
 
              <td> {{ $actividadnoprogramada->actividad}}</td>
+             <td>{{$actividadnoprogramada->origen}}</td>
+             <td>
+             @foreach($actividadnoprogramada->muchaspersonal as $persona)
+             {{Personal::find($persona->id)->nombre}}:{{date_format(date_create($persona->pivot->frecuencia),"d/m/Y")}}<br>
+             @endforeach
+             </td>
              
 
   <td class="td-actions">
