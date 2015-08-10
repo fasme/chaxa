@@ -1,7 +1,7 @@
 <?php
 class MatrizLey extends Eloquent { //Todos los modelos deben extender la clase Eloquent
     protected $table = 'matriz_ley';
-    protected $fillable = array('nombre','articulo','descripcion');
+    protected $fillable = array('nombre','articulo','descripcion','cumple','responsable','evidencia');
 
 
 

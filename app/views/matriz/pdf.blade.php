@@ -194,8 +194,54 @@ $html .= "<tr><td>$cambio->version</td><td>$cambio->descripcion</td></tr>";
 }
 ?>
 
+
 <?php
-$html .= "</table>"
+$html .= "<table width='50%' border='1'><tr><th>Realizado Por:</th><th>Firma</th></tr>";
+?>
+<?php
+
+$cambio = Cambio::orderby("id","desc")->first();
+if($cambio)
+{
+$html .= "<tr><td>$cambio->responsable</td><td></td></tr>";
+
+}
+?>
+<?php
+$html .= "</table><br>";
+?>
+
+<?php
+$html .= "<table width='50%' border='1'><tr><th>Revisado Por:</th><th>Firma</th></tr>";
+?>
+<?php
+
+$cambio = Cambio::orderby("id","desc")->first();
+if($cambio)
+{
+$html .= "<tr><td>$cambio->revisado</td><td></td></tr>";
+
+}
+?>
+<?php
+$html .= "</table><br>";
+?>
+
+
+<?php
+$html .= "<table width='50%' border='1'><tr><th>Aprobado Por:</th><th>Firma</th></tr>";
+?>
+<?php
+
+$cambio = Cambio::orderby("id","desc")->first();
+if($cambio)
+{
+$html .= "<tr><td>$cambio->aprobado</td><td></td></tr>";
+
+}
+?>
+<?php
+$html .= "</table><br>";
 ?>
 <?php
 echo $html;
