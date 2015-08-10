@@ -50,20 +50,61 @@
             
 
              <div class="form-group">
-            {{Form::label('', 'Nombre',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::text('nombre', $matrizley->nombre)}}
+               <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Nombre </label>
+
+                <div class="col-md-9">
+                {{Form::text('nombre', $matrizley->nombre, array("class"=>"form-control"))}}
+                </div>
             </div>
 
              <div class="form-group">
-            {{Form::label('', 'Articulo',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::text('articulo', $matrizley->articulo)}}
+             <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">Articulo </label>
+
+              <div class="col-md-9">
+            {{Form::text('articulo', $matrizley->articulo, array("class"=>"form-control"))}}
+              </div>
             </div>
 
 
             <div class="form-group">
-            {{Form::label('', 'Descripcion',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::text('descripcion', $matrizley->descripcion)}}
+             <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">Descripcion </label>
+
+              <div class="col-md-9">
+
+            {{Form::textarea('descripcion', $matrizley->descripcion, array("class"=>"form-control"))}}
+              </div>
             </div>
+
+
+             <div class="form-group">
+             <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">Evidencia </label>
+
+              <div class="col-md-9">
+            {{Form::text('evidencia', $matrizley->evidencia, array("class"=>"form-control"))}}
+              </div>
+            </div>
+
+
+            <div class="form-group">
+             <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">Cumple </label>
+
+              <div class="col-md-9">
+            {{Form::select('cumple', array("si"=>"si","no"=>"no","noaplica"=>"noaplica"), $matrizley->cumple, array("class"=>"form-control"))}}
+              </div>
+            </div>
+
+            <div class="form-group">
+             <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">Responsable </label>
+
+              <div class="col-md-9">
+            {{Form::text('responsable', $matrizley->responsable, array("class"=>"form-control"))}}
+              </div>
+            </div>
+
+
+           
+
+
 
 
            

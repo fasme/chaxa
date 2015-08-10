@@ -27,9 +27,15 @@
         
  
 <table id="example" class="table table-striped table-bordered table-hover">
+<div class="info"></div>
   <thead>
           <tr>
             <th>Nombre</th>
+            <th>Articulo</th>
+            <th>Descripcion</th>
+            <th>Cumple</th>
+            <th>Evidencia</th>
+            <th>Responsable</th>
           
   <th>Acciones</th>
             
@@ -42,6 +48,11 @@
            <tr>
 
              <td> {{ $matrizley->nombre}}</td>
+              <td> {{ $matrizley->articulo}}</td>
+               <td> {{ $matrizley->descripcion}}</td>
+               <td> {{ $matrizley->cumple}}</td>
+               <td> {{ $matrizley->evidencia}}</td>
+               <td> {{ $matrizley->responsable}}</td>
          
 
   <td class="td-actions">
@@ -76,7 +87,7 @@
  $(document).ready(function() {
 
 
-$('#example').DataTable( {
+var table = $('#example').DataTable( {
       
        "language": {
                 "url": "datatables.spanish.json"
@@ -84,6 +95,30 @@ $('#example').DataTable( {
     } );
 
 
+
+var tableTools = new $.fn.dataTable.TableTools( table, {
+  
+
+    
+      "aButtons": [
+                   {
+                        "sExtends": "pdf",
+                        "sButtonText":"Listado pdf",
+                        "sTitle": "Ley",
+                        //"sPdfMessage": "Summary Info",
+                        "sFileName": "<?php print('Informe'); ?>.pdf",
+                        "sPdfOrientation": "landscape",
+                        "oSelectorOpts": {page: 'current'},
+                        "mColumns": [ 0, 1,2,3,4,5 ]
+
+                    }
+
+                ]
+      
+    } );
+
+
+$( tableTools.fnContainer() ).insertAfter('div.info');
 
 
 $( "#matrizactive" ).addClass( "active" );
