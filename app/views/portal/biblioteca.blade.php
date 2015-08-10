@@ -29,7 +29,7 @@ $archivos = Archivo::where("obsoleto","<>","si")->get();
                             <th>Codigo</th>
                             <th>Version</th>
                             <th>Tiempo Vigencia</th>
-                          
+                          <th>Fecha Elaboracion</th>
                              <th>Estado</th>
                             
                             
@@ -51,6 +51,8 @@ $archivos = Archivo::where("obsoleto","<>","si")->get();
                             <td>{{$archivo->codigo}}</td>
                             <td>{{$archivo->version}}</td>
                             <td>{{$archivo->tiempo}}</td>
+                          <td>{{ date_format(date_create($archivo->elaboracion), 'd/m/Y')}}
+
                             
                             <td>
                             <a data-toggle="modal" class="botoncito" data-urlarchivo="https://docs.google.com/viewer?url=http://chaxapreventivo.cl/public/archivos/biblioteca/{{$archivo->archivo}}&embedded=true"  href="#" >

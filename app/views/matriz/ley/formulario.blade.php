@@ -34,10 +34,10 @@
            <?php
   // si existe el usuario carga los datos
     if ($matrizley->exists):
-        $form_data = array('url' => 'matrizLey/update/'.$matrizley->id);
+        $form_data = array('url' => 'matrizLey/update/'.$matrizley->id, 'class'=>"form-horizontal");
         $action    = 'Editar';
     else:
-        $form_data = array('url' => 'matrizLey/insert', 'class'=>'class="form-horizontal');
+        $form_data = array('url' => 'matrizLey/insert', 'class'=>"form-horizontal");
         $action    = 'Crear';        
     endif;
 
