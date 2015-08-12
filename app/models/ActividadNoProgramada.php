@@ -1,7 +1,7 @@
 <?php
 class ActividadNoProgramada extends Eloquent { //Todos los modelos deben extender la clase Eloquent
     protected $table = 'actividad_noprogramada';
-    protected $fillable = array('actividad');
+    protected $fillable = array('actividad','origen');
 
 
     public function muchaspersonal()
