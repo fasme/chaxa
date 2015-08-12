@@ -125,7 +125,7 @@
          $( "#homeactive" ).addClass( "active" );
     
         $('#mycar').carousel({
-            interval: 3000,
+            interval: 13000,
             
         });
 
