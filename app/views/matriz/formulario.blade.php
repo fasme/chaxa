@@ -155,13 +155,11 @@
                             <div id="dos" class="tab-pane">
 
                              <div class="form-group">
-                              {{Form::label('', 'Factor Consecuencia',array("class"=>"col-sm-3 control-label no-padding-right"))}}
+                              {{Form::label('', 'Factor Severidad',array("class"=>"col-sm-3 control-label no-padding-right"))}}
                               {{Form::select('factorseveridad', $criterioConsecuencia, $matriz->factorseveridad, array("class"=>"fun1", "id"=>"factor1"))}}
                               </div>
-                              <div class="form-group">
-                              {{Form::label('', 'Factor Exposicion',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-                              {{Form::select('factorexposicion', $criterioExposicion, $matriz->factorxposicion, array("class"=>"fun1", "id"=>"factor2"))}}
-                              </div>
+                           
+                            
 
                               <div class="form-group">
                               {{Form::label('', 'Factor Probabilidad',array("class"=>"col-sm-3 control-label no-padding-right"))}}
@@ -344,9 +342,9 @@
 $(".fun1").change(function(){
 
 var  factor1 = $("#factor1").val();
-var  factor2 = $("#factor2").val();
+//var  factor2 = $("#factor2").val();
 var  factor3 = $("#factor3").val();
-var resultado = factor1 * factor2 * factor3;
+var resultado = factor1 * factor3;
 $("#resultado1").val(resultado);
 
 $.get("{{url('matriz/cargarMatrizColor')}}",

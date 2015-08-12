@@ -30,10 +30,10 @@
            <?php
   // si existe el usuario carga los datos
     if ($actividadprogramada->exists):
-        $form_data = array('url' => 'actividadprogramada/update/'.$actividadprogramada->id);
+        $form_data = array('url' => 'actividadprogramada/update/'.$actividadprogramada->id, "class"=>"form-horizontal");
         $action    = 'Editar';
     else:
-        $form_data = array('url' => 'actividadprogramada/insert', 'class'=>'class="form-horizontal');
+        $form_data = array('url' => 'actividadprogramada/insert', 'class'=>'form-horizontal');
         $action    = 'Crear';        
     endif;
 
