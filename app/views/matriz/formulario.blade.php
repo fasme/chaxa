@@ -350,8 +350,14 @@ $("#resultado1").val(resultado);
 $.get("{{url('matriz/cargarMatrizColor')}}",
   {resultado:resultado},
   function(data){
+
     $("#color1").css("background-color",data);
-     });
+    if(factor1 == 8)
+    {
+      $("#color1").css("background-color","red");
+    }
+        });
+    }
 });
 
 
