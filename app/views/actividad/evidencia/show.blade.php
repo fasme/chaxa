@@ -8,7 +8,7 @@ $actividadresponsable = DB::table('actividad_responsable_noprogramada')->Where("
 $actividadresponsable_programada = DB::table('actividad_responsable_programada')->Where("personal_admin_id","=",Auth::user()->id)->get();
 
 //$actividadresponsable_pac = DB::table('actividad_responsable_pac')->Where("personal_admin_id","=",Auth::user()->id)->get();
-$actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')->Where("personal_id","=",Auth::user()->id)->get();
+$actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')->Where("personal_admin_id","=",Auth::user()->id)->get();
 
 
 ?>
