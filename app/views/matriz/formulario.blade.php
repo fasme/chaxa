@@ -357,7 +357,7 @@ $.get("{{url('matriz/cargarMatrizColor')}}",
       $("#color1").css("background-color","red");
     }
         });
-    }
+    
 });
 
 
