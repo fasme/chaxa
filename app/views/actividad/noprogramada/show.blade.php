@@ -105,7 +105,7 @@ var tableTools = new $.fn.dataTable.TableTools( table, {
                         "sFileName": "<?php print('Informe'); ?>.pdf",
                         "sPdfOrientation": "landscape",
                         "oSelectorOpts": {page: 'current'},
-                        "mColumns": [ 0, 1 ]
+                        "mColumns": [ 0, 1,2 ]
 
                     }
 

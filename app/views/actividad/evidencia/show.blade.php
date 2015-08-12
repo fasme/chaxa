@@ -2,20 +2,6 @@
 
 @section('contenido')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php
 $actividadresponsable = DB::table('actividad_responsable_noprogramada')->Where("personal_admin_id","=",Auth::user()->id)->get();
 //$actividadresponsable_kpi =  Kpi::all(); //DB::table('actividad_responsable_kpi')->Where("personal_admin_id","=",Auth::user()->id)->get();
@@ -147,7 +133,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
 
 
                                  @foreach(Kpi::all() as $actividad)
-                                  @foreach($actividad->muchaspersonal()->get() as $actividad2)
+                                  @foreach($actividad->muchaspersonal()->where("personal_admin_id","=",Auth::user()->id)->get() as $actividad2)
                         
                           <tr>
                             
@@ -290,7 +276,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
 
 
                                  @foreach(Pac::all() as $actividad)
-                                  @foreach($actividad->muchaspersonal()->get() as $actividad2)
+                                  @foreach($actividad->muchaspersonal()->where("personal_admin_id","=",Auth::user()->id)->get() as $actividad2)
                         
                           <tr>
                             
