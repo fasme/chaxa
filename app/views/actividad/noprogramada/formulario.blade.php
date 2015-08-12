@@ -34,10 +34,10 @@
            <?php
   // si existe el usuario carga los datos
     if ($actividadnoprogramada->exists):
-        $form_data = array('url' => 'actividadnoprogramada/update/'.$actividadnoprogramada->id);
+        $form_data = array('url' => 'actividadnoprogramada/update/'.$actividadnoprogramada->id, "class"=>"form-horizontal");
         $action    = 'Editar';
     else:
-        $form_data = array('url' => 'actividadnoprogramada/insert', 'class'=>'class="form-horizontal');
+        $form_data = array('url' => 'actividadnoprogramada/insert', 'class'=>'form-horizontal');
         $action    = 'Crear';        
     endif;
 
