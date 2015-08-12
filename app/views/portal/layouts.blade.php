@@ -78,7 +78,7 @@
                         <li id="actividadactive"><a href="{{URL::to('misactividades')}}">Actividades</a></li>
                         <li id="matrizactive"><a href="{{URL::to('matrizportal')}}">Matriz</a></li>
                         <li id="biblioactive"><a href="{{URL::to('bibliotecaportal')}}">Biblioteca</a></li>
-                     @if((Auth::user()->perfil == "usuariomantencion") ||  (Auth::user()->perfil == "admin") || (Auth::user()->pefil == "adminmantencion"))   <li id="mantencionactive"><a href="{{URL::to('mantencionportal')}}">Mantencion</a></li> @endif
+                     @if((Auth::user()->perfil == "usuariomantencion") ||  (Auth::user()->perfil == "admin") || (Auth::user()->perfil == "adminmantencion"))   <li id="mantencionactive"><a href="{{URL::to('mantencionportal')}}">Mantencion</a></li> @endif
                        
 
                         <!--<li class="dropdown">
