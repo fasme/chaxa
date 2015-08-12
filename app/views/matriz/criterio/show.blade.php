@@ -9,63 +9,7 @@
 
 
 <div class="row">
-<div class="col-xs-12">
 
-                    <h3 class="header smaller lighter">Exposicion: 
-                    <a href="{{URL::to('criterioexposicion/insert')}}"  class="btn btn-white btn-info btn-bold"> 
-    <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>Agregar</a>
-    </h3>
-
-
-
-                    <div class="clearfix">
-                      <div class="pull-right tableTools-container"></div>
-                    </div>
-                    <div class="table-header">
-                      Resultados
-                    </div>
-        
- 
-<table id="example" class="table table-striped table-bordered table-hover">
-  <thead>
-          <tr>
-            <th>Nombre</th>
-          <th>Descripcion</th>
-          <th>Factor</th>
-  <th>Acciones</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-
-
-  @foreach($criterioexposicions as $criterioexposicion)
-           <tr>
-
-             <td> {{ $criterioexposicion->nombre}}</td>
-             <td>{{$criterioexposicion->descripcion}}</td>
-             <td>{{$criterioexposicion->factor}}</td>
-         
-
-  <td class="td-actions">
-                       
-                      
-                   
-
-                          <a class="green" href= {{ 'criterioexposicion/update/'.$criterioexposicion->id }}>
-                            <i class="fa fa-pencil bigger-130"></i>
-                          </a>
-
-                         <a class="red bootbox-confirm" data-table="criterioexposicion" data-id={{ $criterioexposicion->id }}>
-                            <i class="fa fa-trash bigger-130"></i>
-                          </a>
-                      </td>
-</tr>
-          @endforeach
-        </tbody>
-  </table>
-
-  </div>
 
 
 
