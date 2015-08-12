@@ -91,7 +91,6 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             ?>
                             <td>{{$actividad->created_at}}</td>
                             <td>{{$busqueda->actividad}}</td>
-                            <td>{{Personal::find($actividad->personal_admin_id)->nombre}}</td>
                             
                             
                             
@@ -170,7 +169,6 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             ?>
                             <td>{{$actividad->created_at}}</td>
                             <td>{{ $actividad2->pivot->actividad}}</td>
-                          <td>{{Personal::find($actividad->personal_admin_id)->nombre}}</td>
 
                             <td>{{"KPI"}}</td>
                             <td>{{$actividad2->pivot->estado}}</td>
@@ -244,8 +242,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             ?>
                             <td>{{$actividad->created_at}}</td>
                             <td>{{$busqueda->actividad}}</td>
-                             <td>{{Personal::find($actividad->personal_admin_id)->nombre}}</td>
-                           
+                            
                             
                             
                             <td>{{$actividad->tipoactividad}}</td>
@@ -321,8 +318,6 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             ?>
                             <td>{{$actividad->created_at}}</td>
                             <td>{{ $actividad2->pivot->actividad}}</td>
-                            <td>{{Personal::find($actividad->personal_admin_id)->nombre}}</td>
-                            
                             <td>{{"Pac"}}</td>
                             <td>{{$actividad2->pivot->estado}}</td>
                             
@@ -401,8 +396,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                             <td>{{$actividad->created_at}}</td>
                             <td>{{$busqueda->mantencionrealizada}}</td>
                             
-                              <td>{{Personal::find($actividad->personal_admin_id)->nombre}}</td>
-                          
+                            
                             
                             <td>{{$actividad->tipoactividad}}</td>
                             <td>{{$actividad->estado}}</td>
