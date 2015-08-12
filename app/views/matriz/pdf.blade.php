@@ -43,6 +43,11 @@ $html .= "<td>".$matriz->resultado."</td>";
 
 $clasificacion = Clasificacion::Where("desde","<=",$matriz->resultado)->Where("hasta",">",$matriz->resultado)->first();
 
+if($matriz->factorseveridad == 8)
+{
+	$clasificacion->color = "red";
+	$clasificacion->clasificacion = "Riesgo Inaceptable";
+}
 $html .= "<td bgcolor=".$clasificacion->color.">$clasificacion->clasificacion</td>";
 
 
