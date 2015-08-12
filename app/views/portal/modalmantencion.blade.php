@@ -80,7 +80,7 @@ else
 
             <div class="form-group">
             {{Form::label('', 'Horometro proxima mantención',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::text('proximahorometro', $mantencion->proximahorometro, array("id"=>"proximahorometro", "class"=>"calculos", "readonly"=>"readonly"))}}
+            {{Form::text('proximahorometro', $mantencion->proximahorometro+250, array("id"=>"proximahorometro", "class"=>"calculos", "readonly"=>"readonly"))}}
             </div>
 
 

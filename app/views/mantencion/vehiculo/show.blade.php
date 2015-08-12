@@ -127,12 +127,12 @@ $mantencion = "";
 
     
        <?php
-       $mantencion = $vehiculo->mantencion()->orderby("id","desc")->first();
-
+       $mantencion = $vehiculo->mantencion()->orderby("id","desc")->first(); 
+//para que no mande error
       
       ?>
 
-@if(count($mantencion) >0) 
+@if(count($mantencion) >0)  
 <?php 
            
            
