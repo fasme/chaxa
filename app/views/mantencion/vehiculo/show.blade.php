@@ -154,7 +154,7 @@ $mantencion = "";
 
            ?> 
 <tr>
-          <td> {{ $mantencion->vehiculo->familia." / ". $mantencion->vehiculo->patente}}</td> 
+          <td> {{ $mantencion->vehiculo->familia." / ". $mantencion->vehiculo->ninterno}}</td> 
           <td>{{ $mantencion->mantencionrealizada}} Horas</td> 
           <td>{{$mantencion->proximamantencion}} Horas</td> 
           <td>{{date_format(date_create($mantencion->fecha_mantencion),'d/m/Y')}} 
