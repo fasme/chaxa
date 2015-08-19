@@ -46,7 +46,7 @@
   @foreach($pacs as $pac)
            <tr>
 
-             <td> {{ $pac->personal_id}}</td>
+             <td> {{ Personal::find($pac->personal_id)->nombre}}</td>
          <td> {{ $pac->faena}}</td>
          <td> {{ $pac->identificacion}}</td>
          <td> {{ $pac->porque1}}</td>

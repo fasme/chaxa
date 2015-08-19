@@ -398,7 +398,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
 
                             ?>
                             <td>{{$actividad->created_at}}</td>
-                            <td>{{$busqueda->mantencionrealizada}}</td>
+                            <td>{{$busqueda->mantencionrealizada}} ({{Vehiculo::find($busqueda->vehiculo_id)->familia}} - {{Vehiculo::find($busqueda->vehiculo_id)->ninterno}})</td>
                             <td>{{Personal::find($actividad->personal_admin_id)->nombre}}</td>
                             
                             
