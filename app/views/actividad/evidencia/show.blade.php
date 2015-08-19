@@ -405,7 +405,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                            <a href="archivos/evidencia/{{ $actividad->adjunto4}}">{{$actividad->adjunto4}}</a><br>
                            <a href="archivos/evidencia/{{ $actividad->adjunto5}}">{{$actividad->adjunto5}}</a><br>
                                 @if($actividad->estado != "Cerrada")
-                                      <a href='#' data-id="{{$actividad->id}}" data-tipoactividad="{{$actividad->tipoactividad}}" class="bootbox-confirm"><button class="btn btn-success">Cerrar actividad</button></a>
+                                      <a href='#' data-id="{{$actividad->id}}" data-tipoactividad="{{$actividad->tipoactividad}}" class="bootbox-confirm">Cerrar actividad</a>
                                     @endif
                                     
                               @endif
