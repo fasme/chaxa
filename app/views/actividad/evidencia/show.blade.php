@@ -405,7 +405,7 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
                            <a href="archivos/evidencia/{{ $actividad->adjunto4}}">{{$actividad->adjunto4}}</a><br>
                            <a href="archivos/evidencia/{{ $actividad->adjunto5}}">{{$actividad->adjunto5}}</a><br>
                                 @if($actividad->estado != "Cerrada")
-                                      <a href='#' data-id="{{$actividad->id}}" data-tipoactividad="{{$actividad->tipoactividad}}" class="bootbox-confirm">Cerrar actividad</a>
+                                      <a href='#' data-id="{{$actividad->id}}" data-tipoactividad="{{$actividad->tipoactividad}}" class="bootbox-confirm"><button class="btn btn-success">Cerrar actividad</button></a>
                                     @endif
                                     
                               @endif
@@ -462,6 +462,40 @@ $actividadresponsable_mantencion = DB::table('actividad_responsable_mantencion')
 
 
 $( "#evidenciaactive" ).addClass( "active" );
+
+
+
+
+$(".bootbox-confirm").on(ace.click_event, function() {
+  var id = $(this).data('id');
+  var tipoactividad = $(this).data("tipoactividad");
+  var actividadid = $(this).data("actividadid");
+  var personalid  = $(this).data("personalid");
+
+  alert(id);
+  alert(tipoactividad);
+  alert(actividadid);
+  alert(personalid);
+var tr = $(this).parents('tr'); 
+
+          bootbox.confirm("Deseas cerrar la actividad "+id, function(result) {
+            if(result) { // si se seleccion OK
+              
+           
+             
+             $.get("{{ url('evidenciaadmin/cerraractividad')}}",
+              { id: id, tipoactividad: tipoactividad, actividadid: actividadid, personalid:personalid },
+
+              function(data,status){ alert(data);}
+).fail(function(data){bootbox.alert("No se puede eliminar un registro padre: una restricción de clave externa falla");});
+
+     
+            }
+           
+          });
+        });
+
+
 
 
 $('#example tfoot th').each( function () {
@@ -536,29 +570,7 @@ $('input').on( 'keyup', function () {
 
 
 
-$(".bootbox-confirm").on(ace.click_event, function() {
-  var id = $(this).data('id');
-  var tipoactividad = $(this).data("tipoactividad");
-  var actividadid = $(this).data("actividadid");
-  var personalid  = $(this).data("personalid");
-var tr = $(this).parents('tr'); 
 
-          bootbox.confirm("Deseas cerrar la actividad "+id, function(result) {
-            if(result) { // si se seleccion OK
-              
-           
-             
-             $.get("{{ url('evidenciaadmin/cerraractividad')}}",
-              { id: id, tipoactividad: tipoactividad, actividadid: actividadid, personalid:personalid },
-
-              function(data,status){ alert(data);}
-).fail(function(data){bootbox.alert("No se puede eliminar un registro padre: una restricción de clave externa falla");});
-
-     
-            }
-           
-          });
-        });
 
 
 
