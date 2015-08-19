@@ -183,7 +183,7 @@ $(".calculos").change(function(){
 
 
   var horometromantencion = $("#horometromantencion").val();
-  var suma1 = parseFloat(horometromantencion) + 250;
+  var suma1 = parseFloat(horometroactual) + 250;
 
 });
     

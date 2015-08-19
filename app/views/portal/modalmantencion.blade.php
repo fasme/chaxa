@@ -80,7 +80,7 @@ else
 
             <div class="form-group">
             {{Form::label('', 'Horometro proxima mantención',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::text('proximahorometro', $mantencion->proximahorometro+250, array("id"=>"proximahorometro", "class"=>"calculos", "readonly"=>"readonly"))}}
+            {{Form::text('proximahorometro', $mantencion->vehiculo->horometro+250, array("id"=>"proximahorometro", "class"=>"calculos", "readonly"=>"readonly"))}}
             </div>
 
 
@@ -111,9 +111,11 @@ else
 
  
 
+//var horometroactual = {{$mantencion->vehiculo->horometro}};
 
-  var horometromantencion = $("#horometromantencion").val();
-  var suma1 = parseFloat(horometromantencion) + 250;
+ // var horometromantencion = $("#horometromantencion").val();
+  //var suma1 = parseFloat(horometroactual) + 250;
+ // alert(suma1);
 
 
   //$("#proximahorometro").val(suma1);
