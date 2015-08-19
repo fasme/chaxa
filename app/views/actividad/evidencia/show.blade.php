@@ -472,10 +472,11 @@ $(".bootbox-confirm").on(ace.click_event, function() {
   var actividadid = $(this).data("actividadid");
   var personalid  = $(this).data("personalid");
 
-  alert(id);
+  /*alert(id);
   alert(tipoactividad);
   alert(actividadid);
   alert(personalid);
+  */
 var tr = $(this).parents('tr'); 
 
           bootbox.confirm("Deseas cerrar la actividad "+id, function(result) {
