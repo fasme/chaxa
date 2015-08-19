@@ -209,7 +209,7 @@
 					@endif
 
 
-@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "admingerente") || (Auth::user()->perfil == "adminfacturacion") || (Auth::user()->perfil == "adminprevencion") || (Auth::user()->perfil == "adminrrhh"))
+@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "admingerente") || (Auth::user()->perfil == "adminfacturacion") || (Auth::user()->perfil == "adminprevencion") || (Auth::user()->perfil == "adminrrhh") || (Auth::user()->perfil == "adminmantencion"))
 
 					<li class="" id="bibliotecaactive">
 						<a href="#" class="dropdown-toggle">
