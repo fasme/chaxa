@@ -34,6 +34,7 @@
             <th>Cargo</th>
             <th>Fono</th>
             <th>Correo</th>
+            <th>Perfil</th>
   <th>Acciones</th>
             
           </tr>
@@ -49,6 +50,7 @@
              <td>{{$personal->cargo->nombre}}</td>
              <td>{{$personal->fono}}</td>
              <td>{{$personal->correo}}</td>
+             <td>{{$personal->perfil}}</td>
          
 
   <td class="td-actions">

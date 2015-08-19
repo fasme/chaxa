@@ -75,7 +75,7 @@
 
             <div class="form-group">
             {{Form::label('', 'Perfil',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::select('perfil', array("usuario"=>"usuario General", "usuariomantencion"=>"Usuario Mantencion", "admin"=>"Admin General", "adminmantencion"=>"Administrador Mantencion", "adminprevencion"=>"Administrador De Prevencion", "admingerente"=>"Gerencial", "adminfacturacion"=>"Administrador Facturacion"), $personal->perfil)}}
+            {{Form::select('perfil', array("usuario"=>"usuario General", "usuariomantencion"=>"Usuario Mantencion", "admin"=>"Admin General", "adminmantencion"=>"Administrador Mantencion", "adminprevencion"=>"Administrador De Prevencion", "admingerente"=>"Gerencial", "adminfacturacion"=>"Administrador Facturacion","adminrrhh"=>"Administrador RRHH"), $personal->perfil)}}
             </div>
 
 
