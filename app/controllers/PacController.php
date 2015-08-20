@@ -89,7 +89,7 @@ class PacController extends BaseController {
 {             
 
     $message->from(Personal::find(Auth::user()->id)->correo, '');
-    $message->to(Personal::find($datos["selectpac"][$i])->correo, '')->subject('Nueva Actividad No Programada!');
+    $message->to(Personal::find($datos["selectpac"][$i])->correo, '')->subject('Nuevo PAC!');
 });
             // FIN correo
 
@@ -160,30 +160,18 @@ return Redirect::to('pac/insert')->withInput()->withErrors($pac->errors);
             $frecuencia = "$ano-$mes-$dia";
 
             $pac->muchaspersonal()->attach($datos["selectpac"][$i],array("frecuencia"=>$frecuencia, "actividad"=>$datos["actividad"][$i],"personal_admin_id"=>Auth::user()->id,"estado"=>"Abierta","tipoplan"=>$datos["tipoplan"][$i]));
-            
-            /*
-            $pacactividad = new ActividadPac;
-            $pacactividad->actividad = $datos["actividad"][$i];
-            $pacactividad->personal_id = $datos["selectpac"][$i];
-            $pacactividad->tipoplan = $datos["tipoplan"][$i];
+         
 
-            
-            list($dia,$mes,$ano) = explode("/",$datos['frecuencia'][$i]);
-            $pacactividad->frecuencia = "$ano-$mes-$dia";
+            // CORREO
+            Mail::send('emails.emailactividad', array('key' => 'value'), function($message) use($datos, $i)
+{             
+
+    $message->from(Personal::find(Auth::user()->id)->correo, '');
+    $message->to(Personal::find($datos["selectpac"][$i])->correo, '')->subject('Nuevo PAC!');
+});
+            // FIN correo
 
 
-
-            $pac->actividadPac()->save($pacactividad);
-
-             $alerta = new Alertas;
-            $alerta->mensaje = "ha enviado una Nueva Actividad";
-            $alerta->personal_id = $datos["selectpac"][$i];  // id_de
-            $alerta->personal_id_admin = Auth::user()->id;  // id_para
-            $alerta->tipo = "aportal";
-            $alerta->save();
-            
-            //echo $datos["selectpac"][$i]." ".$datos["actividad"][$i]."<br>";
-            */
         }
 
 
