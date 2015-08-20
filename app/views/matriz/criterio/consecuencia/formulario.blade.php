@@ -6,7 +6,7 @@
      
 <div class="page-header position-relative">
             <h1>
-              Consecuencia
+              Severidad
               <small>
                 <i class="icon-double-angle-right"></i>
                 
@@ -56,7 +56,7 @@
 
              <div class="form-group">
             {{Form::label('', 'Descripcion',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::text('descripcion', $criterioconsecuencia->descripcion)}}
+            {{Form::textarea('descripcion', $criterioconsecuencia->descripcion)}}
             </div>
 
              <div class="form-group">

@@ -16,10 +16,10 @@
 
           
     <a href="{{URL::to('matriz/pdf')}}"  class="btn btn-white btn-info btn-bold"> 
-    <i class="ace-icon fa fa-file-pdf-o bigger-120 red"></i>Matriz Completa</a>
+    <i class="ace-icon fa fa-file-pdf-o bigger-120 red"></i>Generar Matriz Completa</a>
 
     
-   <input type="submit" class="btn btn-white btn-info btn-bold" value="Matriz Filtrada">
+   <input type="submit" class="btn btn-white btn-info btn-bold" value="Generar Matriz Filtrada">
    <select id="selectmatrices" name="selectmatrices[]" multiple="multiple" style="visibility:hidden" >
   
   
@@ -59,7 +59,7 @@
                             </td>
                             <td>
                             <a href= {{ 'matriz/pdf/'.$matriz->id }}>
-                            <span class="label label-success arrowed">Imprimir</span>
+                            <span class="label label-success arrowed">Descargar</span>
 
                           </a></td>
                            

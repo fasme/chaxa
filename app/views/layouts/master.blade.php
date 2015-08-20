@@ -290,7 +290,7 @@
 
 						<ul class="submenu">
 
-						@if((Auth::user()->perfil == "admin") || (Auth::user()->perfil == "adminmantencion") || (Auth::user()->perfil == "adminprevencion") || (Auth::user()->perfil == "admingerente") || (Auth::user()->perfil == "adminfacturacion"))
+						@if((Auth::user()->perfil == "admin")  || (Auth::user()->perfil == "adminprevencion") || (Auth::user()->perfil == "admingerente") )
 
 							<li class="" id="programadaactive">
 								<a href="{{URL::to('actividadprogramada')}}">

@@ -56,7 +56,7 @@
 
              <div class="form-group">
             {{Form::label('', 'Descripcion',array("class"=>"col-sm-3 control-label no-padding-right"))}}
-            {{Form::text('descripcion', $criterioprobabilidad->descripcion)}}
+            {{Form::textarea('descripcion', $criterioprobabilidad->descripcion)}}
             </div>
 
              <div class="form-group">
