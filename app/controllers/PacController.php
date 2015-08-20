@@ -122,7 +122,7 @@ class PacController extends BaseController {
         }
 
 
-        }
+        
 
 
 
@@ -223,7 +223,7 @@ return Redirect::to('pac/insert')->withInput()->withErrors($pac->errors);
             // FIN correo
         }
 
-        
+
         }
 
 
