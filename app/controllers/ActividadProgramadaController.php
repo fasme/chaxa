@@ -79,6 +79,15 @@ class ActividadProgramadaController extends BaseController {
                     $alerta->save();
 
 
+                    // CORREO
+            Mail::send('emails.emailactividad', array('key' => 'value'), function($message) use($datos, $i)
+{             
+
+    $message->from(Personal::find(Auth::user()->id)->correo, '');
+    $message->to(Personal::find($datos["personal_id"][$i])->correo, '')->subject('Nueva Actividad No Programada!');
+});
+            // FIN correo
+
                    
         }
 
@@ -146,6 +155,16 @@ class ActividadProgramadaController extends BaseController {
                     $alerta->personal_id_admin = Auth::user()->id; //id para
                     $alerta->tipo = "aportal";
                     $alerta->save();
+
+
+                    // CORREO
+            Mail::send('emails.emailactividad', array('key' => 'value'), function($message) use($datos, $i)
+{             
+
+    $message->from(Personal::find(Auth::user()->id)->correo, '');
+    $message->to(Personal::find($datos["personal_id"][$i])->correo, '')->subject('Nueva Actividad No Programada!');
+});
+            // FIN correo
 
 
                    }

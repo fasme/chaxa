@@ -102,6 +102,18 @@ class KpiController extends BaseController {
             $alerta->save();
             //echo $datos["selectpac"][$i]." ".$datos["actividad"][$i]."<br>";
             */
+
+
+            // CORREO
+            Mail::send('emails.emailactividad', array('key' => 'value'), function($message) use($datos, $i)
+{             
+
+    $message->from(Personal::find(Auth::user()->id)->correo, '');
+    $message->to(Personal::find($datos["selectpac"][$i])->correo, '')->subject('Nuevo KPI!');
+});
+            // FIN correo
+        }
+
         }
 
          
@@ -203,6 +215,17 @@ return Redirect::to('kpi/insert')->withInput()->withErrors($kpi->errors);
             $alerta->save();
             //echo $datos["selectpac"][$i]." ".$datos["actividad"][$i]."<br>";
             */
+
+            // CORREO
+            Mail::send('emails.emailactividad', array('key' => 'value'), function($message) use($datos, $i)
+{             
+
+    $message->from(Personal::find(Auth::user()->id)->correo, '');
+    $message->to(Personal::find($datos["selectpac"][$i])->correo, '')->subject('Nuevo KPI!');
+});
+            // FIN correo
+        }
+
         
         }
         

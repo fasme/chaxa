@@ -110,6 +110,18 @@ class PacController extends BaseController {
             */
             
             //echo $datos["selectpac"][$i]." ".$datos["actividad"][$i]."<br>";
+
+            // CORREO
+            Mail::send('emails.emailactividad', array('key' => 'value'), function($message) use($datos, $i)
+{             
+
+    $message->from(Personal::find(Auth::user()->id)->correo, '');
+    $message->to(Personal::find($datos["selectpac"][$i])->correo, '')->subject('Nuevo PAC!');
+});
+            // FIN correo
+        }
+
+
         }
 
 
@@ -199,6 +211,19 @@ return Redirect::to('pac/insert')->withInput()->withErrors($pac->errors);
             
             //echo $datos["selectpac"][$i]." ".$datos["actividad"][$i]."<br>";
             */
+
+
+            // CORREO
+            Mail::send('emails.emailactividad', array('key' => 'value'), function($message) use($datos, $i)
+{             
+
+    $message->from(Personal::find(Auth::user()->id)->correo, '');
+    $message->to(Personal::find($datos["selectpac"][$i])->correo, '')->subject('Nuevo KPI!');
+});
+            // FIN correo
+        }
+
+        
         }
 
 
