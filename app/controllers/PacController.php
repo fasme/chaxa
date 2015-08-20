@@ -83,46 +83,19 @@ class PacController extends BaseController {
             $alerta->tipo = "aportal";
             $alerta->save();
 
-            /*
-            $pacactividad = new ActividadPac;
-            $pacactividad->actividad = $datos["actividad"][$i];
-            $pacactividad->personal_id = $datos["selectpac"][$i];
-            $pacactividad->tipoplan = $datos["tipoplan"][$i];
-
-            
-            list($dia,$mes,$ano) = explode("/",$datos['frecuencia'][$i]);
-            $pacactividad->frecuencia = "$ano-$mes-$dia";
-
-
-
-            $pac->actividadPac()->save($pacactividad);
-
-            $pacactividad = ActividadPac::find($pacactividad->id);
-            $pacactividad->muchaspersonal()->attach($datos["selectpac"][$i],array("personal_admin_id"=>Auth::user()->id, "estado"=>"Abierta","tipoactividad"=>"pac"));
-
-
-            $alerta = new Alertas;
-            $alerta->mensaje = "ha enviado una Nueva Actividad";
-            $alerta->personal_id = $datos["selectpac"][$i];  // id_de
-            $alerta->personal_id_admin = Auth::user()->id;  // id_para
-            $alerta->tipo = "aportal";
-            $alerta->save();
-            */
-            
-            //echo $datos["selectpac"][$i]." ".$datos["actividad"][$i]."<br>";
 
             // CORREO
             Mail::send('emails.emailactividad', array('key' => 'value'), function($message) use($datos, $i)
 {             
 
     $message->from(Personal::find(Auth::user()->id)->correo, '');
-    $message->to(Personal::find($datos["selectpac"][$i])->correo, '')->subject('Nuevo PAC!');
+    $message->to(Personal::find($datos["selectpac"][$i])->correo, '')->subject('Nueva Actividad No Programada!');
 });
             // FIN correo
+
+
+            
         }
-
-
-        
 
 
 
@@ -211,19 +184,6 @@ return Redirect::to('pac/insert')->withInput()->withErrors($pac->errors);
             
             //echo $datos["selectpac"][$i]." ".$datos["actividad"][$i]."<br>";
             */
-
-
-            // CORREO
-            Mail::send('emails.emailactividad', array('key' => 'value'), function($message) use($datos, $i)
-{             
-
-    $message->from(Personal::find(Auth::user()->id)->correo, '');
-    $message->to(Personal::find($datos["selectpac"][$i])->correo, '')->subject('Nuevo KPI!');
-});
-            // FIN correo
-        }
-
-
         }
 
 
