@@ -325,7 +325,7 @@ return Redirect::to('personal/update/'.$id)->withInput()->withErrors($personal->
 
 
 
-            $actividadrespoonsable = DB::table('actividad_responsable_programda')
+            $actividadrespoonsable = DB::table('actividad_responsable_programada')
             ->Where("id","=",$datos["id"]);
 
             $adjunto11 ="";
