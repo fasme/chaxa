@@ -362,7 +362,7 @@ $.get("{{url('matriz/cargarMatrizColor')}}",
 
 
 $(".fun2").change(function(){
-
+var riesgopuro = $("#resultado1").val();
 var factorprevio = $("#factorprevio").val();
 var resultado2 = Math.pow(0.8,factorprevio) + ((1-(Math.pow(0.8,factorprevio)))*80)/100;
 $("#resultado2").val(resultado2);
@@ -389,7 +389,7 @@ var resultado7 = Math.pow(0.9,factorepp);
 $("#resultado7").val(resultado7);
 
 
-var magnitud = resultado2 * resultado3 * resultado4 * resultado5 * resultado6 * resultado7;
+var magnitud = resultado2 * resultado3 * resultado4 * resultado5 * resultado6 * resultado7 * riesgopuro;
 $("#magnitud").val(magnitud);
 
 $.get("{{url('matriz/cargarMatrizColor')}}",
